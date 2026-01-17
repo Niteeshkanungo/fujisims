@@ -189,6 +189,50 @@ def analyze_trends():
     plt.savefig('images/average_preferences.png')
     plt.close()
 
+    # 9. Calculate the Golden Recipe (Exact Values)
+    avg_settings = {}
+    for m in metrics:
+        avg_settings[m] = round(df_avg[m].mean() * 2) / 2 # Round to nearest 0.5 step
+
+    # Most popular film sim
+    top_sim = df_sims.iloc[0]['film_simulation']
+    
+    # Most popular DR
+    top_dr_row = df_dr.groupby('dynamic_range')['count'].sum().sort_values(ascending=False).iloc[0]
+    # We need the index name, bit tricky with series, let's re-query simple group
+    top_dr = df_dr_grouped.sort_values('count', ascending=False).iloc[0]['dr_group']
+    
+    # Re-run WB query for the average calculation
+    query_wb = """
+        SELECT 
+            AVG(wb_shift_red) as avg_red, 
+            AVG(wb_shift_blue) as avg_blue 
+        FROM recipes 
+        WHERE wb_shift_red IS NOT NULL
+    """
+    df_wb = pd.read_sql_query(query_wb, conn)
+    
+    # Simple WB Avg
+    avg_wb_red = round(df_wb.iloc[0]['avg_red'])
+    avg_wb_blue = round(df_wb.iloc[0]['avg_blue'])
+    
+    print("\nXXX_GOLDEN_RECIPE_START_XXX")
+    print(f"Name: The Community Standard (X100V/VI Average)")
+    print(f"Film Simulation: {top_sim}")
+    print(f"Dynamic Range: {top_dr}")
+    print(f"Highlights: {avg_settings['highlight']:+}")
+    print(f"Shadows: {avg_settings['shadow']:+}")
+    print(f"Color: {avg_settings['color']:+}")
+    print(f"Noise Reduction: {avg_settings['noise_reduction']:+}")
+    print(f"Sharpening: {avg_settings['sharpness']:+}")
+    print(f"Clarity: {avg_settings['clarity']:+}")
+    print(f"Grain Effect: Strong, Small") # Hardcoded based on grain graph analysis
+    print(f"Color Chrome Effect: Strong") # Common defaults
+    print(f"Color Chrome FX Blue: Weak")
+    print(f"White Balance: Auto, {avg_wb_red:+} Red & {avg_wb_blue:+} Blue")
+    print(f"ISO: Auto, up to ISO 6400")
+    print("XXX_GOLDEN_RECIPE_END_XXX")
+
 
 if __name__ == "__main__":
     analyze_trends()

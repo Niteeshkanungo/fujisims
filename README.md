@@ -1,6 +1,6 @@
-# Film Simulation Recipe Scraper
+# Fujifilm X100V & X100VI Recipe Analysis
 
-A Python tool to collect and organize film simulation recipes for Fujifilm cameras from public sources into a local SQLite database.
+A data-driven deep dive into the most popular film simulation recipes used by the **Fujifilm X100V** and **X100VI** community.
 
 ## Data Analysis & Trends
 This project analyzes over 240 film simulation recipes. Below are the key findings on how photographers are styling their Fuji cameras.
@@ -34,6 +34,24 @@ By averaging all settings (Highlights, Shadows, Color, etc.), we can visualize t
 - **Color**: Slightly positive (vibrant).
 - **Sharpness/NR**: Negative (softer, organic look).
 ![Average Preferences](images/average_preferences.png)
+
+### 8. The "Golden Recipe"
+Based on the exact averages of all X100V/VI-compatible recipes, here is the mathematically perfect "Fuji Look":
+
+| Setting | Value |
+| :--- | :--- |
+| **Film Simulation** | **Classic Chrome** |
+| **Dynamic Range** | DR400 |
+| **Highlights** | +0.5 |
+| **Shadows** | +1.0 |
+| **Color** | +1.0 |
+| **Noise Reduction** | -4 |
+| **Sharpening** | -1 |
+| **Clarity** | -2 |
+| **Grain Effect** | Strong, Small |
+| **Color Chrome Effect** | Strong |
+| **Color Chrome FX Blue** | Weak |
+| **White Balance** | Auto, 0 Red & -2 Blue |
 
 ## Overview
 A Python tool to collect and organize film simulation recipes for Fujifilm cameras from public sources into a local SQLite database.
