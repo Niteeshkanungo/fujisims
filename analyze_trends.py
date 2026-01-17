@@ -139,6 +139,56 @@ def analyze_trends():
     plt.savefig('images/sensor_distribution.png')
     plt.close()
 
+    # 8. The "Average" User Preference (Radar Chart)
+    print("Generating images/average_preferences.png...")
+    # Extract numerical values from text settings (e.g. "+2" -> 2, "-1" -> -1)
+    
+    # Helper to safe convert string to float
+    def parse_setting_val(val):
+        if val is None: return None
+        try:
+            # Handle "+1" or "-1" or "0"
+            clean = val.replace('+', '').strip()
+            # If range "0 to +2", take average? For now take first number found
+            import re
+            match = re.search(r'([+-]?\d+(?:\.\d+)?)', clean)
+            if match:
+                return float(match.group(1))
+            return 0.0
+        except:
+            return 0.0
+
+    query_avg = "SELECT highlight, shadow, color, sharpness, noise_reduction, clarity FROM recipes"
+    df_avg = pd.read_sql_query(query_avg, conn)
+    
+    metrics = ['highlight', 'shadow', 'color', 'sharpness', 'noise_reduction', 'clarity']
+    averages = []
+    
+    for m in metrics:
+        df_avg[m] = df_avg[m].apply(parse_setting_val)
+        averages.append(df_avg[m].mean())
+        
+    # Plot Radar Chart
+    import numpy as np
+    
+    # Close the loop
+    values = averages + [averages[0]]
+    angles = np.linspace(0, 2*np.pi, len(metrics), endpoint=False).tolist()
+    angles += [angles[0]]
+    
+    fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+    ax.fill(angles, values, color='teal', alpha=0.25)
+    ax.plot(angles, values, color='teal', linewidth=2)
+    
+    ax.set_yticks([-2, -1, 0, 1, 2])
+    ax.set_yticklabels(['-2', '-1', '0', '+1', '+2'])
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels([m.capitalize() for m in metrics])
+    
+    plt.title('The "Average" Recipe Settings\n(Community Standard)', size=20, color='teal', y=1.1)
+    plt.savefig('images/average_preferences.png')
+    plt.close()
+
 
 if __name__ == "__main__":
     analyze_trends()

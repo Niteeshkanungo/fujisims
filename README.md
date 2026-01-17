@@ -26,8 +26,14 @@ The community generally accepts high ISOs to simulate film grain naturally, with
 ![ISO Limit](images/iso_limit.png)
 
 ### 6. Sensor Distribution
-The current dataset has a rich collection for both X-Trans IV and X-Trans V generations.
 ![Sensor Distribution](images/sensor_distribution.png)
+
+### 7. The "Community Standard" Recipe
+By averaging all settings (Highlights, Shadows, Color, etc.), we can visualize the "default" preference of the community.
+- **Highlights/Shadows**: Generally negative (softer contrast).
+- **Color**: Slightly positive (vibrant).
+- **Sharpness/NR**: Negative (softer, organic look).
+![Average Preferences](images/average_preferences.png)
 
 ## Overview
 A Python tool to collect and organize film simulation recipes for Fujifilm cameras from public sources into a local SQLite database.
