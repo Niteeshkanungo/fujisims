@@ -386,11 +386,11 @@ def analyze_trends():
     # Quadrants
     # Bottom-Left: -Sharpness -NR = The "Analog/Organic" Zone
     plt.fill_between([-5, 0], -5, 0, color='#e0f2f1', alpha=0.9) # Teal-ish
-    plt.text(-2.2, -2.2, "ORGANIC / ANALOG\n(Grainy & Soft)", ha='center', va='center', fontweight='bold', color='#00695c')
+    plt.text(-3.0, -3.0, "ORGANIC / ANALOG\n(Grainy & Soft)", ha='center', va='center', fontweight='bold', color='#00695c', fontsize=10)
     
     # Top-Right: +Sharpness +NR = The "Plastic/Digital" Zone
     plt.fill_between([0, 5], 0, 5, color='#ffebee', alpha=0.9) # Red-ish
-    plt.text(2.2, 2.2, "PLASTIC / DIGITAL\n(Smooth & Sharpened)", ha='center', va='center', fontweight='bold', color='#c62828')
+    plt.text(3.0, 3.0, "PLASTIC / DIGITAL\n(Smooth & Sharpened)", ha='center', va='center', fontweight='bold', color='#c62828', fontsize=10)
     
     # Jitter points
     j_s = [x + np.random.uniform(-0.15, 0.15) for x in df_org['S']]
