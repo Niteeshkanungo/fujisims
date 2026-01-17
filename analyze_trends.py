@@ -564,7 +564,7 @@ def analyze_trends():
     data_bw = df_bw_full[df_bw_full['Type'] == 'B&W Recipes']['ShadowVal']
     data_color = df_bw_full[df_bw_full['Type'] == 'Color Recipes']['ShadowVal']
     
-    plt.boxplot([data_bw, data_color], labels=['B&W Recipes', 'Color Recipes'], patch_artist=True,
+    plt.boxplot([data_bw, data_color], tick_labels=['B&W Recipes', 'Color Recipes'], patch_artist=True,
                 boxprops=dict(facecolor='#eceff1', color='#455a64'),
                 medianprops=dict(color='#d84315', linewidth=2))
                 
