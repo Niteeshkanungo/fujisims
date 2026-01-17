@@ -5,32 +5,14 @@ I analyzed **240+ film simulation recipes** to find the mathematical average of 
 
 ---
 
-| **Dynamic Range** | **DR400** | Preserves highlight roll-off. Essential for that "analog" inability to blow out skies. |
-| **Highlights** | **+0.5** | A slight boost to keep images punchy without losing detail. |
-| **Shadows** | **+1.0** | Adds contrast and depth, avoiding the flat "HDR" look of modern smartphones. |
-| **Color** | **+1.0** | Compensates for Classic Chrome's natural desaturation, bringing life back to skin tones. |
-| **Noise Reduction** | **-4** | **CRITICAL**. Fuji's default NR smears detail. -4 ensures organic, grain-like noise structure. |
-| **Sharpening** | **-1** | Digital sharpening looks artificial. -1 allows the lens character to shine. |
-| **Clarity** | **-2** | Acts as a "Mist Filter". It softens local micro-contrast for a dreamy, less clinical vibe. **⚠️ Note: Causes ~1 sec storage delay.** |
-| **Grain Effect** | **Strong, Small** | Textural grounding. It breaks up digital gradient banding and adds tactile "bite". |
-| **Color Chrome Effect** | **Strong** | Deepens luminance in highly saturated colors (like flowers or skies) for richer tonality. |
-| **Color Chrome FX Blue** | **Weak** | Adds a subtle depth to blue skies without making them look radioactive. |
-| **White Balance** | **Auto, 0 R & -2 B** | The "Golden Warmth". Shifting away from Blue creates a permanent "afternoon light" feel. |
-
-> [!CAUTION]
-> **Performance Warning:** This recipe uses **Clarity -2**, which forces the camera to pause for ~1 second after every shot to process the image.
->
-> **For Street/Action Photography:** Change **Clarity to 0**. You lose the "dreamy" softness, but the camera becomes instant again.
->
-> 💡 **Pro Tip (Hardware Fix):**
-> To get the dreamy look *without* the lag, use a **PolarPro Mist Filter** (e.g., Shortstache Everyday Filter). This optical glass adds the "bloom" and mist effect instantly, while also cutting UV haze, letting you shoot at **fps speeds**.
-
 ---
 
-## 📊 View the Full Analysis
-**[Click here to view the Interactive Data Deep Dive](https://niteeshkanungo.github.io/fujisims/)**
+## 🚀 [CLICK HERE TO VIEW THE INTERACTIVE ANALYSIS](https://niteeshkanungo.github.io/fujisims/)
+**👆 The full data deep dive is hosted on our live website.**
 
-> The `README` below contains the summary of our findings. for the complete breakdown of all 11 data points (including White Balance quadrants, Clarity analysis, and Sensor distribution), please visit the live website above.
+> This README contains the summary of our findings. For the complete breakdown of all 11 data points (including White Balance quadrants, Clarity analysis, and Sensor distribution), please visit the link above.
+
+---
 
 ---
 
