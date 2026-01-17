@@ -11,7 +11,7 @@ A Python tool to collect and organize film simulation recipes for Fujifilm camer
 ## Setup
 1. **Clone the repository**:
    ```bash
-   git clone <your-repo-url>
+   git clone https://github.com/niteeshkanungo/fujisims.git
    cd fujisims
    ```
 
