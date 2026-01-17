@@ -50,11 +50,13 @@ Through statistical averaging of every X100V & X100VI recipe in our database, we
 ---
 
 ### 2. Color Behavior (White Balance Shift)
-There is a massive preference for **Warm/Vintage** tones. The scatter plot below shows that most recipes shift Red positively (Green -> Magenta) and Blue negatively (Blue -> Yellow).
+The data shows a massive preference for **Warm/Vintage** tones.
 
-**Technical Analysis**:
-- **The "Nostalgia Curve"**: Psychologically, warm tones equate to "memory" and "comfort" (afternoon sun, aged paper). Cool tones feel "clinical" or "digital".
-- **Fuji's Green Cast**: Fuji sensors often lean slightly Magenta/Green. The strong push towards +Red helps neutralize this and provide better skin tones, while the -Blue shift adds that cinematic yellow color grading seen in movies.
+**How to read this chart:**
+*   **The Orange Zone (Top-Left):** This is the "Golden Hour" zone. Most recipes fall here because shifting AWAY from Blue (towards Yellow) and TOWARDS Red creates a nostalgic, afternoon-sun look.
+*   **The Blue Zone (Bottom-Right):** This is the "Modern/Clean" zone. Very few recipes aim for this cold, clinical look.
+*   **The Center:** This is neutral/accurate color. Notice how few dots are actually in the center? Nobody buys a Fuji for accuracy; they buy it for *character*.
+
 ![WB Trends](images/wb_trends.png)
 
 ---

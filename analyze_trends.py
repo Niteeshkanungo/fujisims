@@ -41,16 +41,40 @@ def analyze_trends():
     """
     df_wb_all = pd.read_sql_query(query_wb_all, conn)
     
-    plt.figure(figsize=(8, 8))
-    plt.scatter(df_wb_all['wb_shift_blue'], df_wb_all['wb_shift_red'], alpha=0.6, c='orange', edgecolors='k')
-    plt.axhline(0, color='gray', linestyle='--', linewidth=0.8)
-    plt.axvline(0, color='gray', linestyle='--', linewidth=0.8)
-    plt.title('Color Grading Preferences (WB Shift)', fontsize=16)
-    plt.xlabel('Blue Shift (Cool <-> Warm)', fontsize=12)
-    plt.ylabel('Red Shift (Green <-> Magenta)', fontsize=12)
-    plt.grid(True, linestyle=':', alpha=0.6)
-    plt.text(5, 5, 'Warm/Vintage', fontsize=12, color='red', ha='center')
-    plt.text(-5, -5, 'Cool/Modern', fontsize=12, color='blue', ha='center')
+    plt.figure(figsize=(10, 8))
+    
+    # Define quadrant limits (approx Fuji scale -9 to +9)
+    plt.xlim(-9, 9)
+    plt.ylim(-9, 9)
+    
+    # Add colored backgrounds to quadrants to visualize the look
+    # Top-Left: -Blue (Yellow) + +Red = Golden/Orange
+    plt.fill_between([-9, 0], 0, 9, color='#fff3e0', alpha=0.9, zorder=0) 
+    plt.text(-4.5, 4.5, "GOLDEN / VINTAGE\n(Warm & Nostalgic)", ha='center', va='center', fontsize=14, color='#e67e22', fontweight='bold')
+
+    # Bottom-Right: +Blue + -Red (Cyan) = Cool Blue
+    plt.fill_between([0, 9], -9, 0, color='#e3f2fd', alpha=0.9, zorder=0)
+    plt.text(4.5, -4.5, "MODERN / COOL\n(Clean & Clinical)", ha='center', va='center', fontsize=14, color='#3498db', fontweight='bold')
+    
+    # Top-Right: +Blue + +Red = Magenta/Purple
+    plt.fill_between([0, 9], 0, 9, color='#f3e5f5', alpha=0.9, zorder=0)
+    plt.text(4.5, 4.5, "MAGENTA\n(Artistic)", ha='center', va='center', fontsize=11, color='#9b59b6', alpha=0.7)
+    
+    # Bottom-Left: -Blue (Yellow) + -Red (Cyan) = Greenish
+    plt.fill_between([-9, 0], -9, 0, color='#e8f5e9', alpha=0.9, zorder=0)
+    plt.text(-4.5, -4.5, "FLUORESCENT\n(Matrix Green)", ha='center', va='center', fontsize=11, color='#27ae60', alpha=0.7)
+
+    # Plot data points on top
+    plt.scatter(df_wb_all['wb_shift_blue'], df_wb_all['wb_shift_red'], alpha=0.8, c='#2c3e50', edgecolors='white', s=60, zorder=2)
+    
+    # Axis lines
+    plt.axhline(0, color='gray', linestyle='-', linewidth=1, zorder=1)
+    plt.axvline(0, color='gray', linestyle='-', linewidth=1, zorder=1)
+    
+    plt.title('The "Psychology of Color" (White Balance Shift)', fontsize=18, pad=20)
+    plt.xlabel('Blue Axis (← Yellow  |  Blue →)', fontsize=12, fontweight='bold')
+    plt.ylabel('Red Axis (← Green  |  Magenta →)', fontsize=12, fontweight='bold')
+    
     plt.tight_layout()
     plt.savefig('images/wb_trends.png')
     plt.close()
