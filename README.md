@@ -2,11 +2,35 @@
 
 A Python tool to collect and organize film simulation recipes for Fujifilm cameras from public sources into a local SQLite database.
 
-## Features
-- Scrapes recipe details (Simulation, Dynamic Range, White Balance, etc.)
-- Parses advanced settings including White Balance shifts (Red/Blue).
-- Stores data in a local SQLite database for easy querying.
-- Deduplicates entries based on URL.
+## Data Analysis & Trends
+This project analyzes over 240 film simulation recipes. Below are the key findings on how photographers are styling their Fuji cameras.
+
+### 1. Most Popular Film Simulations
+**Classic Chrome** and **Classic Negative** are the clear favorites, accounting for the majority of recipes.
+![Top Simulations](images/top_simulations.png)
+
+### 2. Color Behavior (White Balance Shift)
+There is a massive preference for **Warm/Vintage** tones. The scatter plot below shows that most recipes shift Red positively (Green -> Magenta) and Blue negatively (Blue -> Yellow).
+![WB Trends](images/wb_trends.png)
+
+### 3. Dynamic Range Preferences
+**DR400** is the dominant setting, used to preserve highlight detail in high-contrast "film" looks.
+![Dynamic Range](images/dr_usage.png)
+
+### 4. Grain Effect
+Most recipes enable Grain to simulate film texture, with **Strong** grain being the most popular choice.
+![Grain Usage](images/grain_usage.png)
+
+### 5. ISO Limits
+The community generally accepts high ISOs to simulate film grain naturally, with **ISO 6400** being the most common auto-limit.
+![ISO Limit](images/iso_limit.png)
+
+### 6. Sensor Distribution
+The current dataset has a rich collection for both X-Trans IV and X-Trans V generations.
+![Sensor Distribution](images/sensor_distribution.png)
+
+## Overview
+A Python tool to collect and organize film simulation recipes for Fujifilm cameras from public sources into a local SQLite database.
 
 ## Setup
 1. **Clone the repository**:
@@ -33,20 +57,6 @@ A Python tool to collect and organize film simulation recipes for Fujifilm camer
    ```
    This will populate `film_recipes.db`.
 
-## Data Analysis
-Based on the scraped data, here are the key technical trends:
-
-### 1. Most Popular Film Simulation Bases
-Users heavily favor **Classic Chrome** and **Classic Negative** across all generations.
-![Top Simulations](images/top_simulations.png)
-
-### 2. Evolution: X-Trans IV vs V
-- **X-Trans IV**: A balanced mix of Classic Chrome, Eterna, and Classic Negative.
-- **X-Trans V**: Shows a massive shift towards **Nostalgic Neg.** and **Reala Ace** (new simulations).
-
-### 3. Color Grading Trends
-There is a clear preference for **warm, nostalgic tones**. The chart below shows White Balance shifts, with a high concentration in the "Warm/Vintage" quadrant.
-![WB Trends](images/wb_trends.png)
 
 ## Querying the Data
    Use the provided example script:

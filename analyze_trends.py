@@ -49,16 +49,96 @@ def analyze_trends():
     plt.xlabel('Blue Shift (Cool <-> Warm)', fontsize=12)
     plt.ylabel('Red Shift (Green <-> Magenta)', fontsize=12)
     plt.grid(True, linestyle=':', alpha=0.6)
-    
-    # Annotate quadrants
     plt.text(5, 5, 'Warm/Vintage', fontsize=12, color='red', ha='center')
     plt.text(-5, -5, 'Cool/Modern', fontsize=12, color='blue', ha='center')
-    
     plt.tight_layout()
     plt.savefig('images/wb_trends.png')
     plt.close()
 
-    conn.close()
+    # 4. Dynamic Range Usage - Pie Chart
+    print("Generating images/dr_usage.png...")
+    query_dr = "SELECT dynamic_range, COUNT(*) as count FROM recipes WHERE dynamic_range IS NOT NULL GROUP BY dynamic_range"
+    df_dr = pd.read_sql_query(query_dr, conn)
+    
+    # Simple cleanup to grouping main DR types
+    def clean_dr(val):
+        if '400' in val: return 'DR400'
+        if '200' in val: return 'DR200'
+        return 'DR100/Standard'
+    
+    df_dr['dr_group'] = df_dr['dynamic_range'].apply(clean_dr)
+    df_dr_grouped = df_dr.groupby('dr_group')['count'].sum().reset_index()
+    
+    plt.figure(figsize=(7, 7))
+    plt.pie(df_dr_grouped['count'], labels=df_dr_grouped['dr_group'], autopct='%1.1f%%', colors=['#ff9999','#66b3ff','#99ff99'])
+    plt.title('Dynamic Range Preference', fontsize=16)
+    plt.tight_layout()
+    plt.savefig('images/dr_usage.png')
+    plt.close()
+
+    # 5. Grain Effect - Bar Chart
+    print("Generating images/grain_usage.png...")
+    query_grain = "SELECT grain_effect, COUNT(*) as count FROM recipes WHERE grain_effect IS NOT NULL GROUP BY grain_effect"
+    df_grain = pd.read_sql_query(query_grain, conn)
+    
+    # Clean up grain values (e.g. "Strong, Large" -> "Strong")
+    def clean_grain(val):
+        val = val.lower()
+        if 'strong' in val: return 'Strong'
+        if 'weak' in val: return 'Weak'
+        if 'off' in val: return 'Off'
+        return 'Other'
+
+    df_grain['grain_group'] = df_grain['grain_effect'].apply(clean_grain)
+    df_grain_grouped = df_grain.groupby('grain_group')['count'].sum().sort_values(ascending=False)
+    
+    plt.figure(figsize=(8, 5))
+    df_grain_grouped.plot(kind='bar', color='gray', edgecolor='black')
+    plt.title('Grain Effect Intensity', fontsize=16)
+    plt.xlabel('Intensity')
+    plt.ylabel('Count')
+    plt.xticks(rotation=0)
+    plt.tight_layout()
+    plt.savefig('images/grain_usage.png')
+    plt.close()
+
+    # 6. ISO Limit Analysis - Bar Chart
+    print("Generating images/iso_limit.png...")
+    query_iso = "SELECT iso FROM recipes WHERE iso LIKE '%up to%'"
+    df_iso = pd.read_sql_query(query_iso, conn)
+    
+    def extract_iso(val):
+        # Extract number after "ISO"
+        import re
+        match = re.search(r'ISO\s+(\d+)', val)
+        return match.group(1) if match else None
+
+    df_iso['iso_limit'] = df_iso['iso'].apply(extract_iso)
+    iso_counts = df_iso['iso_limit'].value_counts().sort_index()
+    
+    plt.figure(figsize=(8, 5))
+    iso_counts.plot(kind='bar', color='#e74c3c')
+    plt.title('Preferred Auto-ISO Limits', fontsize=16)
+    plt.xlabel('ISO Limit')
+    plt.ylabel('Count')
+    plt.xticks(rotation=0)
+    plt.tight_layout()
+    plt.savefig('images/iso_limit.png')
+    plt.close()
+
+    # 7. Recipes by Sensor Generation
+    print("Generating images/sensor_distribution.png...")
+    query_sensor = "SELECT sensor, COUNT(*) as count FROM recipes GROUP BY sensor"
+    df_sensor = pd.read_sql_query(query_sensor, conn)
+    
+    plt.figure(figsize=(8, 5))
+    plt.bar(df_sensor['sensor'], df_sensor['count'], color='#8e44ad')
+    plt.title('Recipes Per Sensor Generation', fontsize=16)
+    plt.ylabel('Count')
+    plt.tight_layout()
+    plt.savefig('images/sensor_distribution.png')
+    plt.close()
+
 
 if __name__ == "__main__":
     analyze_trends()
