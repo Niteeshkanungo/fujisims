@@ -29,7 +29,7 @@ By applying the **Likeability Index**—identifying the "Peak Preference" for ev
 | **Shadows** | **-2** | A strong preference for **Softer Shadows** (Cinematic Look). |
 | **Color** | **+4** | **The Surprise Consensus.** Intense, deep crimson and blues. |
 | **Noise Reduction** | **-4** | The "Anti-Digital" standard. |
-| **Sharpening** | **-2** | Reduced digital edge-tracing for an "Optical" feel. |
+| **Sharpening** | **+1** | **Professional Choice.** Enhanced micro-detail and edge definition. |
 | **Clarity** | **-2** | The "Mist Filter" effect. *(Note: Adds ~1s delay)* |
 | **Grain Effect** | **Strong, Small** | Adds texture to simulate High-ISO film stock. |
 | **Color Chrome Effect** | **Strong** | Deepens colors in shadows, acting like a polarizer. |

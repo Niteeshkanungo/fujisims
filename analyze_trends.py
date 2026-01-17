@@ -270,7 +270,7 @@ def analyze_trends():
     print(f"Shadows: {int(likeable_settings['shadow']):+}")
     print(f"Color: {int(likeable_settings['color']):+}")
     print(f"Noise Reduction: {int(likeable_settings['noise_reduction']):+}")
-    print(f"Sharpening: {int(likeable_settings['sharpness']):+}")
+    print(f"Sharpening: +1 (User Choice: A little bit sharp)")
     print(f"Clarity: {int(likeable_settings['clarity']):+}")
     print(f"Grain Effect: Strong, Small")
     print(f"Color Chrome Effect: Strong")
