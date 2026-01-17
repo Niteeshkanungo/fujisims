@@ -7,14 +7,6 @@ This project analyzes over 240 film simulation recipes. Below are the key findin
 
 ---
 
-### The "Nishti Recipe" (Highest Probability of Likeness)
-Through statistical averaging of every X100V & X100VI recipe in our database, we typically find the "Golden Mean"—a set of settings that represents the collective consensus of the Fujifilm community. 
-
-**Why this works:** The mathematical average converges on a look that balances modern sharpness with vintage character. It adopts the desaturated documentary feel of **Classic Chrome**, adds the highlight protection of **DR400**, and layers it with a "Golden Hour" warmth (Red+0, Blue-2) that is universally pleasing to the human eye. This isn't just an average; it is the "safe harbor" of aesthetics—the recipe most likely to yield a pleasing result in any condition.
-
-| Setting | Value | Why? |
-| :--- | :--- | :--- |
-| **Film Simulation** | **Classic Chrome** | The gold standard for documentary photography. It creates a distinct, slightly desaturated look that feels "real" yet cinematic. |
 | **Dynamic Range** | **DR400** | Preserves highlight roll-off. Essential for that "analog" inability to blow out skies. |
 | **Highlights** | **+0.5** | A slight boost to keep images punchy without losing detail. |
 | **Shadows** | **+1.0** | Adds contrast and depth, avoiding the flat "HDR" look of modern smartphones. |

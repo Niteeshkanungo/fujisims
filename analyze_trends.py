@@ -322,5 +322,54 @@ def analyze_trends():
     plt.savefig('images/chrome_color_corr.png')
     plt.close()
 
+    # 12. Contrast Curve Preferences (Highlights vs Shadows)
+    print("Generating images/contrast_map.png...")
+    query_contrast = """
+        SELECT highlight, shadow FROM recipes 
+        WHERE highlight IS NOT NULL AND shadow IS NOT NULL
+    """
+    df_contrast = pd.read_sql_query(query_contrast, conn)
+    
+    # Parse values
+    df_contrast['H'] = df_contrast['highlight'].apply(parse_setting_val)
+    df_contrast['S'] = df_contrast['shadow'].apply(parse_setting_val)
+    
+    plt.figure(figsize=(10, 8))
+    plt.xlim(-4.5, 4.5)
+    plt.ylim(-4.5, 4.5)
+    
+    # Quadrants
+    # Bottom-Left: -H -S = Soft/Flat
+    plt.fill_between([-5, 0], -5, 0, color='#e8f5e9', alpha=0.9) # Green-ish
+    plt.text(-2.2, -2.2, "SOFT / CINEMATIC\n(Flat & Analog)", ha='center', va='center', fontweight='bold', color='#2e7d32')
+    
+    # Top-Right: +H +S = Hard/Punchy
+    plt.fill_between([0, 5], 0, 5, color='#ffebee', alpha=0.9) # Red-ish
+    plt.text(2.2, 2.2, "HIGH CONTRAST\n(Punchy & Digital)", ha='center', va='center', fontweight='bold', color='#c62828')
+    
+    # Top-Left: -H +S = Dark Shadows, Soft Highlights
+    plt.fill_between([-5, 0], 0, 5, color='#f3e5f5', alpha=0.9)
+    plt.text(-2.2, 2.2, "MOODY\n(Deep Shadows)", ha='center', va='center', color='#6a1b9a')
+    
+    # Bottom-Right: +H -S = Bright Highlights, Light Shadows
+    plt.fill_between([0, 5], -5, 0, color='#e3f2fd', alpha=0.9)
+    plt.text(2.2, -2.2, "ETHERIAL\n(Bright & Airy)", ha='center', va='center', color='#1565c0')
+    
+    # Jitter points
+    j_h = [x + np.random.uniform(-0.15, 0.15) for x in df_contrast['H']]
+    j_s = [y + np.random.uniform(-0.15, 0.15) for y in df_contrast['S']]
+    
+    plt.scatter(j_h, j_s, c='#34495e', alpha=0.7, edgecolors='white', s=60, zorder=2)
+    
+    plt.axhline(0, color='gray', linestyle='-', alpha=0.5)
+    plt.axvline(0, color='gray', linestyle='-', alpha=0.5)
+    
+    plt.title('Contrast Preferences (Tone Curve)', fontsize=18, pad=20)
+    plt.xlabel('Highlights (Software <-> Harder)', fontsize=12, fontweight='bold')
+    plt.ylabel('Shadows (Softer <-> Harder)', fontsize=12, fontweight='bold')
+    plt.tight_layout()
+    plt.savefig('images/contrast_map.png')
+    plt.close()
+
 if __name__ == "__main__":
     analyze_trends()
