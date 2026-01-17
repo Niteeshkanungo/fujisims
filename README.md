@@ -31,6 +31,9 @@ Through statistical averaging of every X100V & X100VI recipe in our database, we
 > **Performance Warning:** This recipe uses **Clarity -2**, which forces the camera to pause for ~1 second after every shot to process the image.
 >
 > **For Street/Action Photography:** Change **Clarity to 0**. You lose the "dreamy" softness, but the camera becomes instant again.
+>
+> 💡 **Pro Tip (Hardware Fix):**
+> To get the dreamy look *without* the lag, use a **PolarPro Mist Filter** (e.g., Shortstache Everyday Filter). This optical glass adds the "bloom" and mist effect instantly, while also cutting UV haze, letting you shoot at **fps speeds**.
 
 ---
 
