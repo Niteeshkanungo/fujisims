@@ -1,9 +1,7 @@
-# Fujifilm X100V & X100VI Recipe Analysis
+# FujiSims: The Science of X100V & X100VI Aesthetics
+> *"Don't just pick a recipe. Understand the DNA of the Fuji look."*
 
-A data-driven deep dive into the most popular film simulation recipes used by the **Fujifilm X100V** and **X100VI** community.
-
-## Data Analysis & Trends
-This project analyzes over 240 film simulation recipes. Below are the key findings on how photographers are styling their Fuji cameras.
+I analyzed **240+ film simulation recipes** to find the mathematical average of what the community considers "beautiful". This project scrapes the top recipe sites, stores the settings in a SQLite database, and visualizes the trends to uncover the "Golden Mean" of Fujifilm aesthetics for the **X100V and X100VI**.
 
 ---
 
@@ -58,7 +56,7 @@ The data shows a massive preference for **Warm/Vintage** tones.
 
 **Technical Analysis**:
 - **Highlight Roll-off**: DR400 forces the camera to underexpose the RAW file by 2 stops and push the shadows digitally. This preserves 2 extra stops of highlight data.
-- **Why it matters**: Film handles overexposure gracefully; Digital sensors clip to pure white instantly. DR400 is the most effective tool to mimic film's graceful highlight handling, preventing the dreaded "digital white clipped sky".
+- **Why it matters**: Film handles overexposure gracefully; Digital sensors clip to pure white instantly. DR400 is the most effective tool to mimic film's graceful highlight handling.
 ![Dynamic Range](images/dr_usage.png)
 
 ---
@@ -66,15 +64,31 @@ The data shows a massive preference for **Warm/Vintage** tones.
 ### 4. Grain Effect
 **Strong** grain is the overwhelming favorite.
 
-**Technical Analysis**:
-- **Texture vs. Noise**: In the film days, grain was an unavoidable defect. Today, it is a creative choice. "Strong" grain masks the clinical perfection of modern high-resolution sensors (26MP/40MP).
-- **Perceived Sharpness**: Paradoxically, grain can make an image feel "sharper" or more detailed because the random noise pattern adds high-frequency texture that our brains interpret as detail.
+**Why add noise on purpose?**
+- **Texture**: Modern 40MP sensors are "too clean". They look distinctively digital. Adding grain breaks up the perfect gradients, making the image feel organic.
+- **Perceived Sharpness**: Paradoxically, grain makes an image look sharp. Our brains interpret the random high-frequency noise as "detail", distinct from the mushy smearing of noise reduction.
+
 ![Grain Usage](images/grain_usage.png)
 
 ---
 
-### 5. ISO Limits
-The community generally accepts high ISOs to simulate film grain naturally, with **ISO 6400** being the most common auto-limit.
+### 5. The Organic Index (Sharpness vs. Noise Reduction)
+Do people who hate noise reduction also hate sharpness?
+
+**The Anti-Digital Consensus**:
+- **Bottom-Left Heavy**: The cluster in the bottom-left represents the core Fuji user base. They lower Sharpness (-2) AND Noise Reduction (-4).
+- **Why?** They are trying to remove all software interventions. They want the raw optical character of the lens (Sharpness 0) and the raw electrical noise of the sensor (NR -4).
+
+![Sharpness vs NR](images/sharpness_nr_corr.png)
+
+---
+
+### 6. ISO Limits
+Why do so many recipes cap Auto-ISO at 6400?
+
+**Technical Analysis**:
+- **The Noise Floor**: On the X100V's BSI sensor, ISO 6400 noise looks remarkably monochromatic (like film grain) rather than colorful (like digital noise).
+- **Freedom**: Setting a high limit allows you to shoot at f/8 (for sharp street shots) even at night without fear.
 
 ![ISO Limit](images/iso_limit.png)
 
@@ -85,11 +99,13 @@ The community generally accepts high ISOs to simulate film grain naturally, with
 
 ---
 
-### 7. The "Community Standard" Recipe
-By averaging all settings (Highlights, Shadows, Color, etc.), we can visualize the "default" preference of the community.
-- **Highlights/Shadows**: Generally negative (softer contrast).
-- **Color**: Slightly positive (vibrant).
-- **Sharpness/NR**: Negative (softer, organic look).
+### 7. The Fuji "DNA" (Radar Chart)
+Visualizing the average aesthetic footprint of the X100V community.
+
+**The Shape of Color**:
+- **The Bias**: Notice how the shape pulls heavily towards "Softness" (Negative Sharpening/NR) and "Warmth".
+- **The Anti-Sony**: If you mapped a Standard profile here, it would be a perfect circle. Fuji users actively distort reality for artistic effect.
+
 ![Average Preferences](images/average_preferences.png)
 
 ---
@@ -104,8 +120,12 @@ The distribution skews heavily towards **Negative Clarity**.
 
 ---
 
-### 9. Color Chrome vs. Saturation correlation
-Do users who use "Strong" Chrome Effect compensate with higher color saturation? The scatter plot below reveals the relationship.
+### 9. Color Chrome vs. Saturation
+Do users compensate for the darkening effect of "Color Chrome" by boosting saturation?
+
+**Understanding the Connection**:
+- **Color Chrome Effect**: It creates deeper spacing in highly saturated colors (reds/greens). It's like a "polarizer" for color.
+- **The Trend**: Users running "Strong" Chrome FX often boost Color to +2 or +3. They want *rich* color, not *neon* color. Chrome FX keeps it printable.
 
 ![Chrome vs Color](images/chrome_color_corr.png)
 
