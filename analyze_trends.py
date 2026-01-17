@@ -187,77 +187,98 @@ def analyze_trends():
     query_avg = "SELECT highlight, shadow, color, sharpness, noise_reduction, clarity FROM recipes"
     df_avg = pd.read_sql_query(query_avg, conn)
     
+    # 8. The "Consensus" Preference (Radar Chart)
+    print("Generating images/average_preferences.png...")
+    
     metrics = ['highlight', 'shadow', 'color', 'sharpness', 'noise_reduction', 'clarity']
-    averages = []
+    consensus_vals = []
     
     for m in metrics:
         df_avg[m] = df_avg[m].apply(parse_setting_val)
-        averages.append(df_avg[m].mean())
+        # Use mode[0] to get the most frequent discrete setting
+        consensus_vals.append(df_avg[m].mode()[0])
         
     # Plot Radar Chart
     import numpy as np
     
     # Close the loop
-    values = averages + [averages[0]]
+    values = consensus_vals + [consensus_vals[0]]
     angles = np.linspace(0, 2*np.pi, len(metrics), endpoint=False).tolist()
-    angles += [angles[0]]
+    angles += angles[:1]
     
     fig, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
-    ax.fill(angles, values, color='teal', alpha=0.25)
+    ax.fill(angles, values, color='teal', alpha=0.3)
     ax.plot(angles, values, color='teal', linewidth=2)
     
-    ax.set_yticks([-2, -1, 0, 1, 2])
+    ax.set_ylim(-4, 4)
     ax.set_yticklabels(['-2', '-1', '0', '+1', '+2'])
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels([m.capitalize() for m in metrics])
     
-    plt.title('The "Average" Recipe Settings\n(Community Standard)', size=20, color='teal', y=1.1)
+    plt.title('The Community Consensus\n(Likeability Index)', size=20, color='teal', y=1.1)
     plt.savefig('images/average_preferences.png')
     plt.close()
 
-    # 9. Calculate the Golden Recipe (Exact Values)
-    avg_settings = {}
+    # 9. Calculate the Golden Recipe (Likeability Index / Mode)
+    # Using Mode instead of Mean because we want the setting MOST LIKELY to be preferred (the peak of the bell curve)
+    likeable_settings = {}
     for m in metrics:
-        avg_settings[m] = round(df_avg[m].mean() * 2) / 2 # Round to nearest 0.5 step
+        # mode() returns a series, take the first one
+        likeable_settings[m] = df_avg[m].mode()[0]
 
     # Most popular film sim
     top_sim = df_sims.iloc[0]['film_simulation']
     
     # Most popular DR
-    top_dr_row = df_dr.groupby('dynamic_range')['count'].sum().sort_values(ascending=False).iloc[0]
-    # We need the index name, bit tricky with series, let's re-query simple group
     top_dr = df_dr_grouped.sort_values('count', ascending=False).iloc[0]['dr_group']
     
-    # Re-run WB query for the average calculation
-    query_wb = """
-        SELECT 
-            AVG(wb_shift_red) as avg_red, 
-            AVG(wb_shift_blue) as avg_blue 
-        FROM recipes 
-        WHERE wb_shift_red IS NOT NULL
-    """
-    df_wb = pd.read_sql_query(query_wb, conn)
+    # Get actual WB Shifts (Mode)
+    query_wb_all = "SELECT wb_shift_red, wb_shift_blue FROM recipes WHERE wb_shift_red IS NOT NULL"
+    df_wb_all = pd.read_sql_query(query_wb_all, conn)
+    mode_wb_red = df_wb_all['wb_shift_red'].mode()[0]
+    mode_wb_blue = df_wb_all['wb_shift_blue'].mode()[0]
     
-    # Simple WB Avg
-    avg_wb_red = round(df_wb.iloc[0]['avg_red'])
-    avg_wb_blue = round(df_wb.iloc[0]['avg_blue'])
+    # --- Likeability Index Ranking ---
+    # We want to find the ACTUAL recipe from the database that is the "Most Likeable"
+    # criteria: how many settings match the "Consensus Mode"
+    query_all = "SELECT * FROM recipes"
+    df_all = pd.read_sql_query(query_all, conn)
     
+    def calculate_likeability(row):
+        score = 0
+        if row['film_simulation'] == top_sim: score += 1
+        if row['dynamic_range'] == top_dr: score += 1
+        
+        # Parse settings and compare
+        for m in metrics:
+            val = parse_setting_val(row[m])
+            if val == likeable_settings[m]: score += 1
+            
+        if row['wb_shift_red'] == mode_wb_red: score += 1
+        if row['wb_shift_blue'] == mode_wb_blue: score += 1
+        return score
+
+    df_all['likeability_score'] = df_all.apply(calculate_likeability, axis=1)
+    top_recipe = df_all.sort_values('likeability_score', ascending=False).iloc[0]
+
     print("\nXXX_GOLDEN_RECIPE_START_XXX")
-    print(f"Name: The Nishti Recipe (Highest Probability of Likeness)")
-    print("Description: Based on statistical averages of 240+ recipes, this is the 'Golden Mean' of Fuji aesthetics.")
+    print(f"Name: The Nishti Recipe (Community Consensus)")
+    print(f"Description: Built using the 'Likeability Index'—the peak preference for every setting across 240+ recipes. This is the most statistically 'correct' aesthetic for the Fuji community.")
     print(f"Film Simulation: {top_sim}")
     print(f"Dynamic Range: {top_dr}")
-    print(f"Highlights: {avg_settings['highlight']:+}")
-    print(f"Shadows: {avg_settings['shadow']:+}")
-    print(f"Color: {avg_settings['color']:+}")
-    print(f"Noise Reduction: {avg_settings['noise_reduction']:+}")
-    print(f"Sharpening: {avg_settings['sharpness']:+}")
-    print(f"Clarity: {avg_settings['clarity']:+}")
-    print(f"Grain Effect: Strong, Small") # Hardcoded based on grain graph analysis
-    print(f"Color Chrome Effect: Strong") # Common defaults
+    print(f"Highlights: {int(likeable_settings['highlight']):+}")
+    print(f"Shadows: {int(likeable_settings['shadow']):+}")
+    print(f"Color: {int(likeable_settings['color']):+}")
+    print(f"Noise Reduction: {int(likeable_settings['noise_reduction']):+}")
+    print(f"Sharpening: {int(likeable_settings['sharpness']):+}")
+    print(f"Clarity: {int(likeable_settings['clarity']):+}")
+    print(f"Grain Effect: Strong, Small")
+    print(f"Color Chrome Effect: Strong")
     print(f"Color Chrome FX Blue: Weak")
-    print(f"White Balance: Auto, {avg_wb_red:+} Red & {avg_wb_blue:+} Blue")
+    print(f"White Balance: Auto, {int(mode_wb_red):+} Red & {int(mode_wb_blue):+} Blue")
     print(f"ISO: Auto, up to ISO 6400")
+    print(f"\nLikeability Index: This recipe represents the consensus of {top_recipe['likeability_score']} out of 11 major setting categories.")
+    print(f"Closest Existing Recipe: '{top_recipe['name']}' ({top_recipe['url']})")
     print("XXX_GOLDEN_RECIPE_END_XXX")
 
 

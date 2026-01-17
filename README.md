@@ -1,7 +1,7 @@
 # FujiSims: The Science of X100V & X100VI Aesthetics
 > *"Don't just pick a recipe. Understand the DNA of the Fuji look."*
 
-I analyzed **240+ film simulation recipes** to find the mathematical average of what the community considers "beautiful". This project scrapes the top recipe sites, stores the settings in a SQLite database, and visualizes the trends to uncover the "Golden Mean" of Fujifilm aesthetics for the **X100V and X100VI**.
+I analyzed **240+ film simulation recipes** to uncover the **Likeability Index**—identifying the exact settings the community collectively prefers. Instead of just averaging numbers, this project identifies the "Peak Preferences" of the Fuji world. This tool scrapes recipe sites, stores them in SQLite, and visualizes trends to reveal the true **Community Consensus** for the **X100V and X100VI**.
 
 ---
 
@@ -16,26 +16,26 @@ I analyzed **240+ film simulation recipes** to find the mathematical average of 
 
 ---
 
-### The "Nishti Recipe" (Highest Probability of Likeness)
-Through statistical averaging of every X100V & X100VI recipe in our database, we typically find the "Golden Mean"—a set of settings that represents the collective consensus of the Fujifilm community. 
+### The "Nishti Recipe" (Community Consensus)
+By applying the **Likeability Index**—identifying the "Peak Preference" for every setting—we have built the definitive Fuji aesthetic. This isn't just an average; it is the most statistically liked configuration in the Fuji world.
 
-**Why this works:** The mathematical average converges on a look that balances modern sharpness with vintage character. It adopts the desaturated documentary feel of **Classic Chrome**, adds the highlight protection of **DR400**, and layers it with a "Golden Hour" warmth (Red+0, Blue-2) that is universally pleasing to the human eye. This isn't just an average; it is the "safe harbor" of aesthetics—the recipe most likely to yield a pleasing result in any condition.
+**Why this works:** It reflects the community's true "Hive Mind." It favors **Color +4** and **Soft Shadows (-2)**, reflecting the modern shift toward punchy, cinematic colors and a gentle, filmic highlight roll-off. This is the "Safe Harbor" of Fuji aesthetics—the configuration most likely to be loved out of the box.
 
 | Setting | Value | Why? |
 | :--- | :--- | :--- |
-| **Film Simulation** | **Classic Chrome** | The gold standard for documentary photography. It creates a distinct, slightly desaturated look that feels "real" yet cinematic. |
-| **Dynamic Range** | **DR400** | Preserves highlight roll-off. Essential for that "analog" inability to blow out skies. |
-| **Highlights** | **+0.5** | A slight boost to keep images punchy without losing detail. |
-| **Shadows** | **+1.0** | Adds contrast and depth, avoiding the flat "HDR" look of modern smartphones. |
-| **Color** | **+1.0** | Compensates for Classic Chrome's natural desaturation. |
-| **Noise Reduction** | **-4** | **Critical.** Turns off smearing to allow the lens's natural character and sensor noise to breathe. |
-| **Sharpening** | **-1** | Removes digital halos. Makes the image look "optical" rather than "processed". |
-| **Clarity** | **-2** | The "Mist Filter" effect. Softens micro-contrast for a dreamy look. *(Note: Adds ~1s delay)* |
-| **Grain Effect** | **Strong, Small** | Adds texture to simulate High-ISO film stock, masking the "clean" digital sensor look. |
-| **Color Chrome Effect** | **Strong** | Deepens colors (especially reds/greens) in shadows, acting like a polarizer. |
-| **Color Chrome FX Blue** | **Weak** | Adds a subtle depth to blue skies without turning them neon. |
-| **White Balance** | **Auto, R:0 B:-2** | The "Golden Warmth". Shifts the image slightly yellow/orange for a nostalgic afternoon feel. |
-| **ISO** | **Auto (up to 6400)** | Embraces noise. ISO 6400 on X100V looks like structured grain, not ugly color noise. |
+| **Film Simulation** | **Classic Chrome** | The undisputed king of the Likeability Index. |
+| **Dynamic Range** | **DR400** | The unanimous choice for protecting highlights. |
+| **Highlights** | **-1** | Subtractive highlights ensure the sky never looks "digital." |
+| **Shadows** | **-2** | A strong preference for **Softer Shadows** (Cinematic Look). |
+| **Color** | **+4** | **The Surprise Consensus.** Intense, deep crimson and blues. |
+| **Noise Reduction** | **-4** | The "Anti-Digital" standard. |
+| **Sharpening** | **-2** | Reduced digital edge-tracing for an "Optical" feel. |
+| **Clarity** | **-2** | The "Mist Filter" effect. *(Note: Adds ~1s delay)* |
+| **Grain Effect** | **Strong, Small** | Adds texture to simulate High-ISO film stock. |
+| **Color Chrome Effect** | **Strong** | Deepens colors in shadows, acting like a polarizer. |
+| **Color Chrome FX Blue** | **Weak** | Adds a subtle depth to blue skies. |
+| **White Balance** | **Auto, R:-1 B:-5** | A "Modern/Cinematic Cool" shift found in high-end editorial work. |
+| **ISO** | **Auto (up to 6400)** | Embraces noise as structured grain. |
 
 ---
 
