@@ -38,19 +38,15 @@ Based on the scraped data, here are the key technical trends:
 
 ### 1. Most Popular Film Simulation Bases
 Users heavily favor **Classic Chrome** and **Classic Negative** across all generations.
-- **Classic Chrome**: The go-to for many recipes (14 recipes).
-- **Classic Negative**: A close second (13 recipes).
-- **Nostalgic Neg.**: Dominated X-Trans V usage.
+![Top Simulations](images/top_simulations.png)
 
 ### 2. Evolution: X-Trans IV vs V
 - **X-Trans IV**: A balanced mix of Classic Chrome, Eterna, and Classic Negative.
 - **X-Trans V**: Shows a massive shift towards **Nostalgic Neg.** and **Reala Ace** (new simulations).
 
 ### 3. Color Grading Trends
-There is a clear preference for **warm, nostalgic tones**:
-- Average Red Shift: **+0.46**
-- Average Blue Shift: **-2.15**
-- *Interpretation*: Recipes are frequently pushing Red up and Blue down to achieve a golden/vintage look.
+There is a clear preference for **warm, nostalgic tones**. The chart below shows White Balance shifts, with a high concentration in the "Warm/Vintage" quadrant.
+![WB Trends](images/wb_trends.png)
 
 ## Querying the Data
    Use the provided example script:

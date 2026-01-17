@@ -10,49 +10,53 @@ def get_connection():
 def analyze_trends():
     conn = get_connection()
     
-    # 1. Top Film Simulation Bases
-    print("## Top Film Simulation Bases")
+    # 1. Top Film Simulation Bases - Bar Chart
+    print("Generating images/top_simulations.png...")
     query_sims = """
         SELECT film_simulation, COUNT(*) as count 
         FROM recipes 
         WHERE film_simulation IS NOT NULL AND film_simulation != ''
         GROUP BY film_simulation 
         ORDER BY count DESC 
-        LIMIT 5
+        LIMIT 7
     """
     df_sims = pd.read_sql_query(query_sims, conn)
-    print(df_sims.to_markdown(index=False))
     
-    # 2. Shift in Preferences: X-Trans IV vs X-Trans V
-    print("\n## Evolution of Preferences (X-Trans IV vs V)")
-    query_sensors = """
-        SELECT sensor, film_simulation, COUNT(*) as count
-        FROM recipes
-        WHERE sensor IN ('X-Trans IV', 'X-Trans V')
-        AND film_simulation IS NOT NULL AND film_simulation != ''
-        GROUP BY sensor, film_simulation
-    """
-    df_sensors = pd.read_sql_query(query_sensors, conn)
-    
-    # Get top sim for each sensor
-    for sensor in ['X-Trans IV', 'X-Trans V']:
-        print(f"\n### Top 3 for {sensor}")
-        top = df_sensors[df_sensors['sensor'] == sensor].sort_values('count', ascending=False).head(3)
-        print(top[['film_simulation', 'count']].to_markdown(index=False))
+    plt.figure(figsize=(10, 6))
+    bars = plt.bar(df_sims['film_simulation'], df_sims['count'], color='#4a90e2')
+    plt.title('Top Film Simulation Recipes', fontsize=16)
+    plt.xlabel('Simulation Base', fontsize=12)
+    plt.ylabel('Number of Recipes', fontsize=12)
+    plt.xticks(rotation=45, ha='right')
+    plt.tight_layout()
+    plt.savefig('images/top_simulations.png')
+    plt.close()
 
-    # 3. White Balance Trends (Are we getting warmer?)
-    print("\n## Color Grading Trends")
-    query_wb = """
-        SELECT 
-            AVG(wb_shift_red) as avg_red, 
-            AVG(wb_shift_blue) as avg_blue 
+    # 3. White Balance Trends - Scatter Plot
+    print("Generating images/wb_trends.png...")
+    query_wb_all = """
+        SELECT wb_shift_red, wb_shift_blue 
         FROM recipes 
-        WHERE wb_shift_red IS NOT NULL
+        WHERE wb_shift_red IS NOT NULL AND wb_shift_blue IS NOT NULL
     """
-    df_wb = pd.read_sql_query(query_wb, conn)
-    print(f"Average WB Shift: Red {df_wb.iloc[0]['avg_red']:.2f}, Blue {df_wb.iloc[0]['avg_blue']:.2f}")
-    if df_wb.iloc[0]['avg_red'] > 0 and df_wb.iloc[0]['avg_blue'] < 0:
-        print("Analysis: There is a strong trend towards 'Warmer' tones (positive Red, negative Blue).")
+    df_wb_all = pd.read_sql_query(query_wb_all, conn)
+    
+    plt.figure(figsize=(8, 8))
+    plt.scatter(df_wb_all['wb_shift_blue'], df_wb_all['wb_shift_red'], alpha=0.6, c='orange', edgecolors='k')
+    plt.axhline(0, color='gray', linestyle='--', linewidth=0.8)
+    plt.axvline(0, color='gray', linestyle='--', linewidth=0.8)
+    plt.title('Color Grading Preferences (WB Shift)', fontsize=16)
+    plt.xlabel('Blue Shift (Cool <-> Warm)', fontsize=12)
+    plt.ylabel('Red Shift (Green <-> Magenta)', fontsize=12)
+    plt.grid(True, linestyle=':', alpha=0.6)
+    
+    # Annotate quadrants
+    plt.text(5, 5, 'Warm/Vintage', fontsize=12, color='red', ha='center')
+    plt.text(-5, -5, 'Cool/Modern', fontsize=12, color='blue', ha='center')
+    
+    plt.tight_layout()
+    plt.savefig('images/wb_trends.png')
+    plt.close()
 
     conn.close()
 
