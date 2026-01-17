@@ -1,6 +1,8 @@
 import sqlite3
 import pandas as pd
 import matplotlib.pyplot as plt
+import re
+import numpy as np
 
 DB_PATH = "film_recipes.db"
 
@@ -338,26 +340,44 @@ def analyze_trends():
     plt.xlim(-4.5, 4.5)
     plt.ylim(-4.5, 4.5)
     
+    # Calculate Percentages
+    total = len(df_contrast)
+    # Bottom-Left: Highlights <= 0, Shadows <= 0
+    q_soft = len(df_contrast[(df_contrast['H'] <= 0) & (df_contrast['S'] <= 0)])
+    pct_soft = (q_soft / total) * 100
+    
+    # Top-Right: Highlights > 0, Shadows > 0
+    q_hard = len(df_contrast[(df_contrast['H'] > 0) & (df_contrast['S'] > 0)])
+    pct_hard = (q_hard / total) * 100
+    
+    # Top-Left: Highlights <= 0, Shadows > 0
+    q_moody = len(df_contrast[(df_contrast['H'] <= 0) & (df_contrast['S'] > 0)])
+    pct_moody = (q_moody / total) * 100
+    
+    # Bottom-Right: Highlights > 0, Shadows <= 0
+    q_ethereal = len(df_contrast[(df_contrast['H'] > 0) & (df_contrast['S'] <= 0)])
+    pct_ethereal = (q_ethereal / total) * 100
+    
     # Quadrants
     # Bottom-Left: -H -S = Soft/Flat
     plt.fill_between([-5, 0], -5, 0, color='#e8f5e9', alpha=0.9) # Green-ish
-    plt.text(-3.5, -3.5, "SOFT / CINEMATIC\n(Flat & Analog)", ha='center', va='center', fontweight='bold', color='#2e7d32', fontsize=10)
+    plt.text(-3.5, -3.5, f"SOFT / CINEMATIC\n({int(pct_soft)}% of Recipes)", ha='center', va='center', fontweight='bold', color='#2e7d32', fontsize=10)
     
     # Top-Right: +H +S = Hard/Punchy
     plt.fill_between([0, 5], 0, 5, color='#ffebee', alpha=0.9) # Red-ish
-    plt.text(3.5, 3.5, "HIGH CONTRAST\n(Punchy & Digital)", ha='center', va='center', fontweight='bold', color='#c62828', fontsize=10)
+    plt.text(3.5, 3.5, f"HIGH CONTRAST\n({int(pct_hard)}% of Recipes)", ha='center', va='center', fontweight='bold', color='#c62828', fontsize=10)
     
     # Top-Left: -H +S = Dark Shadows, Soft Highlights
     plt.fill_between([-5, 0], 0, 5, color='#f3e5f5', alpha=0.9)
-    plt.text(-3.5, 3.5, "MOODY\n(Deep Shadows)", ha='center', va='center', color='#6a1b9a', fontsize=10)
+    plt.text(-3.5, 3.5, f"MOODY\n({int(pct_moody)}% of Recipes)", ha='center', va='center', color='#6a1b9a', fontsize=10)
     
     # Bottom-Right: +H -S = Bright Highlights, Light Shadows
     plt.fill_between([0, 5], -5, 0, color='#e3f2fd', alpha=0.9)
-    plt.text(3.5, -3.5, "ETHEREAL\n(Bright & Airy)", ha='center', va='center', color='#1565c0', fontsize=10)
+    plt.text(3.5, -3.5, f"ETHEREAL\n({int(pct_ethereal)}% of Recipes)", ha='center', va='center', color='#1565c0', fontsize=10)
     
-    # Jitter points
-    j_h = [x + np.random.uniform(-0.15, 0.15) for x in df_contrast['H']]
-    j_s = [y + np.random.uniform(-0.15, 0.15) for y in df_contrast['S']]
+    # Jitter points - Increased jitter slightly
+    j_h = [x + np.random.uniform(-0.25, 0.25) for x in df_contrast['H']]
+    j_s = [y + np.random.uniform(-0.25, 0.25) for y in df_contrast['S']]
     
     plt.scatter(j_h, j_s, c='#34495e', alpha=0.7, edgecolors='white', s=60, zorder=2)
     
@@ -379,24 +399,37 @@ def analyze_trends():
     df_org['S'] = df_org['sharpness'].apply(parse_setting_val)
     df_org['NR'] = df_org['noise_reduction'].apply(parse_setting_val)
     
-    plt.figure(figsize=(10, 8))
-    plt.xlim(-4.5, 4.5)
-    plt.ylim(-4.5, 4.5)
+    # Calculate percentages for quadrants
+    total_recipes = len(df_org)
+    
+    # Quadrant 1: Bottom-Left (Organic) - Sharpness < 0, NR < 0
+    q1_count = len(df_org[(df_org['S'] <= 0) & (df_org['NR'] <= 0)])
+    q1_pct = (q1_count / total_recipes) * 100
+    
+    # Quadrant 2: Top-Right (Plastic) - Sharpness > 0, NR > 0
+    q2_count = len(df_org[(df_org['S'] > 0) & (df_org['NR'] > 0)])
+    q2_pct = (q2_count / total_recipes) * 100
     
     # Quadrants
     # Bottom-Left: -Sharpness -NR = The "Analog/Organic" Zone
     plt.fill_between([-5, 0], -5, 0, color='#e0f2f1', alpha=0.9) # Teal-ish
-    plt.text(-3.0, -3.0, "ORGANIC / ANALOG\n(Grainy & Soft)", ha='center', va='center', fontweight='bold', color='#00695c', fontsize=10)
+    plt.text(-3.0, -3.0, f"ORGANIC / ANALOG\n({int(q1_pct)}% of Recipes)", ha='center', va='center', fontweight='bold', color='#00695c', fontsize=11)
     
     # Top-Right: +Sharpness +NR = The "Plastic/Digital" Zone
     plt.fill_between([0, 5], 0, 5, color='#ffebee', alpha=0.9) # Red-ish
-    plt.text(3.0, 3.0, "PLASTIC / DIGITAL\n(Smooth & Sharpened)", ha='center', va='center', fontweight='bold', color='#c62828', fontsize=10)
+    # If empty, make it a "Void" label
+    if q2_pct < 1:
+        label = "THE AVOIDED ZONE\n(0 Recipes found)"
+    else:
+        label = f"PLASTIC / DIGITAL\n({int(q2_pct)}% of Recipes)"
+        
+    plt.text(3.0, 3.0, label, ha='center', va='center', fontweight='bold', color='#c62828', fontsize=11)
     
-    # Jitter points
-    j_s = [x + np.random.uniform(-0.15, 0.15) for x in df_org['S']]
-    j_nr = [y + np.random.uniform(-0.15, 0.15) for y in df_org['NR']]
+    # Jitter points - Increased jitter to fill space better
+    j_s = [x + np.random.uniform(-0.35, 0.35) for x in df_org['S']]
+    j_nr = [y + np.random.uniform(-0.35, 0.35) for y in df_org['NR']]
     
-    plt.scatter(j_s, j_nr, c='#004d40', alpha=0.6, edgecolors='white', s=60, zorder=2)
+    plt.scatter(j_s, j_nr, c='#004d40', alpha=0.6, edgecolors='white', s=70, zorder=2)
     
     plt.axhline(0, color='gray', linestyle='-', alpha=0.5)
     plt.axvline(0, color='gray', linestyle='-', alpha=0.5)
@@ -406,6 +439,233 @@ def analyze_trends():
     plt.ylabel('Noise Reduction (Grainy <-> Smooth)', fontsize=12, fontweight='bold')
     plt.tight_layout()
     plt.savefig('images/sharpness_nr_corr.png')
+    plt.close()
+
+    # ==========================================
+    # 14. Nostalgia vs Pop (WB Red Shift vs Color)
+    # ==========================================
+    print("Generating images/nostalgia_pop.png...")
+    query_warmth = """
+        SELECT wb_shift_red, color FROM recipes 
+        WHERE wb_shift_red IS NOT NULL AND color IS NOT NULL
+    """
+    df_warmth = pd.read_sql_query(query_warmth, conn)
+    df_warmth['C'] = df_warmth['color'].apply(parse_setting_val)
+    # Red shift is already int
+    
+    plt.figure(figsize=(10, 8))
+    plt.xlim(-9.5, 9.5) # WB shift goes roughly -9 to +9
+    plt.ylim(-4.5, 4.5) # Color goes -4 to +4
+    
+    # Quadrants
+    # Top-Right (+Red, +Color) = Golden Pop
+    plt.fill_between([0, 10], 0, 5, color='#fff3e0', alpha=0.9) # Orange-ish
+    plt.text(5, 2.5, "GOLDEN POP\n(Sunset/Vibrant)", ha='center', va='center', fontweight='bold', color='#e65100', fontsize=10)
+
+    # Bottom-Right (+Red, -Color) = Nostalgic Vintage
+    plt.fill_between([0, 10], -5, 0, color='#efebe9', alpha=0.9) # Brown-ish
+    plt.text(5, -2.5, "NOSTALGIC VINTAGE\n(Sepia/Memory)", ha='center', va='center', fontweight='bold', color='#4e342e', fontsize=10)
+    
+    # Top-Left (-Red, +Color) = Cool Pop (Cyberpunk)
+    plt.fill_between([-10, 0], 0, 5, color='#e3f2fd', alpha=0.9) # Blue-ish
+    plt.text(-5, 2.5, "COOL POP\n(Cyberpunk/Neon)", ha='center', va='center', fontweight='bold', color='#0d47a1', fontsize=10)
+    
+    # Bottom-Left (-Red, -Color) = Bleak/Mute
+    plt.fill_between([-10, 0], -5, 0, color='#eceff1', alpha=0.9) # Grey-ish
+    plt.text(-5, -2.5, "BLEAK / MUTE\n(Winter/Sad)", ha='center', va='center', fontweight='bold', color='#37474f', fontsize=10)
+    
+    # Scatter
+    j_r = [x + np.random.uniform(-0.4, 0.4) for x in df_warmth['wb_shift_red']]
+    j_c = [y + np.random.uniform(-0.2, 0.2) for y in df_warmth['C']]
+    plt.scatter(j_r, j_c, c='#d84315', alpha=0.6, edgecolors='white', s=60, zorder=2)
+    
+    plt.axhline(0, color='gray', linestyle='-', alpha=0.5)
+    plt.axvline(0, color='gray', linestyle='-', alpha=0.5)
+    plt.title('Nostalgia vs. Pop (Warmth vs. Saturation)', fontsize=18, pad=20)
+    plt.xlabel('WB Red Shift (Cool <-> Warm)', fontsize=12, fontweight='bold')
+    plt.ylabel('Color Saturation (Faded <-> Vibrant)', fontsize=12, fontweight='bold')
+    plt.tight_layout()
+    plt.savefig('images/nostalgia_pop.png')
+    plt.close()
+
+    # ==========================================
+    # 15. The "Structure" Index (Sharpness vs Clarity)
+    # ==========================================
+    print("Generating images/structure_index.png...")
+    query_structure = """
+        SELECT sharpness, clarity FROM recipes 
+        WHERE sharpness IS NOT NULL AND clarity IS NOT NULL
+    """
+    df_struct = pd.read_sql_query(query_structure, conn)
+    df_struct['S'] = df_struct['sharpness'].apply(parse_setting_val)
+    df_struct['C'] = df_struct['clarity'].apply(parse_setting_val)
+    
+    plt.figure(figsize=(10, 8))
+    plt.xlim(-4.5, 4.5)
+    plt.ylim(-5.5, 5.5) # Clarity goes to +/- 5
+    
+    # Q1: +S +C = CRUNCH
+    plt.fill_between([0, 5], 0, 6, color='#eeeeee', alpha=0.9)
+    plt.text(2.5, 3, "CRUNCH\n(Max Texture)", ha='center', va='center', fontweight='bold', color='#212121')
+    
+    # Q3: -S -C = ETHEREAL SOFT
+    plt.fill_between([-5, 0], -6, 0, color='#fce4ec', alpha=0.9) # Pink-ish
+    plt.text(-2.5, -3, "ETHEREAL SOFT\n(Dreamy/Mist)", ha='center', va='center', fontweight='bold', color='#880e4f')
+    
+    # Q4: +S -C = BLOOM
+    plt.fill_between([0, 5], -6, 0, color='#e1f5fe', alpha=0.9) # Light Blue
+    plt.text(2.5, -3, "DIGITAL BLOOM\n(Sharp Edges, Soft Mids)", ha='center', va='center', fontweight='bold', color='#01579b')
+
+    # Scatter
+    j_s = [x + np.random.uniform(-0.25, 0.25) for x in df_struct['S']]
+    j_c = [y + np.random.uniform(-0.25, 0.25) for y in df_struct['C']]
+    plt.scatter(j_s, j_c, c='#4a148c', alpha=0.6, edgecolors='white', s=60, zorder=2)
+    
+    plt.axhline(0, color='gray', linestyle='-', alpha=0.5)
+    plt.axvline(0, color='gray', linestyle='-', alpha=0.5)
+    plt.title('The Structure Index (Sharpness vs. Clarity)', fontsize=18, pad=20)
+    plt.xlabel('Sharpness (Soft <-> Sharp)', fontsize=12, fontweight='bold')
+    plt.ylabel('Clarity (Soft <-> Hard)', fontsize=12, fontweight='bold')
+    plt.tight_layout()
+    plt.savefig('images/structure_index.png')
+    plt.close()
+
+    # ==========================================
+    # 16. B&W Contrast Test (Box Plot)
+    # ==========================================
+    print("Generating images/bw_contrast.png...")
+    query_bw = """
+        SELECT name, shadow, sensor FROM recipes 
+        WHERE shadow IS NOT NULL
+    """
+    df_bw = pd.read_sql_query(query_bw, conn)
+    df_bw['ShadowVal'] = df_bw['shadow'].apply(parse_setting_val)
+    
+    # Identify B&W recipes roughly by looking for distinct sensor names or sim names
+    # Actually, we don't have 'film_simulation' column in the query above, lemme add it.
+    query_bw_full = "SELECT film_simulation, shadow FROM recipes WHERE shadow IS NOT NULL"
+    df_bw_full = pd.read_sql_query(query_bw_full, conn)
+    df_bw_full['ShadowVal'] = df_bw_full['shadow'].apply(parse_setting_val)
+    
+    # Define B&W keywords
+    bw_sims = ['Acros', 'Monochrome', 'Tri-X', 'T-Max', 'Ilford']
+    def is_bw(sim_name):
+        if not sim_name: return False
+        s = sim_name.lower()
+        return 'acros' in s or 'monochrome' in s or 'bw' in s or 'b&w' in s or 'sepia' in s
+
+    df_bw_full['Type'] = df_bw_full['film_simulation'].apply(lambda x: 'B&W Recipes' if is_bw(x) else 'Color Recipes')
+    
+    plt.figure(figsize=(8, 6))
+    # Box plot
+    colors = ['#bdbdbd', '#ffab91'] # Grey for B&W, Orange for Color
+    
+    # Gather data
+    data_bw = df_bw_full[df_bw_full['Type'] == 'B&W Recipes']['ShadowVal']
+    data_color = df_bw_full[df_bw_full['Type'] == 'Color Recipes']['ShadowVal']
+    
+    plt.boxplot([data_bw, data_color], labels=['B&W Recipes', 'Color Recipes'], patch_artist=True,
+                boxprops=dict(facecolor='#eceff1', color='#455a64'),
+                medianprops=dict(color='#d84315', linewidth=2))
+                
+    plt.title('Shadow Hardness: B&W vs Color', fontsize=18, pad=20)
+    plt.ylabel('Shadow Setting (Higher = Harder Blacks)', fontsize=12)
+    plt.grid(axis='y', linestyle='--', alpha=0.3)
+    
+    # Add annotation if B&W is higher
+    mean_bw = data_bw.mean()
+    mean_color = data_color.mean()
+    diff = mean_bw - mean_color
+    plt.text(1.5, 3.5, f"B&W Shadows are\n{diff:.1f} steps Harder", ha='center', bbox=dict(facecolor='white', alpha=0.8, edgecolor='gray'))
+    
+    plt.tight_layout()
+    plt.savefig('images/bw_contrast.png')
+    plt.close()
+
+    # ==========================================
+    # 17. Grit Score (ISO vs Grain)
+    # ==========================================
+    print("Generating images/grit_score.png...")
+    query_grit = "SELECT iso, grain_effect FROM recipes"
+    df_grit = pd.read_sql_query(query_grit, conn)
+    
+    def parse_iso_limit(x):
+        if not x: return None
+        # Extract number
+        m = re.search(r'(\d+)', str(x))
+        if m: return int(m.group(1))
+        return None
+        
+    def is_grain_strong(g):
+        if not g: return False
+        return 'Strong' in g
+
+    df_grit['IsoLim'] = df_grit['iso'].apply(parse_iso_limit)
+    df_grit['GrainStrong'] = df_grit['grain_effect'].apply(is_grain_strong)
+    
+    # Filter for common ISOs (3200, 6400)
+    df_iso3200 = df_grit[df_grit['IsoLim'] == 3200]
+    df_iso6400 = df_grit[df_grit['IsoLim'] == 6400]
+    
+    # Calculate % Strong Grain
+    pct_3200 = (len(df_iso3200[df_iso3200['GrainStrong']==True]) / len(df_iso3200)) * 100 if len(df_iso3200) > 0 else 0
+    pct_6400 = (len(df_iso6400[df_iso6400['GrainStrong']==True]) / len(df_iso6400)) * 100 if len(df_iso6400) > 0 else 0
+    
+    plt.figure(figsize=(8, 6))
+    bars = plt.bar(['ISO 3200 cap', 'ISO 6400 cap'], [pct_3200, pct_6400], color=['#90caf9', '#5c6bc0'])
+    plt.ylim(0, 100)
+    plt.ylabel('% of Recipes using STRONG Grain', fontsize=12)
+    plt.title('The Grit Score (Do High ISOs embrace Grain?)', fontsize=16)
+    
+    for bar in bars:
+        height = bar.get_height()
+        plt.text(bar.get_x() + bar.get_width()/2., height,
+                f'{int(height)}%',
+                ha='center', va='bottom', fontweight='bold', fontsize=14)
+                
+    plt.tight_layout()
+    plt.savefig('images/grit_score.png')
+    plt.close()
+
+    # ==========================================
+    # 18. Complexity Score (Histogram)
+    # ==========================================
+    print("Generating images/complexity_score.png...")
+    query_comp = """
+        SELECT highlight, shadow, color, sharpness, noise_reduction, wb_shift_red, wb_shift_blue 
+        FROM recipes
+    """
+    df_comp = pd.read_sql_query(query_comp, conn)
+    
+    # Parse all
+    # Standard: H, S, C, Sh, NR
+    # WB: R, B
+    
+    df_comp['H'] = df_comp['highlight'].apply(parse_setting_val).abs()
+    df_comp['S'] = df_comp['shadow'].apply(parse_setting_val).abs()
+    df_comp['C'] = df_comp['color'].apply(parse_setting_val).abs()
+    df_comp['Sh'] = df_comp['sharpness'].apply(parse_setting_val).abs()
+    df_comp['NR'] = df_comp['noise_reduction'].apply(parse_setting_val).abs()
+    # For WB, values are integer shifts. 
+    # NOTE: In DB, wb_shift_red is already integer.
+    df_comp['WR'] = df_comp['wb_shift_red'].fillna(0).astype(int).abs()
+    df_comp['WB'] = df_comp['wb_shift_blue'].fillna(0).astype(int).abs()
+    
+    df_comp['Complexity'] = df_comp['H'] + df_comp['S'] + df_comp['C'] + df_comp['Sh'] + df_comp['NR'] + df_comp['WR'] + df_comp['WB']
+    
+    plt.figure(figsize=(10, 6))
+    n, bins, patches = plt.hist(df_comp['Complexity'], bins=15, color='#78909c', edgecolor='white', alpha=0.8)
+    
+    plt.title('Recipe Complexity Score (Total Shifts from Zero)', fontsize=16)
+    plt.xlabel('Total Deviations (Sum of |Settings|)', fontsize=12)
+    plt.ylabel('Number of Recipes', fontsize=12)
+    
+    # Annotate Purist vs Alchemist
+    plt.text(2, max(n)*0.8, "THE PURISTS\n(Minimal edits)", ha='left', color='#263238', fontweight='bold')
+    plt.text(20, max(n)*0.8, "THE ALCHEMISTS\n(Heavy processing)", ha='right', color='#263238', fontweight='bold')
+    
+    plt.tight_layout()
+    plt.savefig('images/complexity_score.png')
     plt.close()
 
 if __name__ == "__main__":
