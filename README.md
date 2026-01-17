@@ -33,7 +33,26 @@ A Python tool to collect and organize film simulation recipes for Fujifilm camer
    ```
    This will populate `film_recipes.db`.
 
-2. **Query the data**:
+## Data Analysis
+Based on the scraped data, here are the key technical trends:
+
+### 1. Most Popular Film Simulation Bases
+Users heavily favor **Classic Chrome** and **Classic Negative** across all generations.
+- **Classic Chrome**: The go-to for many recipes (14 recipes).
+- **Classic Negative**: A close second (13 recipes).
+- **Nostalgic Neg.**: Dominated X-Trans V usage.
+
+### 2. Evolution: X-Trans IV vs V
+- **X-Trans IV**: A balanced mix of Classic Chrome, Eterna, and Classic Negative.
+- **X-Trans V**: Shows a massive shift towards **Nostalgic Neg.** and **Reala Ace** (new simulations).
+
+### 3. Color Grading Trends
+There is a clear preference for **warm, nostalgic tones**:
+- Average Red Shift: **+0.46**
+- Average Blue Shift: **-2.15**
+- *Interpretation*: Recipes are frequently pushing Red up and Blue down to achieve a golden/vintage look.
+
+## Querying the Data
    Use the provided example script:
    ```bash
    python query_examples.py
