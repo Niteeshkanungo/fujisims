@@ -318,12 +318,12 @@
                 undisputed kings.</p>
 
             <div class="tech-analysis">
-                <h4>Technical Analysis</h4>
+                <h4>Why these two?</h4>
                 <ul>
-                    <li><strong>Classic Chrome:</strong> Mimics Kodachrome. Separation of color intensity from luminance
-                        gives a mature, understated look.</li>
-                    <li><strong>Classic Negative:</strong> Mimics Superia 200/400. Adds cyan shifts in shadows for
-                        "street photography" grit.</li>
+                    <li><strong>Classic Chrome (The Journalist):</strong> It mimics Kodachrome. By separating color
+                        intensity from luminance, it creates a mature, "National Geographic" documentary look.</li>
+                    <li><strong>Classic Negative (The Artist):</strong> It mimics Superia 200. It introduces hard
+                        contrast and cyan shifts in shadows, perfect for usage in gritty street photography.</li>
                 </ul>
             </div>
 
@@ -374,38 +374,78 @@
             <p><strong>Strong Grain</strong> is the overwhelming favorite.</p>
 
             <div class="tech-analysis">
-                <h4>Technical Analysis</h4>
+                <h4>Why add noise on purpose?</h4>
                 <ul>
-                    <li><strong>Texture:</strong> Grain masks the clinical perfection of modern 26MP/40MP sensors.</li>
-                    <li><strong>Perceived Sharpness:</strong> Paradoxically, random noise patterns add high-frequency
-                        texture that brains interpret as detail.</li>
+                    <li><strong>Texture:</strong> Modern 40MP sensors are "too clean". They look distinctively digital.
+                        Adding grain breaks up the perfect gradients, making the image feel organic.</li>
+                    <li><strong>Perceived Sharpness:</strong> Paradoxically, grain makes an image look sharp. Our brains
+                        interpret the random high-frequency noise as "detail", distinct from the mushy smearing of noise
+                        reduction.</li>
                 </ul>
             </div>
 
             <img src="images/grain_usage.png" alt="Grain">
         </div>
 
-        <!-- 8. Clarity -->
+        <!-- 5. Clarity -->
         <div class="card">
             <h2>5. The "Mist Filter" Effect</h2>
             <p>Users accept the slowdown of <strong>Clarity</strong> to achieve a specific look.</p>
 
             <div class="tech-analysis">
-                <h4>Technical Analysis</h4>
+                <h4>What is Clarity?</h4>
                 <ul>
-                    <li><strong>Negative Clarity:</strong> Bleeds highlights into shadows, creating a "bloom" effect
-                        similar to a ProMist diffusion filter.</li>
-                    <li><strong>The Trade-off:</strong> Users prefer the "Cinematic" soft look (negative clarity) over
-                        the "HDR" gritty look (positive clarity).</li>
+                    <li><strong>Negative Clarity = Dreamy:</strong> It bleeds brightness into shadows, creating a
+                        "bloom" effect (like a dirty lens or ProMist filter). This is the key to the "Cinematic" look.
+                    </li>
+                    <li><strong>Positive Clarity = HDR:</strong> It sharpens edges (like the "structure" slider on
+                        Instagram). Almost nobody uses this because it looks artificial/gritty.</li>
                 </ul>
             </div>
 
             <img src="images/clarity_dist.png" alt="Clarity">
         </div>
 
+        <!-- 7. Chrome vs Color -->
+        <div class="card">
+            <h2>7. Color Chrome vs. Saturation</h2>
+            <p>Do users compensate for the darkening effect of "Color Chrome" by boosting saturation?</p>
+
+            <div class="tech-analysis">
+                <h4>Understanding the connection</h4>
+                <ul>
+                    <li><strong>Color Chrome Effect:</strong> It creates deeper spacing in highly saturated colors
+                        (reds/greens). It's like a "polarizer" for color.</li>
+                    <li><strong>The Trend:</strong> Users running "Strong" Chrome FX often boost Color to +2 or +3. They
+                        want <em>rich</em> color, not <em>neon</em> color. Chrome FX keeps it printable.</li>
+                </ul>
+            </div>
+
+            <img src="images/chrome_color_corr.png" alt="Color Chrome Correlation">
+        </div>
+
+        <!-- 8. ISO -->
+        <div class="card">
+            <h2>8. The "Noise Floor" (ISO)</h2>
+            <p>Why do so many recipes cap Auto-ISO at 6400?</p>
+
+            <div class="tech-analysis">
+                <h4>Digital Grain vs. Analog Grain</h4>
+                <ul>
+                    <li><strong>ISO 6400:</strong> On older sensors, this was unusable. On the X100V's BSI sensor, ISO
+                        6400 noise looks remarkably monochromatic (like film grain) rather than colorful (like digital
+                        noise).</li>
+                    <li><strong>Freedom:</strong> Setting a high limit allows you to shoot at f/8 (for sharp street
+                        shots) even at night.</li>
+                </ul>
+            </div>
+
+            <img src="images/iso_limit.png" alt="ISO Limits">
+        </div>
+
         <!-- 10. Contrast -->
         <div class="card">
-            <h2>6. Contrast Curves (Light vs. Dark)</h2>
+            <h2>9. Contrast Curves (Light vs. Dark)</h2>
             <p>How does the community handle contrast? The data shows a preference for the "S-Curve".</p>
 
             <div class="tech-analysis">
@@ -420,6 +460,29 @@
             </div>
 
             <img src="images/contrast_map.png" alt="Contrast Trends">
+        </div>
+
+        <!-- 9. Radar Chart -->
+        <div class="card">
+            <h2>10. The Fuji "DNA" (Radar Chart)</h2>
+            <p>Visualizing the average aesthetic footprint of the X100V community.</p>
+            <div class="tech-analysis">
+                <h4>The Shape of Color</h4>
+                <ul>
+                    <li><strong>The Bias:</strong> Notice how the shape pulls heavily towards "Softness" (Negative
+                        Sharpening/NR) and "Warmth".</li>
+                    <li><strong>The Anti-Sony:</strong> If you mapped a Sony/Canon profile here, it would be a perfect
+                        circle in the center. Fuji users actively distort reality for artistic effect.</li>
+                </ul>
+            </div>
+            <img src="images/average_preferences.png" alt="Average Preferences">
+        </div>
+
+        <!-- 10. Sensor Distribution -->
+        <div class="card">
+            <h2>The Hardware (X-Trans IV vs V)</h2>
+            <p>Most recipes are built for X-Trans IV (X100V), but X-Trans V (X100VI) handles them identically.</p>
+            <img src="images/sensor_distribution.png" alt="Sensor Distribution">
         </div>
 
     </div>
