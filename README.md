@@ -7,26 +7,43 @@ This project analyzes over 240 film simulation recipes. Below are the key findin
 
 ### 1. Most Popular Film Simulations
 **Classic Chrome** and **Classic Negative** are the clear favorites, accounting for the majority of recipes.
+
 ![Top Simulations](images/top_simulations.png)
+
+---
 
 ### 2. Color Behavior (White Balance Shift)
 There is a massive preference for **Warm/Vintage** tones. The scatter plot below shows that most recipes shift Red positively (Green -> Magenta) and Blue negatively (Blue -> Yellow).
+
 ![WB Trends](images/wb_trends.png)
+
+---
 
 ### 3. Dynamic Range Preferences
 **DR400** is the dominant setting, used to preserve highlight detail in high-contrast "film" looks.
+
 ![Dynamic Range](images/dr_usage.png)
+
+---
 
 ### 4. Grain Effect
 Most recipes enable Grain to simulate film texture, with **Strong** grain being the most popular choice.
+
 ![Grain Usage](images/grain_usage.png)
+
+---
 
 ### 5. ISO Limits
 The community generally accepts high ISOs to simulate film grain naturally, with **ISO 6400** being the most common auto-limit.
+
 ![ISO Limit](images/iso_limit.png)
+
+---
 
 ### 6. Sensor Distribution
 ![Sensor Distribution](images/sensor_distribution.png)
+
+---
 
 ### 7. The "Community Standard" Recipe
 By averaging all settings (Highlights, Shadows, Color, etc.), we can visualize the "default" preference of the community.
@@ -35,7 +52,23 @@ By averaging all settings (Highlights, Shadows, Color, etc.), we can visualize t
 - **Sharpness/NR**: Negative (softer, organic look).
 ![Average Preferences](images/average_preferences.png)
 
-### 8. The "Golden Recipe"
+---
+
+### 8. Clarity Settings
+Clarity adds a "digital" local contrast but slows down saving times. The distribution shows a skew towards **Negative** Clarity (softness), proving users prioritize an organic look despite the performance cost.
+
+![Clarity Distribution](images/clarity_dist.png)
+
+---
+
+### 9. Color Chrome vs. Saturation correlation
+Do users who use "Strong" Chrome Effect compensate with higher color saturation? The scatter plot below reveals the relationship.
+
+![Chrome vs Color](images/chrome_color_corr.png)
+
+---
+
+### 10. The "Golden Recipe"
 Based on the exact averages of all X100V/VI-compatible recipes, here is the mathematically perfect "Fuji Look":
 
 | Setting | Value |

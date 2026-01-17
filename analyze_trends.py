@@ -234,5 +234,68 @@ def analyze_trends():
     print("XXX_GOLDEN_RECIPE_END_XXX")
 
 
+    print("Generating images/clarity_dist.png...")
+    plt.figure(figsize=(8, 5))
+    # Clarity is expensive on processor, so checking if people use it
+    query_clarity = "SELECT clarity FROM recipes WHERE clarity IS NOT NULL"
+    df_clarity = pd.read_sql_query(query_clarity, conn)
+    
+    # Parse clarity
+    def parse_clarity(val):
+        try: return float(val.replace('+', ''))
+        except: return 0
+        
+    df_clarity['val'] = df_clarity['clarity'].apply(parse_clarity)
+    
+    plt.hist(df_clarity['val'], bins=range(-5, 6), align='left', rwidth=0.8, color='#e67e22')
+    plt.title('Clarity Settings Distribution', fontsize=16)
+    plt.xlabel('Clarity Value (Negative = Soft, Positive = Sharp)')
+    plt.ylabel('Frequency')
+    plt.axvline(0, color='k', linestyle='--', linewidth=1)
+    plt.grid(axis='y', alpha=0.3)
+    plt.tight_layout()
+    plt.savefig('images/clarity_dist.png')
+    plt.close()
+    
+    # 11. Chrome Effect vs Color Saturation (Correlation)
+    print("Generating images/chrome_color_corr.png...")
+    # Does Strong Chrome Effect imply Lower Saturation?
+    query_corr = "SELECT full_settings, color FROM recipes"
+    df_corr = pd.read_sql_query(query_corr, conn)
+    
+    chrome_vals = []
+    color_vals = []
+    
+    import json
+    for idx, row in df_corr.iterrows():
+        try:
+            settings = json.loads(row['full_settings']) if row['full_settings'] else {}
+            chrome = settings.get('Color Chrome Effect', 'Off').lower()
+            color = float(row['color'].replace('+', '')) if row['color'] else 0
+            
+            if 'strong' in chrome: c_score = 2
+            elif 'weak' in chrome: c_score = 1
+            else: c_score = 0
+            
+            chrome_vals.append(c_score)
+            color_vals.append(color)
+        except:
+            continue
+            
+    plt.figure(figsize=(8, 6))
+    # Jitter the points so they don't overlap
+    jitter_x = [x + np.random.uniform(-0.1, 0.1) for x in chrome_vals]
+    jitter_y = [y + np.random.uniform(-0.2, 0.2) for y in color_vals]
+    
+    plt.scatter(jitter_x, jitter_y, alpha=0.5, c='#8e44ad')
+    plt.title('Color Chrome Effect vs. Saturation Setting', fontsize=16)
+    plt.xlabel('Color Chrome Effect (0=Off, 1=Weak, 2=Strong)')
+    plt.ylabel('Color Saturation Setting')
+    plt.xticks([0, 1, 2], ['Off', 'Weak', 'Strong'])
+    plt.grid(True, linestyle=':', alpha=0.5)
+    plt.tight_layout()
+    plt.savefig('images/chrome_color_corr.png')
+    plt.close()
+
 if __name__ == "__main__":
     analyze_trends()
