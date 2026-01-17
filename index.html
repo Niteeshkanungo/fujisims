@@ -1,209 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fujifilm X100V & X100VI Recipe Analysis</title>
+    <title>Fujisim Analysis | The Nishti Recipe</title>
     <style>
         :root {
-            --bg-color: #f4f4f4;
-            --text-color: #333;
+            --bg-color: #f8f9fa;
+            --text-color: #2d3436;
             --accent-color: #2c3e50;
-            --card-bg: #fff;
+            --gold: #d4af37;
+            --card-bg: #ffffff;
         }
-        
+
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            line-height: 1.6;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
             margin: 0;
             background-color: var(--bg-color);
             color: var(--text-color);
         }
 
         header {
-            background-color: #000;
+            background-color: #1a1a1a;
             color: #fff;
-            padding: 4rem 2rem;
+            padding: 5rem 2rem;
             text-align: center;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 3rem;
             margin: 0;
-            font-weight: 300;
-            letter-spacing: 2px;
+            font-weight: 200;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
-        
+
         .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.8;
+            font-size: 1.3rem;
+            color: #aaa;
             margin-top: 1rem;
             font-weight: 300;
         }
 
         .container {
-            max-width: 900px;
-            margin: -3rem auto 2rem;
-            padding: 0 1rem;
+            max-width: 960px;
+            margin: -4rem auto 4rem;
+            padding: 0 1.5rem;
             position: relative;
         }
 
         .card {
             background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            margin-bottom: 2rem;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2.5rem;
+            border: 1px solid #eee;
         }
 
-        section {
-            margin-bottom: 3rem;
+        /* The Nishti Recipe Special Styling */
+        .card.golden-recipe {
+            border-top: 5px solid var(--gold);
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card.golden-recipe::before {
+            content: "HIGHEST PROBABILITY OF LIKENESS";
+            position: absolute;
+            top: 20px;
+            right: -60px;
+            background: var(--gold);
+            color: #fff;
+            padding: 5px 60px;
+            transform: rotate(45deg);
+            font-size: 0.7rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
             font-size: 1.8rem;
             color: var(--accent-color);
-            border-bottom: 2px solid #eee;
-            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1rem;
             margin-top: 0;
         }
 
-        h3 {
-            font-size: 1.4rem;
-            color: #555;
-            margin-top: 2rem;
+        .badge {
+            background: var(--gold);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            vertical-align: middle;
+            margin-right: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
         p {
             font-size: 1.1rem;
-            color: #666;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-analysis {
+            background: #f8f9fa;
+            border-left: 4px solid #6c5ce7;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tech-analysis h4 {
+            margin: 0 0 10px 0;
+            color: #6c5ce7;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .tech-analysis ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .tech-analysis li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
         }
 
         img {
             max-width: 100%;
             height: auto;
-            border-radius: 4px;
-            margin: 1.5rem 0;
+            border-radius: 6px;
+            margin: 1rem 0;
             border: 1px solid #eee;
         }
 
-        .golden-table {
+        .recipe-table {
             width: 100%;
-            border-collapse: collapse;
-            margin: 1rem 0;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
         }
-        
-        .golden-table th, .golden-table td {
+
+        .recipe-table th {
             text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-        }
-        
-        .golden-table th {
-            background-color: #f8f9fa;
+            padding: 15px;
+            border-bottom: 2px solid #ddd;
+            color: #888;
             font-weight: 600;
-        }
-
-        .golden-recipe {
-            border: 2px solid #d4af37; /* Gold border */
-            background: #fffdf5;
-        }
-
-        .badge {
-            background: #d4af37;
-            color: #fff;
-            padding: 4px 8px;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            border-radius: 4px;
+            font-size: 0.85rem;
             letter-spacing: 1px;
+        }
+
+        .recipe-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .recipe-table tr:hover td {
+            background-color: #fdfdfd;
+        }
+
+        .recipe-table td:nth-child(1) {
+            width: 25%;
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .recipe-table td:nth-child(2) {
+            width: 25%;
+            font-family: 'Courier New', monospace;
+            color: #d63031;
+            font-weight: bold;
+        }
+
+        .recipe-table td:nth-child(3) {
+            color: #636e72;
+            font-size: 0.95rem;
         }
 
         footer {
             text-align: center;
-            padding: 2rem;
+            padding: 3rem 1rem;
             color: #888;
             font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 3rem;
         }
     </style>
 </head>
+
 <body>
 
     <header>
-        <h1>FUJISIMS ANALYSIS</h1>
-        <div class="subtitle">A Data-Driven Deep Dive into X100V & X100VI Aesthetics</div>
+        <h1>FujiSims</h1>
+        <div class="subtitle">The Science of X100V & X100VI Aesthetics</div>
     </header>
 
     <div class="container">
-        
+
         <!-- Intro -->
         <div class="card">
-            <p>We analyzed over 240 film simulation recipes to uncover the "Community Standard" for Fujifilm photography. Here is what the data says about how photographers are styling their images in 2026.</p>
+            <p>We analyzed over 240 film simulation recipes to uncover the statistical consensus of the Fujifilm
+                community. This isn't just data; it's a blueprint for the "Perfect Fuji Look".</p>
+        </div>
+
+        <!-- The Nishti Recipe -->
+        <div class="card golden-recipe">
+            <h2><span class="badge">Recommendation</span> The "Nishti Recipe"</h2>
+            <p>Through statistical averaging of every recipe in our database, we found the "Golden Mean"—a set of
+                settings that represents the collective wisdom of the global community.</p>
+            <p><strong>Why this works:</strong> It balances modern sharpness with vintage character. It adopts the
+                documentary feel of Classic Chrome, protecting highlights with DR400, and adding a universally pleasing
+                "Golden Hour" warmth.</p>
+
+            <table class="recipe-table">
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Value</th>
+                        <th>Technical Justification</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Film Simulation</td>
+                        <td>Classic Chrome</td>
+                        <td>The gold standard for documentary photography. "Real" yet cinematic.</td>
+                    </tr>
+                    <tr>
+                        <td>Dynamic Range</td>
+                        <td>DR400</td>
+                        <td>Preserves 2 stops of extra highlight detail. Essential for "analog" roll-off.</td>
+                    </tr>
+                    <tr>
+                        <td>Highlights</td>
+                        <td>+0.5</td>
+                        <td>Keeps the image punchy without clipping whites.</td>
+                    </tr>
+                    <tr>
+                        <td>Shadows</td>
+                        <td>+1.0</td>
+                        <td>Adds necessary contrast to avoid the flat "HDR" look.</td>
+                    </tr>
+                    <tr>
+                        <td>Color</td>
+                        <td>+1.0</td>
+                        <td>Compensates for Classic Chrome's natural desaturation.</td>
+                    </tr>
+                    <tr>
+                        <td>Noise Reduction</td>
+                        <td>-4</td>
+                        <td><strong>Critical.</strong> Prevents smearing. Ensures organic, grain-like noise structure.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Sharpening</td>
+                        <td>-1</td>
+                        <td>Digital sharpening looks artificial. -1 allows lens character to shine.</td>
+                    </tr>
+                    <tr>
+                        <td>Clarity</td>
+                        <td>-2</td>
+                        <td>Acts as a "Mist Filter". Softens micro-contrast for a dreamy vibe.</td>
+                    </tr>
+                    <tr>
+                        <td>Grain Effect</td>
+                        <td>Strong, Small</td>
+                        <td>Textural grounding to break up digital gradients.</td>
+                    </tr>
+                    <tr>
+                        <td>White Balance</td>
+                        <td>Auto, 0R, -2B</td>
+                        <td>The "Golden Warmth". Creates a permanent afternoon light feel.</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- 1. Top Sims -->
         <div class="card">
             <h2>1. The Favorite Look</h2>
-            <p><strong>Classic Chrome</strong> and <strong>Classic Negative</strong> are the undisputed kings of the Fuji ecosystem. They account for the vast majority of all recipes.</p>
+            <p><strong>Classic Chrome</strong> (14 recipes) and <strong>Classic Negative</strong> (13 recipes) are the
+                undisputed kings.</p>
+
+            <div class="tech-analysis">
+                <h4>Technical Analysis</h4>
+                <ul>
+                    <li><strong>Classic Chrome:</strong> Mimics Kodachrome. Separation of color intensity from luminance
+                        gives a mature, understated look.</li>
+                    <li><strong>Classic Negative:</strong> Mimics Superia 200/400. Adds cyan shifts in shadows for
+                        "street photography" grit.</li>
+                </ul>
+            </div>
+
             <img src="images/top_simulations.png" alt="Top Film Simulations">
         </div>
 
         <!-- 2. WB -->
         <div class="card">
-            <h2>2. Color Grading Trends</h2>
-            <p>The community is obsessed with <strong>Warmth</strong>. The data shows a massive cluster of recipes shifting White Balance towards Red (Magenta) and Yellow (negative Blue), creating that signature "vintage" look.</p>
+            <h2>2. The Psychology of Warmth</h2>
+            <p>The data reveals a massive preference for <strong>Warm/Vintage</strong> tones (Red+, Blue-).</p>
+
+            <div class="tech-analysis">
+                <h4>Technical Analysis</h4>
+                <ul>
+                    <li><strong>The Nostalgia Curve:</strong> Psychologically, warm tones equate to memory and comfort.
+                        Cool tones feel clinical.</li>
+                    <li><strong>Color Grading:</strong> The strong push towards +Red neutralizes Fuji's magenta shift,
+                        while -Blue adds cinematic yellow grading.</li>
+                </ul>
+            </div>
+
             <img src="images/wb_trends.png" alt="White Balance Trends">
         </div>
 
         <!-- 3. Dynamic Range -->
         <div class="card">
-            <h2>3. Dynamic Range</h2>
-            <p><strong>DR400</strong> is the standard. Users prioritize preserving highlight information to achieve a soft roll-off, essential for a film-like aesthetic.</p>
+            <h2>3. Protecting Highlights</h2>
+            <p><strong>DR400</strong> is dominant because it fundamentally changes how the sensor operates.</p>
+
+            <div class="tech-analysis">
+                <h4>Technical Analysis</h4>
+                <ul>
+                    <li><strong>Highlight Roll-off:</strong> DR400 forces a 2-stop underexposure of the RAW file.</li>
+                    <li><strong>Film Emulation:</strong> Film handles overexposure gracefully; digital clips instantly.
+                        DR400 is the only way to mimic that behavior.</li>
+                </ul>
+            </div>
+
             <img src="images/dr_usage.png" alt="Dynamic Range">
         </div>
 
-        <!-- 4. The Golden Recipe -->
-        <div class="card golden-recipe">
-            <h2><span class="badge">Result</span> The Golden Recipe</h2>
-            <p>Based on the mathematical average of every setting in our database, this is the "Perfect" Fuji X100V/VI Recipe:</p>
-            
-            <table class="golden-table">
-                <tr><th>Setting</th><th>Value</th></tr>
-                <tr><td>Film Simulation</td><td><strong>Classic Chrome</strong></td></tr>
-                <tr><td>Dynamic Range</td><td>DR400</td></tr>
-                <tr><td>Highlights</td><td>+0.5</td></tr>
-                <tr><td>Shadows</td><td>+1.0</td></tr>
-                <tr><td>Color</td><td>+1.0</td></tr>
-                <tr><td>Noise Reduction</td><td>-4</td></tr>
-                <tr><td>Sharpening</td><td>-1</td></tr>
-                <tr><td>Clarity</td><td>-2</td></tr>
-                <tr><td>Grain Effect</td><td>Strong, Small</td></tr>
-                <tr><td>Color Chrome Effect</td><td>Strong</td></tr>
-                <tr><td>Color Chrome FX Blue</td><td>Weak</td></tr>
-                <tr><td>White Balance</td><td>Auto, 0 Red & -2 Blue</td></tr>
-            </table>
+        <!-- 4. Grain -->
+        <div class="card">
+            <h2>4. Texture vs. Noise</h2>
+            <p><strong>Strong Grain</strong> is the overwhelming favorite.</p>
+
+            <div class="tech-analysis">
+                <h4>Technical Analysis</h4>
+                <ul>
+                    <li><strong>Texture:</strong> Grain masks the clinical perfection of modern 26MP/40MP sensors.</li>
+                    <li><strong>Perceived Sharpness:</strong> Paradoxically, random noise patterns add high-frequency
+                        texture that brains interpret as detail.</li>
+                </ul>
+            </div>
+
+            <img src="images/grain_usage.png" alt="Grain">
         </div>
 
-        <!-- Other Metrics -->
+        <!-- 8. Clarity -->
         <div class="card">
-            <h2>Other Technical Insights</h2>
-            <h3>Grain Effect</h3>
-            <p>Strong grain is preferred over weak grain.</p>
-            <img src="images/grain_usage.png" alt="Grain">
+            <h2>5. The "Mist Filter" Effect</h2>
+            <p>Users accept the slowdown of <strong>Clarity</strong> to achieve a specific look.</p>
 
-            <h3>Clarity Cost</h3>
-            <p>Despite the "saving delay" annoyance, users frequently use Negative Clarity to soften digital sharpness.</p>
+            <div class="tech-analysis">
+                <h4>Technical Analysis</h4>
+                <ul>
+                    <li><strong>Negative Clarity:</strong> Bleeds highlights into shadows, creating a "bloom" effect
+                        similar to a ProMist diffusion filter.</li>
+                    <li><strong>The Trade-off:</strong> Users prefer the "Cinematic" soft look (negative clarity) over
+                        the "HDR" gritty look (positive clarity).</li>
+                </ul>
+            </div>
+
             <img src="images/clarity_dist.png" alt="Clarity">
-            
-            <h3>Community Preferences</h3>
-            <img src="images/average_preferences.png" alt="Average Radar Chart">
         </div>
 
     </div>
 
     <footer>
-        <p>Generated with Python & SQLite | Hosted on GitHub Pages</p>
+        <p>Curated by Niteesh Kanungo | Generated with Python & SQLite</p>
     </footer>
 
 </body>
+
 </html>

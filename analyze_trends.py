@@ -217,7 +217,8 @@ def analyze_trends():
     avg_wb_blue = round(df_wb.iloc[0]['avg_blue'])
     
     print("\nXXX_GOLDEN_RECIPE_START_XXX")
-    print(f"Name: The Community Standard (X100V/VI Average)")
+    print(f"Name: The Nishti Recipe (Highest Probability of Likeness)")
+    print("Description: Based on statistical averages of 240+ recipes, this is the 'Golden Mean' of Fuji aesthetics.")
     print(f"Film Simulation: {top_sim}")
     print(f"Dynamic Range: {top_dr}")
     print(f"Highlights: {avg_settings['highlight']:+}")
