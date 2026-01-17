@@ -341,19 +341,19 @@ def analyze_trends():
     # Quadrants
     # Bottom-Left: -H -S = Soft/Flat
     plt.fill_between([-5, 0], -5, 0, color='#e8f5e9', alpha=0.9) # Green-ish
-    plt.text(-2.2, -2.2, "SOFT / CINEMATIC\n(Flat & Analog)", ha='center', va='center', fontweight='bold', color='#2e7d32')
+    plt.text(-3.5, -3.5, "SOFT / CINEMATIC\n(Flat & Analog)", ha='center', va='center', fontweight='bold', color='#2e7d32', fontsize=10)
     
     # Top-Right: +H +S = Hard/Punchy
     plt.fill_between([0, 5], 0, 5, color='#ffebee', alpha=0.9) # Red-ish
-    plt.text(2.2, 2.2, "HIGH CONTRAST\n(Punchy & Digital)", ha='center', va='center', fontweight='bold', color='#c62828')
+    plt.text(3.5, 3.5, "HIGH CONTRAST\n(Punchy & Digital)", ha='center', va='center', fontweight='bold', color='#c62828', fontsize=10)
     
     # Top-Left: -H +S = Dark Shadows, Soft Highlights
     plt.fill_between([-5, 0], 0, 5, color='#f3e5f5', alpha=0.9)
-    plt.text(-2.2, 2.2, "MOODY\n(Deep Shadows)", ha='center', va='center', color='#6a1b9a')
+    plt.text(-3.5, 3.5, "MOODY\n(Deep Shadows)", ha='center', va='center', color='#6a1b9a', fontsize=10)
     
     # Bottom-Right: +H -S = Bright Highlights, Light Shadows
     plt.fill_between([0, 5], -5, 0, color='#e3f2fd', alpha=0.9)
-    plt.text(2.2, -2.2, "ETHERIAL\n(Bright & Airy)", ha='center', va='center', color='#1565c0')
+    plt.text(3.5, -3.5, "ETHEREAL\n(Bright & Airy)", ha='center', va='center', color='#1565c0', fontsize=10)
     
     # Jitter points
     j_h = [x + np.random.uniform(-0.15, 0.15) for x in df_contrast['H']]
@@ -365,10 +365,47 @@ def analyze_trends():
     plt.axvline(0, color='gray', linestyle='-', alpha=0.5)
     
     plt.title('Contrast Preferences (Tone Curve)', fontsize=18, pad=20)
-    plt.xlabel('Highlights (Software <-> Harder)', fontsize=12, fontweight='bold')
+    plt.xlabel('Highlights (Softer <-> Harder)', fontsize=12, fontweight='bold')
     plt.ylabel('Shadows (Softer <-> Harder)', fontsize=12, fontweight='bold')
     plt.tight_layout()
     plt.savefig('images/contrast_map.png')
+    plt.close()
+
+    # 13. The Organic Index (Sharpness vs Noise Reduction)
+    print("Generating images/sharpness_nr_corr.png...")
+    query_org = "SELECT sharpness, noise_reduction FROM recipes"
+    df_org = pd.read_sql_query(query_org, conn)
+    
+    df_org['S'] = df_org['sharpness'].apply(parse_setting_val)
+    df_org['NR'] = df_org['noise_reduction'].apply(parse_setting_val)
+    
+    plt.figure(figsize=(10, 8))
+    plt.xlim(-4.5, 4.5)
+    plt.ylim(-4.5, 4.5)
+    
+    # Quadrants
+    # Bottom-Left: -Sharpness -NR = The "Analog/Organic" Zone
+    plt.fill_between([-5, 0], -5, 0, color='#e0f2f1', alpha=0.9) # Teal-ish
+    plt.text(-2.2, -2.2, "ORGANIC / ANALOG\n(Grainy & Soft)", ha='center', va='center', fontweight='bold', color='#00695c')
+    
+    # Top-Right: +Sharpness +NR = The "Plastic/Digital" Zone
+    plt.fill_between([0, 5], 0, 5, color='#ffebee', alpha=0.9) # Red-ish
+    plt.text(2.2, 2.2, "PLASTIC / DIGITAL\n(Smooth & Sharpened)", ha='center', va='center', fontweight='bold', color='#c62828')
+    
+    # Jitter points
+    j_s = [x + np.random.uniform(-0.15, 0.15) for x in df_org['S']]
+    j_nr = [y + np.random.uniform(-0.15, 0.15) for y in df_org['NR']]
+    
+    plt.scatter(j_s, j_nr, c='#004d40', alpha=0.6, edgecolors='white', s=60, zorder=2)
+    
+    plt.axhline(0, color='gray', linestyle='-', alpha=0.5)
+    plt.axvline(0, color='gray', linestyle='-', alpha=0.5)
+    
+    plt.title('The "Organic Index" (Sharpness vs NR)', fontsize=18, pad=20)
+    plt.xlabel('Sharpness (Soft <-> Sharp)', fontsize=12, fontweight='bold')
+    plt.ylabel('Noise Reduction (Grainy <-> Smooth)', fontsize=12, fontweight='bold')
+    plt.tight_layout()
+    plt.savefig('images/sharpness_nr_corr.png')
     plt.close()
 
 if __name__ == "__main__":
