@@ -27,109 +27,46 @@ I analyzed **240+ film simulation recipes** to find the mathematical average of 
 
 ---
 
-### 1. Most Popular Film Simulations
-**Classic Chrome** (14 recipes) and **Classic Negative** (13 recipes) are the undisputed kings, accounting for the vast majority of usage.
+## 📊 View the Full Analysis
+**[Click here to view the Interactive Data Deep Dive](https://niteeshkanungo.github.io/fujisims/)**
 
-**Technical Analysis**: Why these two?
-- **Classic Chrome**: Mimics Kodachrome. It feels "journalistic" because it separates color intensity from luminance, giving a mature, understated look.
-- **Classic Negative**: Mimics Superia 200/400. It introduces cyan shifts in shadows and hard contrast, offering a "street photography" grit that standard profiles lack.
-- **Trend**: We see a shift away from standard "Provia/Standard" because users buy Fuji specifically *not* to look accurate, but to look *interpretive*.
-
-![Top Simulations](images/top_simulations.png)
+> The `README` below contains the summary of our findings. for the complete breakdown of all 11 data points (including White Balance quadrants, Clarity analysis, and Sensor distribution), please visit the live website above.
 
 ---
 
-### 2. Color Behavior (White Balance Shift)
-The data shows a massive preference for **Warm/Vintage** tones.
+### The "Nishti Recipe" (Highest Probability of Likeness)
+Through statistical averaging of every X100V & X100VI recipe in our database, we typically find the "Golden Mean"—a set of settings that represents the collective consensus of the Fujifilm community. 
 
-**How to read this chart:**
-*   **The Orange Zone (Top-Left):** This is the "Golden Hour" zone. Most recipes fall here because shifting AWAY from Blue (towards Yellow) and TOWARDS Red creates a nostalgic, afternoon-sun look.
-*   **The Blue Zone (Bottom-Right):** This is the "Modern/Clean" zone. Very few recipes aim for this cold, clinical look.
-*   **The Center:** This is neutral/accurate color. Notice how few dots are actually in the center? Nobody buys a Fuji for accuracy; they buy it for *character*.
+**Why this works:** The mathematical average converges on a look that balances modern sharpness with vintage character. It adopts the desaturated documentary feel of **Classic Chrome**, adds the highlight protection of **DR400**, and layers it with a "Golden Hour" warmth (Red+0, Blue-2) that is universally pleasing to the human eye. This isn't just an average; it is the "safe harbor" of aesthetics—the recipe most likely to yield a pleasing result in any condition.
 
-![WB Trends](images/wb_trends.png)
-
----
-
-### 3. Dynamic Range Preferences
-**DR400** is the dominant setting.
-
-**Technical Analysis**:
-- **Highlight Roll-off**: DR400 forces the camera to underexpose the RAW file by 2 stops and push the shadows digitally. This preserves 2 extra stops of highlight data.
-- **Why it matters**: Film handles overexposure gracefully; Digital sensors clip to pure white instantly. DR400 is the most effective tool to mimic film's graceful highlight handling.
-![Dynamic Range](images/dr_usage.png)
-
----
-
-### 4. Grain Effect
-**Strong** grain is the overwhelming favorite.
-
-**Why add noise on purpose?**
-- **Texture**: Modern 40MP sensors are "too clean". They look distinctively digital. Adding grain breaks up the perfect gradients, making the image feel organic.
-- **Perceived Sharpness**: Paradoxically, grain makes an image look sharp. Our brains interpret the random high-frequency noise as "detail", distinct from the mushy smearing of noise reduction.
-
-![Grain Usage](images/grain_usage.png)
+| Setting | Value | Why? |
+| :--- | :--- | :--- |
+| **Film Simulation** | **Classic Chrome** | The gold standard for documentary photography. It creates a distinct, slightly desaturated look that feels "real" yet cinematic. |
+| **Dynamic Range** | **DR400** | Preserves highlight roll-off. Essential for that "analog" inability to blow out skies. |
+| **Highlights** | **+0.5** | A slight boost to keep images punchy without losing detail. |
+| **Shadows** | **+1.0** | Adds contrast and depth, avoiding the flat "HDR" look of modern smartphones. |
+| **Color** | **+1.0** | Compensates for Classic Chrome's natural desaturation. |
+| **Noise Reduction** | **-4** | **Critical.** Turns off smearing to allow the lens's natural character and sensor noise to breathe. |
+| **Sharpening** | **-1** | Removes digital halos. Makes the image look "optical" rather than "processed". |
+| **Clarity** | **-2** | The "Mist Filter" effect. Softens micro-contrast for a dreamy look. *(Note: Adds ~1s delay)* |
+| **Grain Effect** | **Strong, Small** | Adds texture to simulate High-ISO film stock, masking the "clean" digital sensor look. |
+| **Color Chrome Effect** | **Strong** | Deepens colors (especially reds/greens) in shadows, acting like a polarizer. |
+| **Color Chrome FX Blue** | **Weak** | Adds a subtle depth to blue skies without turning them neon. |
+| **White Balance** | **Auto, R:0 B:-2** | The "Golden Warmth". Shifts the image slightly yellow/orange for a nostalgic afternoon feel. |
+| **ISO** | **Auto (up to 6400)** | Embraces noise. ISO 6400 on X100V looks like structured grain, not ugly color noise. |
 
 ---
 
-### 5. The Organic Index (Sharpness vs. Noise Reduction)
-Do people who hate noise reduction also hate sharpness?
+## ⚡ Performance Warning: The "Clarity Tax"
+**Setting Clarity to anything other than 0 causes a ~1 second "Storing" delay after every shot.**
+*   **For Portraits/Travel:** Keep Clarity at `-2` (The Nishti Recipe default). The aesthetic gain is worth the wait.
+*   **For Street/Moments:** Set Clarity to `0`. You lose the "mist filter" softness, but gaining instant shot-to-shot speed is critical for capturing fleeting moments.
 
-**The Anti-Digital Consensus**:
-- **Bottom-Left Heavy**: The cluster in the bottom-left represents the core Fuji user base. They lower Sharpness (-2) AND Noise Reduction (-4).
-- **Why?** They are trying to remove all software interventions. They want the raw optical character of the lens (Sharpness 0) and the raw electrical noise of the sensor (NR -4).
-
-![Sharpness vs NR](images/sharpness_nr_corr.png)
+> **Pro Tip:** Use a **PolarPro Mist Filter** (e.g., Shortstache Everyday Filter) to get the "Clarity" look optically with zero software delay.
 
 ---
 
-### 6. ISO Limits
-Why do so many recipes cap Auto-ISO at 6400?
 
-**Technical Analysis**:
-- **The Noise Floor**: On the X100V's BSI sensor, ISO 6400 noise looks remarkably monochromatic (like film grain) rather than colorful (like digital noise).
-- **Freedom**: Setting a high limit allows you to shoot at f/8 (for sharp street shots) even at night without fear.
-
-![ISO Limit](images/iso_limit.png)
-
----
-
-### 6. Sensor Distribution
-![Sensor Distribution](images/sensor_distribution.png)
-
----
-
-### 7. The Fuji "DNA" (Radar Chart)
-Visualizing the average aesthetic footprint of the X100V community.
-
-**The Shape of Color**:
-- **The Bias**: Notice how the shape pulls heavily towards "Softness" (Negative Sharpening/NR) and "Warmth".
-- **The Anti-Sony**: If you mapped a Standard profile here, it would be a perfect circle. Fuji users actively distort reality for artistic effect.
-
-![Average Preferences](images/average_preferences.png)
-
----
-
-### 8. Clarity Settings
-The distribution skews heavily towards **Negative Clarity**.
-
-**Technical Analysis**:
-- **The "Mist Filter" Effect**: Clarity affects mid-tone contrast using a large radius unsharp mask. Negative clarity bleeds highlights into shadows, creating a "bloom" effect similar to a ProMist diffusion filter.
-- **The Trade-off**: High positive clarity looks like "HDR" (gritty, harsh). Negative clarity looks like "Cinema" (soft, dreamy). Users clearly prefer the cinematic look, accepting the 1-second processing delay required to save clarity files.
-![Clarity Distribution](images/clarity_dist.png)
-
----
-
-### 9. Color Chrome vs. Saturation
-Do users compensate for the darkening effect of "Color Chrome" by boosting saturation?
-
-**Understanding the Connection**:
-- **Color Chrome Effect**: It creates deeper spacing in highly saturated colors (reds/greens). It's like a "polarizer" for color.
-- **The Trend**: Users running "Strong" Chrome FX often boost Color to +2 or +3. They want *rich* color, not *neon* color. Chrome FX keeps it printable.
-
-![Chrome vs Color](images/chrome_color_corr.png)
-
----
 
 
 ## Overview
