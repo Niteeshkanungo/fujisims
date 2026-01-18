@@ -106,5 +106,11 @@ A Python tool to collect and organize film simulation recipes for Fujifilm camer
 - `wb_shift_red` / `wb_shift_blue`: White Balance adjustments
 - ... and more.
 
+## 📬 Contact & Feedback
+If you used the **Nishti Recipe** or analyze tool and want to share your results, feedback, or suggestions, please reach out!
+
+*   **Email**: [email@niteeshkanungo.com](mailto:email@niteeshkanungo.com)
+*   **Alternate**: [niteeshkanungo@gmail.com](mailto:niteeshkanungo@gmail.com)
+
 ## License
 MIT
