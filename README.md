@@ -40,6 +40,14 @@ By applying the **Likeability Index**—identifying the "Peak Preference" for ev
 
 ---
 
+### 🧠 The Philosophy: Meaning > Megapixels
+**Why choose a Fuji over an iPhone?**
+
+*   **iPhone = "The Computer":** It solves every problem before you click. It lifts all shadows (HDR), perfectly sharpens faces, and balances every highlight. The result is technically perfect but emotionally flat. It *documents* reality.
+*   **Fuji = "The Poet":** It interprets reality. It embraces shadows, allows highlights to bloom, and adds texture. It creates a *memory*, not a forensic scan.
+
+---
+
 ## ⚡ Performance Warning: The "Clarity Tax"
 **Setting Clarity to anything other than 0 causes a ~1 second "Storing" delay after every shot.**
 *   **For Portraits/Travel:** Keep Clarity at `-2` (The Nishti Recipe default). The aesthetic gain is worth the wait.
