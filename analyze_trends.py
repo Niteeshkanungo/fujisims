@@ -11,8 +11,8 @@ This script is the "Brain" of the project. It queries the `film_recipes.db` SQLi
 and generates data visualizations that reveal the "Hidden Consensus" of the Fujifilm community.
 
 Philosophy:
-We aren't just looking for averages. We are looking for "Intent".
-By analyzing 240+ recipes, we can see *why* people change specific settings.
+I am not just looking for averages. I am looking for "Intent".
+By analyzing 240+ recipes, I can see *why* people change specific settings.
 For example, if 80% of users shift White Balance to Red, they are trying to simulate
 warmth/nostalgia, even if the "correct" WB is neutral.
 
@@ -62,7 +62,7 @@ def analyze_trends():
     """
     # WISDOM: The Color of Memory
     # White Balance isn't just for accuracy; it's for emotion.
-    # We map these shifts to see if users prefer "Golden/Nostalgic" (Red/Yellow)
+    # I map these shifts to see if users prefer "Golden/Nostalgic" (Red/Yellow)
     # or "Clinical/Modern" (Blue/Green).
     df_wb_all = pd.read_sql_query(query_wb_all, conn)
     
@@ -132,7 +132,7 @@ def analyze_trends():
     print("Generating images/grain_usage.png...")
     # WISDOM: Texture vs Noise
     # Modern sensors are "too clean". Adding grain brings back the organic "bite" 
-    # of film stock. We want to see if users prefer "Subtle" or "Gross" grain.
+    # of film stock. I want to see if users prefer "Subtle" or "Gross" grain.
     query_grain = "SELECT grain_effect, COUNT(*) as count FROM recipes WHERE grain_effect IS NOT NULL GROUP BY grain_effect"
     df_grain = pd.read_sql_query(query_grain, conn)
     
@@ -249,7 +249,7 @@ def analyze_trends():
     plt.close()
 
     # 9. Calculate the Golden Recipe (Likeability Index / Mode)
-    # Using Mode instead of Mean because we want the setting MOST LIKELY to be preferred (the peak of the bell curve)
+    # Using Mode instead of Mean because I want the setting MOST LIKELY to be preferred (the peak of the bell curve)
     likeable_settings = {}
     for m in metrics:
         # mode() returns a series, take the first one
@@ -268,7 +268,7 @@ def analyze_trends():
     mode_wb_blue = df_wb_all['wb_shift_blue'].mode()[0]
     
     # --- Likeability Index Ranking ---
-    # We want to find the ACTUAL recipe from the database that is the "Most Likeable"
+    # I want to find the ACTUAL recipe from the database that is the "Most Likeable"
     # criteria: how many settings match the "Consensus Mode"
     query_all = "SELECT * FROM recipes"
     df_all = pd.read_sql_query(query_all, conn)

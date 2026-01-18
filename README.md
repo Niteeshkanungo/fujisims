@@ -8,16 +8,16 @@ I analyzed **240+ film simulation recipes** to uncover the **Likeability Index**
 ---
 
 ## 🚀 [CLICK HERE TO VIEW THE INTERACTIVE ANALYSIS](https://niteeshkanungo.github.io/fujisims/)
-**👆 The full data deep dive is hosted on our live website.**
+**👆 The full data deep dive is hosted on my live website.**
 
-> This README contains the summary of our findings. For the complete breakdown of all 11 data points (including White Balance quadrants, Clarity analysis, and Sensor distribution), please visit the link above.
+> This README contains the summary of my findings. For the complete breakdown of all 11 data points (including White Balance quadrants, Clarity analysis, and Sensor distribution), please visit the link above.
 
 ---
 
 ---
 
 ### The "Nishti Recipe" (Community Consensus)
-By applying the **Likeability Index**—identifying the "Peak Preference" for every setting—we have built the definitive Fuji aesthetic. This isn't just an average; it is the most statistically liked configuration in the Fuji world.
+By applying the **Likeability Index**—identifying the "Peak Preference" for every setting—I have built the definitive Fuji aesthetic. This isn't just an average; it is the most statistically liked configuration in the Fuji world.
 
 **Why this works:** It reflects the community's true "Hive Mind." It favors **Color +2** (refined from +4) and **Soft Shadows (-2)**, reflecting the modern shift toward punchy, cinematic colors and a gentle, filmic highlight roll-off. This is the "Safe Harbor" of Fuji aesthetics—the configuration most likely to be loved out of the box.
 
