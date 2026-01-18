@@ -171,13 +171,7 @@ def main():
                 save_recipe(recipe_data)
                 time.sleep(1) # Be polite
         
-        recipe_data = parse_recipe_page(link, sensor)
-        if recipe_data:
-            print(f"Title: {recipe_data['name']}")
-            print(f"Sim: {recipe_data.get('film_simulation')}")
-            save_recipe(recipe_data)
-            count += 1
-            time.sleep(1) # Be polite
+
 
 if __name__ == "__main__":
     main()

@@ -291,7 +291,7 @@ def analyze_trends():
     top_recipe = df_all.sort_values('likeability_score', ascending=False).iloc[0]
 
     print("\nXXX_GOLDEN_RECIPE_START_XXX")
-    print(f"Name: The Nishti Recipe (Refined Consensus)")
+    print(f"Name: The Nishti Recipe (Probability of Likeness)")
     print(f"Description: Built using the 'Likeability Index' with manual refinements for exposure corrections.")
     print(f"Film Simulation: {top_sim}")
     print(f"Dynamic Range: {top_dr}")
