@@ -69,15 +69,15 @@
         }
 
         .card.golden-recipe::before {
-            content: "HIGHEST PROBABILITY OF LIKENESS";
+            content: "PROBABILITY OF LIKENESS";
             position: absolute;
-            top: 20px;
-            right: -60px;
+            top: 25px;
+            right: -55px;
             background: var(--gold);
             color: #fff;
             padding: 5px 60px;
             transform: rotate(45deg);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: bold;
             letter-spacing: 1px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -197,6 +197,47 @@
             border-top: 1px solid #eee;
             margin-top: 3rem;
         }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 3rem 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+            .card.golden-recipe::before {
+                top: 15px;
+                right: -50px;
+                font-size: 0.55rem;
+                padding: 4px 50px;
+            }
+        }
+
+        /* Mobile Table Fix */
+        @media (max-width: 600px) {
+
+            .recipe-table th,
+            .recipe-table td {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+
+            .recipe-table td:nth-child(1),
+            .recipe-table td:nth-child(2) {
+                width: auto;
+            }
+        }
     </style>
 </head>
 
@@ -290,7 +331,7 @@
 
         <!-- The Nishti Recipe -->
         <div class="card golden-recipe">
-            <h2><span class="badge">Recommendation</span> The "Nishti Recipe" (Community Consensus)</h2>
+            <h2><span class="badge">Recommendation</span> The "Nishti Recipe" (Probability of Likeness)</h2>
             <p>By applying the <strong>Likeability Index</strong>—identifying the "Peak Preference" for every single
                 setting—I have built the definitive Fuji aesthetic. This isn't just an average; it is the most
                 statistically liked configuration in the Fuji world.</p>
