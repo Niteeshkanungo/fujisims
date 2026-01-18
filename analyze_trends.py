@@ -4,6 +4,22 @@ import matplotlib.pyplot as plt
 import re
 import numpy as np
 
+"""
+FujiSims Analysis Engine
+------------------------
+This script is the "Brain" of the project. It queries the `film_recipes.db` SQLite database
+and generates data visualizations that reveal the "Hidden Consensus" of the Fujifilm community.
+
+Philosophy:
+We aren't just looking for averages. We are looking for "Intent".
+By analyzing 240+ recipes, we can see *why* people change specific settings.
+For example, if 80% of users shift White Balance to Red, they are trying to simulate
+warmth/nostalgia, even if the "correct" WB is neutral.
+
+Outputs:
+- Generates .png charts in the /images folder
+- Prints the "Nishti Recipe" (Refined Consensus) to the console
+"""
 DB_PATH = "film_recipes.db"
 
 def get_connection():
@@ -22,6 +38,9 @@ def analyze_trends():
         ORDER BY count DESC 
         LIMIT 7
     """
+    # WISDOM: Why do we care?
+    # The Film Sim is the "Canvas". You can't paint a Van Gogh on a napkin.
+    # We need to know which base simulation offers the most versatile starting point.
     df_sims = pd.read_sql_query(query_sims, conn)
     
     plt.figure(figsize=(10, 6))
@@ -41,6 +60,10 @@ def analyze_trends():
         FROM recipes 
         WHERE wb_shift_red IS NOT NULL AND wb_shift_blue IS NOT NULL
     """
+    # WISDOM: The Color of Memory
+    # White Balance isn't just for accuracy; it's for emotion.
+    # We map these shifts to see if users prefer "Golden/Nostalgic" (Red/Yellow)
+    # or "Clinical/Modern" (Blue/Green).
     df_wb_all = pd.read_sql_query(query_wb_all, conn)
     
     plt.figure(figsize=(10, 8))
@@ -83,6 +106,9 @@ def analyze_trends():
 
     # 4. Dynamic Range Usage - Pie Chart
     print("Generating images/dr_usage.png...")
+    # WISDOM: Protecting the Highlights
+    # Digital sensors hate overexposure. DR400 is a hardware trick to underexpose raw 
+    # data while brightening shadows, effectively saving the sky from blowing out.
     query_dr = "SELECT dynamic_range, COUNT(*) as count FROM recipes WHERE dynamic_range IS NOT NULL GROUP BY dynamic_range"
     df_dr = pd.read_sql_query(query_dr, conn)
     
@@ -104,6 +130,9 @@ def analyze_trends():
 
     # 5. Grain Effect - Bar Chart
     print("Generating images/grain_usage.png...")
+    # WISDOM: Texture vs Noise
+    # Modern sensors are "too clean". Adding grain brings back the organic "bite" 
+    # of film stock. We want to see if users prefer "Subtle" or "Gross" grain.
     query_grain = "SELECT grain_effect, COUNT(*) as count FROM recipes WHERE grain_effect IS NOT NULL GROUP BY grain_effect"
     df_grain = pd.read_sql_query(query_grain, conn)
     
@@ -262,20 +291,21 @@ def analyze_trends():
     top_recipe = df_all.sort_values('likeability_score', ascending=False).iloc[0]
 
     print("\nXXX_GOLDEN_RECIPE_START_XXX")
-    print(f"Name: The Nishti Recipe (Community Consensus)")
-    print(f"Description: Built using the 'Likeability Index'—the peak preference for every setting across 240+ recipes. This is the most statistically 'correct' aesthetic for the Fuji community.")
+    print(f"Name: The Nishti Recipe (Refined Consensus)")
+    print(f"Description: Built using the 'Likeability Index' with manual refinements for exposure corrections.")
     print(f"Film Simulation: {top_sim}")
     print(f"Dynamic Range: {top_dr}")
-    print(f"Highlights: {int(likeable_settings['highlight']):+}")
+    print(f"Highlights: -2 (Manual Fix: Softens glare)")
     print(f"Shadows: {int(likeable_settings['shadow']):+}")
-    print(f"Color: {int(likeable_settings['color']):+}")
+    print(f"Color: +2 (Manual Fix: Restores washed out color)")
+    print(f"Exposure Compensation: +1.0 (Manual Fix: Brightens image)")
     print(f"Noise Reduction: -2 (User Choice: Less Grainy)")
     print(f"Sharpening: +1 (User Choice: A little bit sharp)")
     print(f"Clarity: {int(likeable_settings['clarity']):+}")
     print(f"Grain Effect: Weak, Small (Consensus Peak)")
     print(f"Color Chrome Effect: Strong")
     print(f"Color Chrome FX Blue: Weak")
-    print(f"White Balance: Auto, {int(mode_wb_red):+} Red & {int(mode_wb_blue):+} Blue")
+    print(f"White Balance: Auto, -1 Red & -3 Blue (Manual Fix: Cleaner White)")
     print(f"ISO: Auto, up to ISO 6400")
     print(f"\nLikeability Index: This recipe represents the consensus of {top_recipe['likeability_score']} out of 11 major setting categories.")
     print(f"Closest Existing Recipe: '{top_recipe['name']}' ({top_recipe['url']})")
@@ -307,6 +337,10 @@ def analyze_trends():
     
     # 11. Chrome Effect vs Color Saturation (Correlation)
     print("Generating images/chrome_color_corr.png...")
+    # WISDOM: The "Deep Color" Paradox
+    # Amateurs boost Saturation. Pros boost Saturation AND use Color Chrome Effect.
+    # Chrome Effect *darkens* saturation, preventing the "neon" look. 
+    # This correlation checks if recipes are using this "Push-Pull" technique.
     # Does Strong Chrome Effect imply Lower Saturation?
     query_corr = "SELECT full_settings, color FROM recipes"
     df_corr = pd.read_sql_query(query_corr, conn)

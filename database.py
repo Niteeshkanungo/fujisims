@@ -11,6 +11,9 @@ def init_db():
     conn = get_connection()
     cursor = conn.cursor()
     cursor.execute("""
+        -- Main Recipe Table
+        -- We store standard fields as columns for fast SQL querying (analytics).
+        -- 'full_settings' is a JSON dump to catch any new/weird fields Fuji adds in the future without migration.
         CREATE TABLE IF NOT EXISTS recipes (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT NOT NULL,

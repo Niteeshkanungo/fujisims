@@ -19,22 +19,23 @@ I analyzed **240+ film simulation recipes** to uncover the **Likeability Index**
 ### The "Nishti Recipe" (Community Consensus)
 By applying the **Likeability Index**—identifying the "Peak Preference" for every setting—we have built the definitive Fuji aesthetic. This isn't just an average; it is the most statistically liked configuration in the Fuji world.
 
-**Why this works:** It reflects the community's true "Hive Mind." It favors **Color +4** and **Soft Shadows (-2)**, reflecting the modern shift toward punchy, cinematic colors and a gentle, filmic highlight roll-off. This is the "Safe Harbor" of Fuji aesthetics—the configuration most likely to be loved out of the box.
+**Why this works:** It reflects the community's true "Hive Mind." It favors **Color +2** (refined from +4) and **Soft Shadows (-2)**, reflecting the modern shift toward punchy, cinematic colors and a gentle, filmic highlight roll-off. This is the "Safe Harbor" of Fuji aesthetics—the configuration most likely to be loved out of the box.
 
 | Setting | Value | Why? |
 | :--- | :--- | :--- |
 | **Film Simulation** | **Classic Chrome** | The undisputed king of the Likeability Index. |
 | **Dynamic Range** | **DR400** | The unanimous choice for protecting highlights. |
-| **Highlights** | **-1** | Subtractive highlights ensure the sky never looks "digital." |
+| **Highlights** | **-2** | Softens the glare on the white desk from the sun. |
 | **Shadows** | **-2** | A strong preference for **Softer Shadows** (Cinematic Look). |
-| **Color** | **+4** | **The Surprise Consensus.** Intense, deep crimson and blues. |
+| **Color** | **+2** | **The Refined Consensus.** Retains punch without ruining skin tones. |
+| **Exposure Compensation** | **+1.0** | Physically turn the dial on top of your camera to make the whole image brighter. |
 | **Noise Reduction** | **-2** | **Polished Preference.** Reduces digital grit. |
 | **Sharpening** | **+1** | **Professional Choice.** Enhanced micro-detail and edge definition. |
 | **Clarity** | **-2** | The "Mist Filter" effect. *(Note: Adds ~1s delay)* |
 | **Grain Effect** | **Weak, Small** | **Peak Consensus.** Texture without the grit. |
 | **Color Chrome Effect** | **Strong** | Deepens colors in shadows, acting like a polarizer. |
 | **Color Chrome FX Blue** | **Weak** | Adds a subtle depth to blue skies. |
-| **White Balance** | **Auto, R:-1 B:-5** | A "Modern/Cinematic Cool" shift found in high-end editorial work. |
+| **White Balance** | **Auto, R:-1 B:-3** | A cleaner "Modern/Cinematic Cool" shift (less aggressive than -5). |
 | **ISO** | **Auto (up to 6400)** | Embraces noise as structured grain. |
 
 ---

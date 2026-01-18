@@ -8,6 +8,8 @@ from database import save_recipe
 HEADERS = {
     "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 }
+# NOTE: FujiXWeekly and other sites often block non-browser user agents (403 Forbidden).
+# The User-Agent above mimics a standard Chrome browser on macOS.
 
 TARGET_URLS = {
     "X-Trans V": "https://fujixweekly.com/fujifilm-x-trans-v-recipes/",
@@ -135,6 +137,11 @@ def scrape_sensor_index(sensor, index_url):
     return list(links)
 
 def _is_likely_recipe(href, index_url):
+    """
+    Heuristic Filter:
+    We don't want to scrape "About" pages or "Categories".
+    True recipe pages on this site usually have a date structure in the URL (e.g. /2023/05/12/).
+    """
     # Basic filter: exclude tag archives, internal nav, etc.
     if href == index_url: return False
     if "/tag/" in href: return False
