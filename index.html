@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fujisim Analysis | The Nishti Recipe</title>
+    <style>
+        :root {
+            --bg-color: #f8f9fa;
+            --text-color: #2d3436;
+            --accent-color: #2c3e50;
+            --gold: #d4af37;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.7;
+            margin: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+
+        header {
+            color: #fff;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+            font-weight: 200;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #aaa;
+            margin-top: 1rem;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: -4rem auto 4rem;
+            padding: 0 1.5rem;
+            position: relative;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2.5rem;
+            border: 1px solid #eee;
+        }
+
+        /* The Nishti Recipe Special Styling */
+        .card.golden-recipe {
+            border-top: 5px solid var(--gold);
+            background: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+        h2 {
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 1rem;
+            margin-top: 0;
+        }
+
+        .badge {
+            background: var(--gold);
+            color: white;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            vertical-align: middle;
+            margin-right: 10px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        p {
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-analysis {
+            background: #f8f9fa;
+            border-left: 4px solid #6c5ce7;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .tech-analysis h4 {
+            margin: 0 0 10px 0;
+            color: #6c5ce7;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .tech-analysis ul {
+            margin: 0;
+            padding-left: 1.2rem;
+        }
+
+        .tech-analysis li {
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin: 1rem 0;
+            border: 1px solid #eee;
+        }
+
+        .recipe-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 2rem 0;
+        }
+
+        .recipe-table th {
+            text-align: left;
+            padding: 15px;
+            border-bottom: 2px solid #ddd;
+            color: #888;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .recipe-table td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            vertical-align: top;
+        }
+
+        .recipe-table tr:hover td {
+            background-color: #fdfdfd;
+        }
+
+        .recipe-table td:nth-child(1) {
+            width: 25%;
+            font-weight: 600;
+            color: #2d3436;
+        }
+
+        .recipe-table td:nth-child(2) {
+            width: 25%;
+            font-family: 'Courier New', monospace;
+            color: #d63031;
+            font-weight: bold;
+        }
+
+        .recipe-table td:nth-child(3) {
+            color: #636e72;
+            font-size: 0.95rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 3rem 1rem;
+            color: #888;
+            font-size: 0.9rem;
+            border-top: 1px solid #eee;
+            margin-top: 3rem;
+        }
+
+        /* Mobile Optimization */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            header {
+                padding: 3rem 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .card {
+                padding: 1.5rem;
+            }
+
+
+        }
+
+        /* Mobile Table Fix */
+        @media (max-width: 600px) {
+
+            .recipe-table th,
+            .recipe-table td {
+                padding: 10px;
+                font-size: 0.85rem;
+            }
+
+            .recipe-table td:nth-child(1),
+            .recipe-table td:nth-child(2) {
+                width: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header
+        style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/fuji_header_composite.png') center/cover no-repeat; padding: 6rem 2rem; text-shadow: 0 2px 10px rgba(0,0,0,0.8);">
+        <h1>FujiSims</h1>
+        <div class="subtitle">The Science of X100V & X100VI Aesthetics</div>
+    </header>
+
+    <div class="container">
+
+        <!-- Intro -->
+        <div class="card">
+            <h2>The Search for the "Soul" of a Photo</h2>
+            <p>I analyzed over <strong>240 film simulation recipes</strong> with the help of <strong>Antigravity
+                    AI</strong> to uncover the <strong>Likeability Index</strong> of the X100V & X100VI community.
+                Instead of just averaging numbers, I identified the "Consensus Choice"—the exact settings that appear
+                most frequently across all recipes.</p>
+            <p>This project is an attempt to map that desire. Why do I love the look of old film? Why do I spend hours
+                tweaking settings to make a $1,799 digital camera (or $2,200 if you sadly paid the "eBay Scalper Tax")
+                look like a $5 disposable one? This isn't just a
+                spreadsheet of settings; it's a blueprint for an emotional aesthetic based on <strong>collective human
+                    preference.</strong></p>
+        </div>
+
+        <!-- Comparative Analysis -->
+        <div class="card" style="background: #fdfdfd; border-left: 5px solid #2d3436;">
+            <h2>The Bread & Butter: Fuji vs. The World</h2>
+            <p>To understand why Fuji is different, I have to look at what everyone else is doing. Most modern camera
+                brands (Sony, Canon, Nikon) are in a "Specs Race." They want to give you the most megapixels, the least
+                noise, and the most accurate colors. This is <strong>Color Science</strong>: the technical pursuit of
+                reality.</p>
+
+            <p>Fuji, on the other hand, is interested in <strong>Color Theory</strong>: the psychological pursuit of
+                <em>feeling</em>. When you look at an old family photo, you don't care that the shadows are a bit blue
+                or that the image is grainy. In fact, those "flaws" are exactly what makes it feel like a memory. Fuji
+                cameras are designed to create "Memory > Reality".
+            </p>
+
+            <table class="recipe-table" style="font-size: 0.9rem;">
+                <thead>
+                    <tr>
+                        <th>Brand</th>
+                        <th>Layman Philosophy</th>
+                        <th>The "Vibe"</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Sony / Nikon</strong></td>
+                        <td><em>"The Mirror"</em></td>
+                        <td><strong>Technically Flawless.</strong> Like looking through a window. Every hair is sharp,
+                            every color is 100% accurate. It's wonderful for professional work, but it can feel
+                            "clinical"—like a hospital room. You often have to spend hours in Photoshop to give it a
+                            "look."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Leica</strong></td>
+                        <td><em>"The Timepiece"</em></td>
+                        <td><strong>The Silent Luxury.</strong> There is a richness to the contrast that makes photos
+                            look "expensive." It doesn't scream for attention; it whispers quality. It's the gold
+                            standard of organic rendering, but carries a price tag that requires a second mortgage.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Ricoh GR</strong></td>
+                        <td><em>"The Rebel"</em></td>
+                        <td><strong>Raw & Honest.</strong> This is the camera for the punk rocker. It loves harsh light,
+                            deep black shadows, and high-contrast B&W. It doesn't want to be pretty; it wants to be
+                            truthful and punchy.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>iPhone / Pixel</strong></td>
+                        <td><em>"The Computer"</em></td>
+                        <td><strong>Aggressively Perfect.</strong> Computational photography solves every problem before
+                            you even click. Bridges are perfectly lit, shadows are lifted (HDR), and faces are
+                            sharpened.
+                            It looks amazing on Instagram, but it feels "soulless" and flat. It <em>documents</em>
+                            reality; it doesn't <em>interpret</em> it.</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #d63031;"><strong>Fujifilm</strong></td>
+                        <td style="color: #d63031;"><em>"The Poet"</em></td>
+                        <td><strong>Interpretive & Warm.</strong> Fuji is the only brand that builds "Empathy" into its
+                            software. It uses 90 years of film heritage to bend colors in a way that feels like a
+                            classic movie or a dusty photograph from your childhood. It turns a snapshot into a story
+                            the moment you press the shutter.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- The Nishti Recipe -->
+        <div class="card golden-recipe">
+            <h2><span class="badge">Recommendation</span> The "Nishti Recipe" (Probability of Likeness)</h2>
+            <p>By applying the <strong>Likeability Index</strong>—identifying the "Peak Preference" for every single
+                setting—I have built the definitive Fuji aesthetic. This isn't just an average; it is the most
+                statistically liked configuration in the Fuji world.</p>
+            <p><strong>Why this works:</strong> It reflects the community's true "Hive Mind" with refined enhancements.
+                It favors <strong>Color +3</strong> and <strong>Lifted Shadows (-1)</strong>, creating that modern,
+                vibrant look with excellent shadow detail that makes photos pop right out of camera.</p>
+            <p><strong>Real-World Proof:</strong> This configuration builds upon the <strong>Kodak Portra 400
+                    Warm</strong> recipe foundation, enhanced with brightness and vibrancy for that "wow" factor
+                instantly.</p>
+
+            <table class="recipe-table">
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Value</th>
+                        <th>The Likeability Logic</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Film Simulation</strong></td>
+                        <td>Classic Chrome</td>
+                        <td>The undisputed king of the Likeability Index. Used in more recipes than almost all other
+                            sims combined.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dynamic Range</strong></td>
+                        <td>DR400</td>
+                        <td>The unanimous choice for protecting highlights and creating that "analog" sky.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Highlights</strong></td>
+                        <td>-2</td>
+                        <td>Softens the glare on the white desk from the sun.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Shadows</strong></td>
+                        <td>-1</td>
+                        <td>A preference for <strong>Lifted Shadows</strong>. Reveals more detail in
+                            darker areas while maintaining depth and richness.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Color</strong></td>
+                        <td>+3</td>
+                        <td><strong>Enhanced Vibrancy.</strong> Optimized for vibrant, punchy colors
+                            while still avoiding oversaturation on skin tones.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Exposure Compensation</strong></td>
+                        <td>+2.0</td>
+                        <td>Physically turn the dial on top of your camera to make the whole image brighter with
+                            a natural, luminous quality.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Noise Reduction</strong></td>
+                        <td>-2</td>
+                        <td><strong>Polished Preference.</strong> Reduces digital grit while maintaining texture. A
+                            middle ground between "clinical" and "grainy."</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sharpening</strong></td>
+                        <td>+2</td>
+                        <td><strong>Enhanced Detail.</strong> Optimized sharpening for crisper details and
+                            professional-looking images.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Clarity</strong></td>
+                        <td>-2</td>
+                        <td>Despite the delay, this is the most frequent setting for adding that dreamy, professional
+                            "glow." <br><span style="color: #d63031; font-weight: bold; font-size: 0.8rem;">⚠️ CAUTION:
+                                Adds ~1s
+                                processing delay per shot.</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Grain Effect</strong></td>
+                        <td>Weak, Small</td>
+                        <td><strong>Peak Consensus.</strong> The community's most frequent choice for adding "texture"
+                            without the heavy "grit" of strong grain.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Color Chrome Effect</strong></td>
+                        <td>Strong</td>
+                        <td>Deepens colors (especially reds/greens) in shadows, acting like a polarizer.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Color Chrome FX Blue</strong></td>
+                        <td>Weak</td>
+                        <td>Adds a subtle depth to blue skies without turning them neon.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>White Balance</strong></td>
+                        <td>Auto, -1 Red & -3 Blue</td>
+                        <td>Moves away from "Scientific Accuracy" toward a "Modern/Cinematic Cool" shift (-3 Blue is
+                            cleaner than the raw -5 average).</td>
+                    </tr>
+                    <tr>
+                        <td><strong>ISO</strong></td>
+                        <td>Auto (up to 6400)</td>
+                        <td>Embraces noise. ISO 6400 on X100V looks like structured grain, not ugly color noise.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div
+                style="background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 6px; color: #856404;">
+                <strong>⚡ Need Speed? (Street/Action Mode)</strong><br>
+                If you need to shoot fast bursts, set <strong>Clarity to 0</strong>. You will lose the "dreamy"
+                softness, but the camera will save instantly without the 1-second "Storing" pause.
+            </div>
+
+            <div
+                style="background: #d1ecf1; border: 1px solid #bee5eb; padding: 15px; border-radius: 6px; color: #0c5460; margin-top: 15px;">
+                <strong>💎 Pro Tip: The Hardware Hack</strong><br>
+                Want the "dreamy" look <em>without</em> the lag? Buy a <strong>PolarPro Mist Filter</strong> (e.g.,
+                Shortstache Everyday Filter).
+                <ul>
+                    <li><strong>0s Delay:</strong> Provides the "Clarity" bloom effect optically, so your camera stays
+                        fast.</li>
+                    <li><strong>UV Protection:</strong> Cuts haze and removes reflections.</li>
+                    <li><strong>Best of both worlds:</strong> You get the "film look" + "burst mode" speed.</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Real World Examples -->
+        <div class="card">
+            <h2>See the Difference: Real World Examples</h2>
+            <p>Theory is nice, but what does the "Nishti Recipe" actually look like? Here are straight-from-camera
+                JPEGs using the refined settings (Color +3, Shadows -1, Exposure +2.0, Sharpening +2) combined with a
+                <strong>PolarPro Mist
+                    Filter</strong>.
+            </p>
+            </p>
+
+            <div class="tech-analysis">
+                <h4>Visual Breakdown: How the JPEGs Look</h4>
+                <p>These images demonstrate the specific "tuning" of this recipe. It's not just about adding a filter;
+                    it's about how the refined settings interact with light. Read the captions below to see exactly what
+                    is happening in each frame.</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                <div style="text-align: left;">
+                    <img src="images/example_cat_shelf.jpg" alt="Cat on shelf with soft light"
+                        style="width: 100%; border-radius: 4px;">
+                    <p style="font-size: 0.9rem; color: #333; margin-top: 10px; font-weight: 600;">"Cinema Bloom" (Mist
+                        Filter + Color +2)</p>
+                    <p style="font-size: 0.85rem; color: #555;">Look at the leaves catching the sun. The <strong>Mist
+                            Filter</strong> creates a "blooming" effect on highlights, while the recipe's <strong>Color
+                            +2</strong> pushes the greens and oranges to be vibrant but not radioactive. It looks like
+                        printed film, not a digital file.</p>
+                </div>
+                <div style="text-align: left;">
+                    <img src="images/example_puzzle_table.jpg" alt="Puzzle table with harsh light"
+                        style="width: 100%; border-radius: 4px;">
+                    <p style="font-size: 0.9rem; color: #333; margin-top: 10px; font-weight: 600;">Dynamic Range
+                        Protection (DR400)</p>
+                    <p style="font-size: 0.85rem; color: #555;">This is <strong>DR400</strong> doing the heavy lifting.
+                        The sunlight hitting the white table is extremely harsh, but the recipe protects those
+                        highlights. Instead of clipping to a flat white "blob," you can still see the texture of the
+                        table and the puzzle pieces.</p>
+                </div>
+                <div style="text-align: left;">
+                    <img src="images/example_cat_bed.jpg" alt="Cat in bed" style="width: 100%; border-radius: 4px;">
+                    <p style="font-size: 0.9rem; color: #333; margin-top: 10px; font-weight: 600;">Soft Texture
+                        Rendering (Clarity -2)</p>
+                    <p style="font-size: 0.85rem; color: #555;">The <strong>Clarity -2</strong> softens the image
+                        slightly, removing the "digital sharpness" that makes fur look jagged. Combined with
+                        <strong>Weak Grain</strong>, the fabric and cat fur look organic and soft, like a memory rather
+                        than a forensic photo.
+                    </p>
+                </div>
+                <div style="text-align: left;">
+                    <img src="images/example_plants_window.jpg" alt="Plants by window"
+                        style="width: 100%; border-radius: 4px;">
+                    <p style="font-size: 0.9rem; color: #333; margin-top: 10px; font-weight: 600;">Backlight Contrast
+                        (Shadows -2)</p>
+                    <p style="font-size: 0.85rem; color: #555;">A difficult lighting scenario. The <strong>Shadows
+                            -2</strong> setting maintains rich, deep blacks in the plant leaves (avoiding a washed-out
+                        look), while the <strong>Auto WB (R:-1 B:-3)</strong> keeps the bright window light neutral and
+                        clean, preventing the blue cast you often get in shadows.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Anatomy of a Look -->
+        <div class="card" style="border-left: 5px solid #6c5ce7;">
+            <h2>The Anatomy of a Look</h2>
+            <p>What do these settings actually change? A simple glossary for the non-technical.</p>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <h3 style="margin-top:0; color:#2c3e50;">🌈 Color Chrome Effect</h3>
+                    <p style="font-size: 0.9rem;"><strong>What it does:</strong> Acting like a "Digital Polarizer", it
+                        deepens highly saturated colors (like a bright red rose or green grass) that would normally lose
+                        detail and look flat.</p>
+                    <p style="font-size: 0.9rem; color: #666;"><em>"Deepens colors in shadows."</em></p>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <h3 style="margin-top:0; color:#2c3e50;">☁️ Color Chrome FX Blue</h3>
+                    <p style="font-size: 0.9rem;"><strong>What it does:</strong> Specifically targets blue skies. It
+                        turns a "neon blue" sky into a "deep royal blue" without affecting the rest of the image.</p>
+                    <p style="font-size: 0.9rem; color: #666;"><em>"Makes skies look expensive."</em></p>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <h3 style="margin-top:0; color:#2c3e50;">🌫️ Clarity</h3>
+                    <p style="font-size: 0.9rem;"><strong>What it does:</strong> A "micro-contrast" slider. Negative
+                        clarity (-2) acts like a mist filter, creating a soft glow around lights. Positive clarity (+2)
+                        makes things look gritty and structured.</p>
+                    <p style="font-size: 0.9rem; color: #666;"><em>"Dreamy vs. Gritty."</em></p>
+                </div>
+
+                <div style="background: #f8f9fa; padding: 15px; border-radius: 8px;">
+                    <h3 style="margin-top:0; color:#2c3e50;">💡 Dynamic Range (DR)</h3>
+                    <p style="font-size: 0.9rem;"><strong>What it does:</strong> Determines how much detail is saved in
+                        bright highlights. DR400 protects the sky from turning pure white.</p>
+                    <p style="font-size: 0.9rem; color: #666;"><em>"Saves the clouds."</em></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 1. Top Sims -->
+        <div class="card">
+            <h2>1. The Favorite Look: Selecting Your Base</h2>
+            <p>Choosing a Film Simulation is like choosing the "Canvas" for your painting. It dictates how the camera
+                handles every color before you even touch a dial. The consensus is clear: <strong>Classic
+                    Chrome</strong> and <strong>Classic Negative</strong> are the undisputed kings.</p>
+
+            <div class="tech-analysis">
+                <h4>The Verdict: Why These Work</h4>
+                <p><strong>The Leica Look:</strong> Classic Chrome is popular because it delivers the "Leica Look" for
+                    $8,000 less. It subtracts saturation from the world but adds "luminance contrast". This means colors
+                    like red and blue feel deep and heavy, rather than bright and plastic. It immediately signals to the
+                    viewer: <em>"This is a serious photograph, not a phone snapshot."</em></p>
+                <p><strong>The Superia 200 Hack:</strong> Classic Negative, on the other hand, is the "Street
+                    Photographer's Darling." It mimics cheap, grocery-store film (like Fujifilm Superia) but gives it a
+                    punchy, high-contrast look that makes mundane street scenes look like movie stills.</p>
+                <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                        Insight:</strong> If you are shooting people, use Classic Chrome. If you are shooting urban
+                    buildings or night streets, Classic Negative is your best friend.</p>
+            </div>
+
+            <img src="images/top_simulations.png" alt="Top Film Simulations">
+        </div>
+
+        <!-- 2. WB Trends -->
+        <div class="card">
+            <h2>2. The Color of Memory (White Balance Shifts)</h2>
+            <p>White Balance is meant to make white objects look white under different lights. But Fuji users use it for
+                something else entirely: <strong>Emotional Manipulation.</strong> The data shows a massive cluster
+                shifting several steps toward Red and away from Blue.</p>
+
+            <div class="tech-analysis">
+                <h4>The Verdict: False Nostalgia</h4>
+                <p><strong>The "Golden Hour" Trick:</strong> By shifting Red +2 and Blue -4, you are essentially telling
+                    the camera to pretend it's always sunset. This is what I call "False Nostalgia." We intrinsically
+                    associate warm, orange-tinted light with happy memories (childhood summers, family dinners).
+                    By locking this in, you are making every photo feel like a safe, warm memory, even if it was taken
+                    on a cold, grey morning.</p>
+                <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                        Insight:</strong> Don't just set it and forget it. If you're near the ocean, try a "Cool Shift"
+                    (Blue +2) to lean into the clinical, modern Leica look.</p>
+            </div>
+
+            <img src="images/wb_trends.png" alt="White Balance Trends">
+        </div>
+
+        <!-- 3. Dynamic Range -->
+        <div class="card">
+            <h2>3. Protecting the Sky (Dynamic Range)</h2>
+            <p>Digital cameras are famous for "Clipping"—when a bright sky turns into a flat, ugly white blob.
+                <strong>DR400</strong> is the comunidad's favorite way to stop this.
+            </p>
+            <div class="tech-analysis">
+                <h4>The Verdict: The Anti-Digital Shield</h4>
+                <p><strong>The Science of Softness:</strong> DR400 is not a magic filter; it's a clever math trick. The
+                    camera actually underexposes the sky to keep its detail, then uses software to brighten the rest of
+                    the image. The result? A "creamy" highlight roll-off that feels like actual film stock.</p>
+                <p><strong>Why it feels better:</strong> Human eyes don't see in "clipped" whites. We see texture in
+                    clouds even on sunny days. By using DR400, you are making your camera see more like a human and less
+                    like a computer.</p>
+            </div>
+            <img src="images/dr_usage.png" alt="Dynamic Range">
+        </div>
+
+        <!-- 4. Grain -->
+        <div class="card">
+            <h2>4. Texture is King (Grain Effect)</h2>
+            <p>Modern sensors are <em>too perfect</em>. The images can look like they were made in a lab rather than in
+                the world. This is why <strong>Strong Grain</strong> is the favorite setting.</p>
+            <div class="tech-analysis">
+                <h4>The Verdict: The "Vinyl" Theory</h4>
+                <p><strong>Organic Imperfection:</strong> Think of Grain like the crackle on a vinyl record. It’s not
+                    "noise"—it’s texture. Adding "Strong" grain breaks up those perfect digital gradients. It gives your
+                    eyes something to touch. Without it, the 40MP sensor of the X100VI can look a bit "plastic."</p>
+                <p><strong>The Film Feel:</strong> When you add grain, the shadows aren't just black; they have a "buzz"
+                    to them. This makes the image feel like it has weight and physical existence.</p>
+            </div>
+            <img src="images/grain_usage.png" alt="Grain Usage">
+        </div>
+
+        <!-- 5. Clarity -->
+        <div class="card">
+            <h2>5. The Dream vs. The Delay (Clarity)</h2>
+            <p>Clarity is the single most controversial setting in the Fuji world. It’s a "micro-contrast" slider that
+                essentially adds a glow to the image. As our data shows, users overwhelmingly prefer <strong>Negative
+                    Clarity (-2)</strong>, even though it comes with a high technical price tag.</p>
+            <div class="tech-analysis">
+                <h4>The Verdict: The "Mist" Tax</h4>
+                <p><strong>The Trade-off:</strong> When you set Clarity to -2, your camera has to perform a complex
+                    mathematical "blur and blend" calculation. On an X100V, this causes a 1-second "Storing" delay after
+                    every photo. The fact that the <strong>Consensus configuration</strong> <em>still</em> includes this
+                    setting tells you how
+                    much people love the look. They are literally willing to sacrifice the speed of their $1,600 camera
+                    for a "dreamy" aesthetic.</p>
+                <p><strong>The Aesthetic:</strong> Negative clarity bleeds light from the highlights into the shadows.
+                    It makes skin look perfect and light look like it’s glowing. It turns a sharp digital file into a
+                    cinematic "still."</p>
+                <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                        Insight:</strong> If you shoot weddings or babies, -2 is a required setting. If you shoot
+                    skateboards or street sports, turn it to 0 to regain your camera's speed.</p>
+            </div>
+            <img src="images/clarity_dist.png" alt="Clarity Distribution">
+        </div>
+
+        <!-- 6. Chrome/Sat -->
+        <div class="card">
+            <h2>6. The "Deep Color" Paradox (Chrome vs. Saturation)</h2>
+            <p>How do you make colors look "expensive"? If you just turn up the saturation, the photo looks like a cheap
+                TV. The data shows a sophisticated relationship: users boost <strong>Color (+2)</strong> while
+                simultaneously using <strong>Color Chrome Effect (Strong)</strong>.</p>
+            <div class="tech-analysis">
+                <h4>The Verdict: Subtractive Color Design</h4>
+                <p><strong>The Contrast Hack:</strong> Color Chrome Effect is like a "software polarizer." It
+                    <em>darkens</em> saturated colors. By using both a boost and a darken effect, you create "Richness."
+                    Instead of a bright, neon red, you get a deep, velvety crimson. This is the secret sauce behind that
+                    "National Geographic" look where colors feel intense but grounded.
+                </p>
+                <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                        Insight:</strong> Use Color Chrome FX Blue (Weak) if you find your blue skies are getting too
+                    dark or "unnatural" when shooting at high altitudes.</p>
+            </div>
+            <img src="images/chrome_color_corr.png" alt="Chrome vs Color">
+        </div>
+
+        <!-- 7. Sensor -->
+        <div class="card">
+            <h2>7. The Hardware: X-Trans IV vs V</h2>
+            <p>One of the biggest questions in the Fuji community is: <em>"Do I need the new X100VI to get the
+                    look?"</em> I analyzed recipes from both the older X-Trans IV (X100V) and the newer X-Trans V
+                (X100VI).</p>
+            <div class="tech-analysis">
+                <h4>The Verdict: Don't Believe the Hype</h4>
+                <p><strong>The Truth:</strong> The "soul" of the image remains identical. While the newer X100VI has 40
+                    megapixels (allowing you to crop further), the way the camera handles color, highlights, and film
+                    simulations is 99% the same. My data shows that recipes are cross-compatible between these
+                    generations with almost no change in the final aesthetic.</p>
+                <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                        Insight:</strong> If you are on a budget, buy a used X100V. You aren't losing out on any of the
+                    "magic" color science found in the newer version.</p>
+            </div>
+            <img src="images/sensor_distribution.png" alt="Sensor Distribution">
+        </div>
+
+        <!-- 8. ISO -->
+        <div class="card">
+            <h2>8. The "Noise Floor" (ISO Limit)</h2>
+            <p>Most beginners are terrified of high ISO because they fear "ugly" noise. But the Fuji community has a
+                different philosophy: they cap Auto-ISO at <strong>6400</strong>. Why so high?</p>
+
+            <div class="tech-analysis">
+                <h4>The Verdict: The Monochrome Noise Theory</h4>
+                <p><strong>The BSI Advantage:</strong> Modern sensors (like the one in the X100V) produce what we call
+                    "clean" noise. It doesn't look like purple splotches; it looks like fine, monochromatic grit. By
+                    setting your limit to 6400, you allow your camera to shoot in almost total darkness while
+                    maintaining a high shutter speed. Pairing this with "Grain: Strong" actually makes the noise look
+                    like a stylistic choice rather than a technical failure.</p>
+                <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                        Insight:</strong> For street photography at night, ISO 6400 is your "Safety Net." It's better to
+                    have a grainy photo that is sharp than a clean photo that is blurry.</p>
+            </div>
+
+            <img src="images/iso_limit.png" alt="ISO Limits">
+        </div>
+
+        <!-- 9. Contrast -->
+        <div class="card">
+            <h2>9. Contrast Curves (Light vs. Dark)</h2>
+            <p>How does the community handle contrast? The data shows a preference for the "S-Curve".</p>
+
+            <div class="tech-analysis">
+                <h4>The Verdict: The Cinematic Curve</h4>
+                <p><strong>The S-Curve:</strong> Almost every popular recipe pushes Highlights (+1) and Pulls Shadows
+                    (-1 or -2). This creates an "S" shape on the tone curve.</p>
+                <p><strong>Why?</strong> Because flat images look digital. An S-Curve mimics the way motion picture film
+                    stock handles light—punchy whites, deep blacks, but with a smooth rolloff in between.</p>
+            </div>
+
+            <img src="images/contrast_map.png" alt="Contrast Trends">
+        </div>
+
+        <!-- 10. Radar -->
+        <div class="card">
+            <h2>10. The Fuji "DNA" (Radar Chart)</h2>
+            <p>Visualizing the <strong>Likeability Index</strong> across all settings.</p>
+            <div class="tech-analysis">
+                <h4>The Verdict: The Shape of Nostalgia</h4>
+                <p><strong>The Bias:</strong> Notice how the shape pulls heavily South-West. This is the "Softness &
+                    Warmth" quadrant.</p>
+                <p><strong>The Anti-Sony:</strong> If I mapped a Sony or Canon profile here, it would be a perfect
+                    circle in the center. Fuji users <em>actively distort reality</em> to make it feel more human.</p>
+            </div>
+            <img src="images/average_preferences.png" alt="Radar Chart">
+        </div>
+
+        <!-- 11. Organic Index -->
+        <div class="card">
+            <h2>11. The Organic Index (Sharpness vs NR)</h2>
+            <p>Do people who hate noise reduction also hate sharpness?</p>
+            <div class="tech-analysis">
+                <h4>The Verdict: The Analog Zone</h4>
+                <p><strong>The Correlation:</strong> There is a clear cluster of users who strictly use <strong>Negative
+                        Sharpness</strong> AND <strong>Negative Noise Reduction</strong>.</p>
+                <img src="images/sharpness_nr_corr.png" alt="Sharpness vs NR">
+            </div>
+
+            <!-- Advanced Section Header -->
+            <div class="card"
+                style="grid-column: 1 / -1; background: #2c3e50; color: white; padding: 40px; text-align: center; margin-top: 40px;">
+                <h2 style="font-size: 2.5em; margin-bottom: 10px; color: white; border-bottom: none;">Advanced Color
+                    Theory</h2>
+                <p style="font-size: 1.2em; color: white; opacity: 0.9;">What a Pro Photographer sees in this data</p>
+                <p style="font-size: 1.1em; color: white; opacity: 0.8; max-width: 800px; margin: 20px auto;">The
+                    following sections
+                    look at the <em>relationships</em> between settings—how one choice influences another. This is the
+                    level beyond choosing a recipe; this is understanding the mechanics of look-building.</p>
+            </div>
+
+            <!-- 12. Nostalgia vs Pop -->
+            <div class="card">
+                <h2>12. The Warmth/Vibrancy Axis (Nostalgia vs. Pop)</h2>
+                <p>Do "Warm" recipes always have "Faded" colors? Generally, yes. This graph proves a deep psychological
+                    link: when we want a photo to feel "Vintage," we don't just add orange; we <strong>subtract</strong>
+                    color.</p>
+                <div class="tech-analysis">
+                    <h4>The Verdict: The Dial of Historical Memory</h4>
+                    <p><strong>The Counter-Steer:</strong> A professional knows that adding warmth (Yellow/Orange)
+                        actually increases how saturated a photo <em>looks</em>. To keep it from looking like a cheap
+                        postcard, you have to "counter-steer" by dropping the Color setting. My data shows that the
+                        most successful "Vintage" recipes live in the bottom-right quadrant: High Warmth + Low Color.
+                    </p>
+                    <p><strong>Why?</strong> Because old photos in your parents' albums have faded over 30 years. To
+                        trigger that memory, you have to mimic that decay.</p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                            Insight:</strong> If you want the "Golden Hour" look but want it to feel modern/clean, go
+                        for Warmth +2 but keep Color at 0.</p>
+                </div>
+                <img src="images/nostalgia_pop.png" alt="Nostalgia vs Pop">
+            </div>
+
+            <!-- 13. Structure Index -->
+            <div class="card">
+                <h2>13. The Structure Index (Sharpness vs. Clarity)</h2>
+                <p>How do you add "grit" without making it look digital? This graph looks at the interplay between
+                    <strong>High-Frequency Sharpness</strong> (tiny edges) and <strong>Mid-tone Clarity</strong>
+                    (the "bones" of the image).
+                </p>
+                <div class="tech-analysis">
+                    <h4>The Verdict: Texture Sculpting & Cinema Glass</h4>
+                    <p><strong>Digital Bloom:</strong> There is a unique cluster of +Sharpness combined with
+                        -Clarity. This is the "Modern Pro" look. A professional knows that if you just drop clarity,
+                        the image gets muddy. But if you boost sharpness AND drop clarity, you get "Cinema Bloom."
+                        It mimics $50,000 cinema lenses: sharp enough to see the subject's eyes, but soft enough to
+                        make the light glow around them.</p>
+                    <p><strong>Layman's Terms:</strong> You are basically making the edges "crisp" but the surfaces
+                        "soft." It’s like a beauty filter that doesn’t look like a filter.</p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                            Insight:</strong> This is the secret to "dreamy" street photography. It makes a dirty
+                        city street look like a set from a French movie.</p>
+                </div>
+                <img src="images/structure_index.png" alt="Structure Index">
+            </div>
+
+            <!-- 14. B&W Contrast -->
+            <div class="card">
+                <h2>14. The B&W Contrast Rule (Monochrome vs. Color Shadows)</h2>
+                <p>Does the lack of color change how light is handled? I compared the Shadow settings of every B&W
+                    recipe against every Color recipe. The result is a fundamental law of photography: <strong>B&W
+                        demands deeper blacks.</strong></p>
+                <div class="tech-analysis">
+                    <h4>The Verdict: Contrast as Color</h4>
+                    <p><strong>The Proof:</strong> B&W recipes consistently have "Harder" shadows (+1.5 avg) than
+                        Color recipes. Why? Because in a color photo, you can use a red shirt to separate a person
+                        from a green background. In B&W, that person and the background are the same shade of grey.
+                        To create "Depth," you MUST use light and shadow. Pro photographers "punch up" the blacks
+                        the moment they go monochrome to avoid a "flat grey" image.</p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                            Insight:</strong> If you're switching to Acros (B&W), move your Shadows to at least +2.
+                        It will feel scary at first, but your images will look much more professional.</p>
+                </div>
+                <img src="images/bw_contrast.png" alt="B&W Contrast">
+            </div>
+
+            <!-- 15. Grit Score -->
+            <div class="card">
+                <h2>15. The Grit Score (ISO vs. Grain Strength)</h2>
+                <p>Do people who shoot in high ISO (low light) embrace more grain? I correlated ISO limits with
+                    Grain settings. The data reveals a fascinating psychological trend: <strong>High ISO shooters
+                        are 2x more likely to use "Strong" grain.</strong></p>
+                <div class="tech-analysis">
+                    <h4>The Verdict: Embracing the Imperfect</h4>
+                    <p><strong>Transforming the Flaw:</strong> Most people think of Grain as something to avoid. But
+                        if you're shooting at ISO 6400, you're going to have some digital noise anyway. By
+                        overlaying "Strong" simulated grain, you are masking the "ugly" digital noise with
+                        "beautiful" film-like grain. It turns a technical limitation into a Stylistic Choice.</p>
+                    <p><strong>The Vibe:</strong> It’s the difference between a "noisy digital photo" and a "gritty
+                        film photo." The latter feels intentional and artistic.</p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                            Insight:</strong> If you're at a concert or a dark bar, don't try to keep the image
+                        clean. Go "Grain: Strong" and let it be gritty. It feels more authentic.</p>
+                </div>
+                <img src="images/grit_score.png" alt="Grit Score">
+            </div>
+
+            <!-- 16. Complexity Score -->
+            <div class="card">
+                <h2>16. The Alchemist Score (Total Complexity)</h2>
+                <p>How much do people actually change? I calculated the "Complexity Score"—the total sum of every
+                    single shift away from factory defaults. It shows a classic "Long Tail" distribution between
+                    <strong>Purists</strong> and <strong>Alchemists.</strong>
+                </p>
+                <div class="tech-analysis">
+                    <h4>The Verdict: The Maturity of Restraint</h4>
+                    <p><strong>Purists (Scores 0-10):</strong> Most users stay in the "Purist" zone. They change 2-3
+                        key things (like Film Sim and WB) and leave the rest alone. A pro knows that a "Look"
+                        usually only needs one or two strong signatures to be effective.</p>
+                    <p><strong>Alchemists (Scores 20+):</strong> These are the experimenters who change
+                        <em>everything</em>—Sharpening, NR, Color, Clarity, Chrome, Grain, etc. While fun, this
+                        often leads to "Digital Mud." If you change too many things, the settings start fighting
+                        each other.
+                    </p>
+                    <p style="margin-top: 15px; border-top: 1px dashed #ddd; padding-top: 10px;"><strong>💡 Pro
+                            Insight:</strong> The best recipes are usually simple. If you find yourself shifting 10
+                        different settings, try narrowing it down to the 3 that actually matter for the "Vibe" you
+                        want.</p>
+                </div>
+                <img src="images/complexity_score.png" alt="Complexity Score">
+            </div>
+
+        </div>
+
+        <!-- Contact & Feedback -->
+        <div class="card" style="text-align: center; border-left: 5px solid #0984e3;">
+            <h2>📬 Feedback & Reviews</h2>
+            <p>Did you try the Nishti Recipe? I want to see your results!</p>
+            <p>If you have questions, suggestions, or just want to share your photos, feel free to reach out directly. I
+                personally read every message.</p>
+            <div style="margin-top: 20px; font-size: 1.1rem;">
+                <p><strong>Email me at:</strong><br>
+                    <a href="mailto:email@niteeshkanungo.com"
+                        style="color: #0984e3; text-decoration: none; font-weight: bold;">email@niteeshkanungo.com</a><br>
+                    <span style="color: #ccc;">or</span><br>
+                    <a href="mailto:niteeshkanungo@gmail.com"
+                        style="color: #0984e3; text-decoration: none; font-weight: bold;">niteeshkanungo@gmail.com</a>
+                </p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Curated by Niteesh Kanungo (analyzed with Antigravity AI) | Generated with Python & SQLite</p>
+        </footer>
+
+</body>
+
+</html>
