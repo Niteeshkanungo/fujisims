@@ -85,6 +85,27 @@ By identifying the **Peak Preference** for every single setting, I've built the 
 
 ---
 
+## 9. See the Difference: Real World Examples
+Theory is nice, but what does the "Nishti Recipe" actually look like? Here are straight-from-camera JPEGs using the community consensus settings.
+
+### "Cinema Bloom"
+![Cat on shelf](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/example_cat_shelf.jpg)
+Look at the light catching the fur. The negative clarity and soft highlights create a "blooming" effect that looks like printed film, not a digital file.
+
+### Dynamic Range Protection
+![Puzzle table](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/example_puzzle_table.jpg)
+This is **DR400** doing the heavy lifting. The sunlight hitting the white table is extremely harsh, but the recipe protects those highlights, allowing you to see the texture of the table clearly.
+
+### Organic Texture
+![Cat in bed](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/example_cat_bed.jpg)
+Negative Sharpness and Noise Reduction work together to remove the "digital edge," making fur and fabric look soft and natural.
+
+### Backlight Contrast
+![Plants by window](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/example_plants_window.jpg)
+Even in difficult lighting, the **Shadows -2** setting maintains rich, deep blacks, while the specific White Balance shift keeps the light neutral and clean.
+
+---
+
 ## Conclusion: Meaning > Megapixels
 Data science usually focuses on efficiency. But in photography, it helps us understand **aesthetics**. By analyzing the "Hive Mind," we can identify the settings that trigger emotion.
 
