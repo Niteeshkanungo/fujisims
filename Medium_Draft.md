@@ -1,6 +1,6 @@
 # The Science of Nostalgia: I Analyzed 240+ Fujifilm Recipes to Find the "Community Consensus"
 
-<img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/fuji_header_composite.png" width="800" />
+<img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/fuji_header_composite.png" width="900" height="600" />
 
 Why do we choose a Fujifilm camera over an iPhone? 
 
@@ -49,7 +49,7 @@ How does the community handle contrast? The **Contrast Map** reveals a strong pr
 ## 5. The "Organic Index": Sharpness vs. Noise Reduction
 Modern sensors are "too clean." To combat this, the community lives in the **Organic/Analog** zone: **Negative Sharpness** (to soften digital edges) and **Negative Noise Reduction** (to allow natural grain to show through).
 
-<img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/noise_reduction_sharpness_corr.png" width="500" />
+<img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/sharpness_nr_corr.png" width="500" />
 
 ---
 
