@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Science of Nostalgia: I Analyzed 240+ Fujifilm Recipes to Find the "Community Consensus"</title>
+</head>
+<body>
+    <h1>The Science of Nostalgia: I Analyzed 240+ Fujifilm Recipes to Find the "Community Consensus"</h1>
+    
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/fuji_header_composite.png" alt="Fuji Header Composite">
+
+    <p>Why do we choose a Fujifilm camera over an iPhone?</p>
+
+    <p>An iPhone is a computer that <em>documents</em> reality. It solves for dynamic range, sharpness, and color balance before you even click the shutter. The result is technically perfect, but emotionally flat.</p>
+
+    <p>A Fujifilm camera is a poet. It <em>interprets</em> reality. It embraces shadows, allows highlights to bloom, and adds texture. It creates a memory, not a forensic scan.</p>
+
+    <p>But with thousands of "Film Simulation Recipes" out there, how do you choose the right one? I decided to stop guessing and start measuring. I built <strong>FujiSims</strong>, a Python-based analysis engine that scraped and analyzed over 240+ popular recipes to find the "Hidden Consensus" of the Fuji community.</p>
+
+    <h2>The Goal: Finding the "Likeability Index"</h2>
+
+    <p>Instead of just averaging numbers, I looked for "Peak Preferences." I wanted to know where the "Hive Mind" of Fujifilm photographers lives. What are the settings most likely to be loved out of the box?</p>
+
+    <p><a href="https://niteeshkanungo.github.io/fujisims/">View the Interactive Analysis Here</a> | <a href="https://github.com/niteeshkanungo/fujisims">GitHub Repository</a></p>
+
+    <hr>
+
+    <h2>1. The Canvas: Classic Chrome is King</h2>
+    <p>Every recipe starts with a base Film Simulation. <strong>Classic Chrome</strong> is the undisputed king. Its muted tones and deep contrast provide the perfect "analog" foundation.</p>
+
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/top_simulations.png" alt="Top Simulations">
+
+    <hr>
+
+    <h2>2. The Color of Memory: White Balance Shifts</h2>
+    <p>White Balance isn't just about accuracy; it's about emotion. The data shows a massive cluster in the <strong>Golden/Vintage</strong> quadrant. Users are intentionally shifting toward warmth to capture that nostalgic, faded-film look.</p>
+
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/wb_trends.png" alt="WB Trends">
+
+    <hr>
+
+    <h2>3. Protecting the Highlights: The DR400 Paradox</h2>
+    <p>In the digital world, blown-out highlights are "death." <strong>DR400</strong> is a hardware trick that saves your skies and whites from digital "clipping." Nearly 60% of recipes utilize this to make digital sensors behave like film.</p>
+
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/dr_usage.png" alt="DR Usage">
+
+    <hr>
+
+    <h2>4. Tone Curve: Soft Highlights, Hard Shadows</h2>
+    <p>How does the community handle contrast? The <strong>Contrast Map</strong> reveals a strong preference for <strong>Moody</strong> and <strong>Soft Cinematic</strong> looks. Very few recipes opt for the "High Contrast" digital look.</p>
+
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/contrast_map.png" alt="Contrast Map">
+
+    <hr>
+
+    <h2>5. The "Organic Index": Sharpness vs. Noise Reduction</h2>
+    <p>Modern sensors are "too clean." To combat this, the community lives in the <strong>Organic/Analog</strong> zone: <strong>Negative Sharpness</strong> (to soften digital edges) and <strong>Negative Noise Reduction</strong> (to allow natural grain to show through).</p>
+
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/sharpness_nr_corr.png" alt="Organic Index">
+
+    <hr>
+
+    <h2>6. Structure & Texture: Sharpness vs. Clarity</h2>
+    <p><strong>Clarity</strong> is a powerful but "expensive" setting (it adds processing delay). Most recipes use a slightly negative clarity to create a "bloom" or "mist" effect, creating a dreamier, less clinical structure.</p>
+
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/structure_index.png" alt="Structure Index">
+
+    <hr>
+
+    <h2>7. B&W Contrast: Shadow Hardness</h2>
+    <p>Interestingly, when the community builds Black & White recipes, they push shadows significantly harder than in color recipes. B&W isn't just "desaturated color"; it's a completely different approach to lighting.</p>
+
+    <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/bw_contrast.png" alt="BW Contrast">
+
+    <hr>
+
+    <h2>8. The Consensus: The "Nishti Recipe"</h2>
+    <p>By identifying the <strong>Peak Preference</strong> for every single setting, I've built the definitive community aesthetic.</p>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Setting</th>
+                <th>Value</th>
+                <th>Why?</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Film Simulation</strong></td>
+                <td><strong>Classic Chrome</strong></td>
+                <td>The foundation of the look.</td>
+            </tr>
+            <tr>
+                <td><strong>Dynamic Range</strong></td>
+                <td><strong>DR400</strong></td>
+                <td>Protects your highlights.</td>
+            </tr>
+            <tr>
+                <td><strong>Highlights</strong></td>
+                <td><strong>-2</strong></td>
+                <td>Softens the glare.</td>
+            </tr>
+            <tr>
+                <td><strong>Shadows</strong></td>
+                <td><strong>-2</strong></td>
+                <td>For that "cinematic" lift.</td>
+            </tr>
+            <tr>
+                <td><strong>Color</strong></td>
+                <td><strong>+2</strong></td>
+                <td>Punchy colors without looking fake.</td>
+            </tr>
+            <tr>
+                <td><strong>Grain</strong></td>
+                <td><strong>Weak, Small</strong></td>
+                <td>Texture without the grit.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr>
+
+    <h2>Conclusion: Meaning > Megapixels</h2>
+    <p>Data science usually focuses on efficiency. But in photography, it helps us understand <strong>aesthetics</strong>. By analyzing the "Hive Mind," we can identify the settings that trigger emotion.</p>
+
+    <p><strong>Full Project on GitHub:</strong> <a href="https://github.com/niteeshkanungo/fujisims">https://github.com/niteeshkanungo/fujisims</a></p>
+</body>
+</html>
