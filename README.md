@@ -60,9 +60,6 @@ By applying the **Likeability Index**—identifying the "Peak Preference" for ev
 
 
 
-## Overview
-A Python tool to collect and organize film simulation recipes for Fujifilm cameras from public sources into a local SQLite database.
-
 ## Setup
 1. **Clone the repository**:
    ```bash
@@ -70,21 +67,23 @@ A Python tool to collect and organize film simulation recipes for Fujifilm camer
    cd fujisims
    ```
 
-2. **Create and activate a virtual environment**:
+2. **Setup environment**:
    ```bash
+   # Using uv (recommended)
+   uv venv
+   source .venv/bin/activate
+   uv pip install -e .
+   
+   # Or using standard pip
    python3 -m venv venv
    source venv/bin/activate
-   ```
-
-3. **Install dependencies**:
-   ```bash
-   pip install -r requirements.txt
+   pip install .
    ```
 
 ## Usage
 1. **Run the scraper**:
    ```bash
-   python scrape.py
+   python scripts/scrape.py
    ```
    This will populate `film_recipes.db`.
 
@@ -92,7 +91,7 @@ A Python tool to collect and organize film simulation recipes for Fujifilm camer
 ## Querying the Data
    Use the provided example script:
    ```bash
-   python query_examples.py
+   python scripts/query_examples.py
    ```
    Or use any SQLite client:
    ```bash
