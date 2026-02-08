@@ -8,7 +8,8 @@ I analyzed **240+ film simulation recipes** to uncover the **Likeability Index**
 ---
 
 ## 🚀 [CLICK HERE TO VIEW THE INTERACTIVE ANALYSIS](https://niteeshkanungo.github.io/fujisims/)
-**👆 The full data deep dive is hosted on my live website.**
+## 📝 [READ THE FULL STORY ON MEDIUM](https://medium.com/@niteeshkanungo/the-science-of-nostalgia-i-analyzed-240-fujifilm-recipes-to-find-the-community-consensus-0bc073adf72a)
+**👆 The full data deep dive and the story behind it.**
 
 > This README contains the summary of my findings. For the complete breakdown of all 11 data points (including White Balance quadrants, Clarity analysis, and Sensor distribution), please visit the link above.
 
