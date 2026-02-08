@@ -70,14 +70,7 @@ Interestingly, when the community builds Black & White recipes, they push shadow
 ## 8. The Consensus: The "Nishti Recipe"
 By identifying the **Peak Preference** for every single setting, I've built the definitive community aesthetic.
 
-| Setting | Value | Why? |
-| :--- | :--- | :--- |
-| **Film Simulation** | **Classic Chrome** | The foundation of the look. |
-| **Dynamic Range** | **DR400** | Protects your highlights. |
-| **Highlights** | **-2** | Softens the glare. |
-| **Shadows** | **-2** | For that "cinematic" lift. |
-| **Color** | **+2** | Punchy colors without looking fake. |
-| **Grain** | **Weak, Small** | Texture without the grit. |
+<img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/nishti_recipe_table.png" width="800" />
 
 ---
 
