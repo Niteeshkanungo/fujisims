@@ -1,6 +1,6 @@
 # The Science of Nostalgia: I Analyzed 240+ Fujifilm Recipes to Find the "Community Consensus"
 
-![Fuji Header Composite](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/fuji_header_composite.png)
+![Fuji Header Composite](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/fuji_header_composite.png)
 
 Why do we choose a Fujifilm camera over an iPhone? 
 
@@ -21,42 +21,42 @@ Instead of just averaging numbers, I looked for "Peak Preferences." I wanted to 
 ## 1. The Canvas: Classic Chrome is King
 Every recipe starts with a base Film Simulation. **Classic Chrome** is the undisputed king. Its muted tones and deep contrast provide the perfect "analog" foundation.
 
-![Top Simulations](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/top_simulations.png)
+![Top Simulations](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/top_simulations.png)
 
 ---
 
 ## 2. The Color of Memory: White Balance Shifts
 White Balance isn't just about accuracy; it's about emotion. The data shows a massive cluster in the **Golden/Vintage** quadrant. Users are intentionally shifting toward warmth to capture that nostalgic, faded-film look.
 
-![WB Trends](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/wb_trends.png)
+![WB Trends](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/wb_trends.png)
 
 ---
 
 ## 3. Protecting the Highlights: The DR400 Paradox
 In the digital world, blown-out highlights are "death." **DR400** is a hardware trick that saves your skies and whites from digital "clipping." Nearly 60% of recipes utilize this to make digital sensors behave like film.
 
-![DR Usage](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/dr_usage.png)
+![DR Usage](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/dr_usage.png)
 
 ---
 
 ## 4. Tone Curve: Soft Highlights, Hard Shadows
 How does the community handle contrast? The **Contrast Map** reveals a strong preference for **Moody** and **Soft Cinematic** looks. Very few recipes opt for the "High Contrast" digital look.
 
-![Contrast Map](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/contrast_map.png)
+![Contrast Map](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/contrast_map.png)
 
 ---
 
 ## 5. The "Organic Index": Sharpness vs. Noise Reduction
 Modern sensors are "too clean." To combat this, the community lives in the **Organic/Analog** zone: **Negative Sharpness** (to soften digital edges) and **Negative Noise Reduction** (to allow natural grain to show through).
 
-![Organic Index](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/sharpness_nr_corr.png)
+![Organic Index](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/sharpness_nr_corr.png)
 
 ---
 
 ## 6. Structure & Texture: Sharpness vs. Clarity
 **Clarity** is a powerful but "expensive" setting (it adds processing delay). Most recipes use a slightly negative clarity to create a "bloom" or "mist" effect, creating a dreamier, less clinical structure.
 
-![Structure Index](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/structure_index.png)
+![Structure Index](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/structure_index.png)
 
 ---
 
@@ -69,6 +69,17 @@ Interestingly, when the community builds Black & White recipes, they push shadow
 
 ## 8. The Consensus: The "Nishti Recipe"
 By identifying the **Peak Preference** for every single setting, I've built the definitive community aesthetic.
+
+**The Recipe Configuration:**
+*   **Film Simulation:** Classic Chrome
+*   **Dynamic Range:** DR400
+*   **Highlights:** -2
+*   **Shadows:** -2
+*   **Color:** +2
+*   **Noise Reduction:** -4
+*   **Sharpening:** -2
+*   **Grain Effect:** Weak, Small
+*   **White Balance:** Auto, -1 Red & -3 Blue
 
 <img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/nishti_recipe_table.png" width="800" />
 
