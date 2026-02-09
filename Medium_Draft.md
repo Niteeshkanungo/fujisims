@@ -63,7 +63,7 @@ Modern sensors are "too clean." To combat this, the community lives in the **Org
 ## 7. B&W Contrast: Shadow Hardness
 Interestingly, when the community builds Black & White recipes, they push shadows significantly harder than in color recipes. B&W isn't just "desaturated color"; it's a completely different approach to lighting.
 
-![BW Contrast](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/master/images/bw_contrast.png)
+![BW Contrast](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/bw_contrast.png)
 
 ---
 
@@ -81,7 +81,7 @@ By identifying the **Peak Preference** for every single setting, I've built the 
 *   **Grain Effect:** Weak, Small
 *   **White Balance:** Auto, -1 Red & -3 Blue
 
-<img src="https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/nishti_recipe_table.png" width="800" />
+![Nishti Recipe Table](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/nishti_recipe_table.png)
 
 ---
 
