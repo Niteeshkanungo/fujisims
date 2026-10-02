@@ -55,21 +55,47 @@ def parse_recipe_page(url, sensor):
     # Mappings from text keys to DB fields
     key_map = {
         "Film Simulation": "film_simulation",
+        "Film Sim": "film_simulation",
+        "Simulation": "film_simulation",
         "Dynamic Range": "dynamic_range",
         "Grain Effect": "grain_effect",
+        "Grain": "grain_effect",
         "White Balance": "white_balance",
         "Highlight": "highlight",
         "Shadow": "shadow",
         "Color": "color",
         "Sharpness": "sharpness",
+        "Sharpening": "sharpness",
         "Noise Reduction": "noise_reduction",
+        "High ISO NR": "full_settings",
         "Clarity": "clarity",
         "ISO": "iso",
         "Exposure Compensation": "exposure_compensation",
         # Aliases or partial matches could be added here
         "Color Chrome Effect": "full_settings", # saving to JSON for now if not in main schema
-        "Color Chrome FX Blue": "full_settings"
+        "Color Chrome FX Blue": "full_settings",
+        "Color Chrome Effect Blue": "full_settings",
+        "Toning": "full_settings",
     }
+
+    # Bare film-sim names used by older X-Trans IV/III pages with no "Film Simulation:" prefix
+    # e.g. "Classic Chrome|Dynamic Range: DR400|..." or "Monochrome (+Y, +R, +G)"
+    KNOWN_SIMS = [
+        "Classic Chrome", "Classic Negative", "Nostalgic Neg", "Nostalgic Negative",
+        "Eterna Bleach Bypass", "Eterna", "Provia", "Velvia", "Astia",
+        "Acros", "Monochrome", "Reala Ace", "Pro Neg", "Pro Neg Hi", "Pro Neg Std",
+        "Sepia",
+    ]
+
+    def _detect_bare_sim(line):
+        low = line.lower()
+        for sim in KNOWN_SIMS:
+            if low == sim.lower() or low.startswith(sim.lower() + " ") or low.startswith(sim.lower() + "("):
+                return sim if sim != "Nostalgic Neg" else "Nostalgic Neg."
+        # Handle "Monochrome (+Y, +R, +G)" style -> keep full string as sim
+        if low.startswith("monochrome"):
+            return line
+        return None
 
     # Iterate through paragraphs to find settings
     # Use separator='\n' to handle <br> tags or implicit newlines
@@ -80,6 +106,11 @@ def parse_recipe_page(url, sensor):
         for line in lines:
             line = clean_text(line)
             if ':' not in line:
+                # Old format: bare sim name on its own line
+                if "film_simulation" not in data:
+                    bare = _detect_bare_sim(line)
+                    if bare:
+                        data["film_simulation"] = bare
                 continue
                 
             parts = line.split(':', 1)

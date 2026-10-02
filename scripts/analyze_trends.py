@@ -605,7 +605,7 @@ def analyze_trends():
     # Define B&W keywords
     bw_sims = ['Acros', 'Monochrome', 'Tri-X', 'T-Max', 'Ilford']
     def is_bw(sim_name):
-        if not sim_name: return False
+        if not isinstance(sim_name, str): return False
         s = sim_name.lower()
         return 'acros' in s or 'monochrome' in s or 'bw' in s or 'b&w' in s or 'sepia' in s
 
