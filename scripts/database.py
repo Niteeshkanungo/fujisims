@@ -57,6 +57,23 @@ def save_recipe(data: Dict[str, Any]):
     
     # Filter data to only include known fields
     insert_data = {k: data.get(k) for k in fields}
+
+    # Merge sensors for cross-listed URLs (e.g. a recipe on both the
+    # X-Trans IV and V indexes) instead of last-write-wins.
+    try:
+        existing = cursor.execute(
+            "SELECT sensor FROM recipes WHERE url = ?", (insert_data["url"],)
+        ).fetchone()
+    except Exception:
+        existing = None
+    if existing and existing[0] and existing[0] != insert_data.get("sensor"):
+        parts = []
+        for chunk in (existing[0], insert_data.get("sensor")):
+            for bit in str(chunk).split("&"):
+                bit = bit.strip()
+                if bit and bit not in parts:
+                    parts.append(bit)
+        insert_data["sensor"] = " & ".join(sorted(parts))
     
     placeholders = ", ".join(["?"] * len(fields))
     columns = ", ".join(fields)

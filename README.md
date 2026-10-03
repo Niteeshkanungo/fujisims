@@ -1,7 +1,9 @@
 # FujiSims: The Science of X100V & X100VI Aesthetics
 > *"Don't just pick a recipe. Understand the DNA of the Fuji look."*
 
-I analyzed **240+ film simulation recipes** to uncover the **Likeability Index**—identifying the exact settings the community collectively prefers. Instead of just averaging numbers, this project identifies the "Peak Preferences" of the Fuji world. This tool scrapes recipe sites, stores them in SQLite, and visualizes trends to reveal the true **Community Consensus** for the **X100V and X100VI**.
+I analyzed **256 film simulation recipes** to uncover the **Likeability Index**—identifying the exact settings the community collectively prefers. Instead of just averaging numbers, this project identifies the "Peak Preferences" of the Fuji world. This tool scrapes recipe sites, stores them in SQLite, and visualizes trends to reveal the true **Community Consensus** for the **X100V and X100VI**.
+
+*Oct 2026 rerun: rescraped from scratch (185 X-Trans IV + 71 X-Trans V source links, 12 cross-listed on both). Sim names normalized (Nostalgic Neg. → Nostalgic Negative, filter variants grouped), High ISO NR promoted into Noise Reduction, nav junk filtered from settings.*
 
 ---
 
@@ -22,9 +24,11 @@ By applying the **Likeability Index**—identifying the "Peak Preference" for ev
 
 **Why this works:** It reflects the community's true "Hive Mind." It favors **Color +2** (refined from +4) and **Soft Shadows (-2)**, reflecting the modern shift toward punchy, cinematic colors and a gentle, filmic highlight roll-off. This is the "Safe Harbor" of Fuji aesthetics—the configuration most likely to be loved out of the box.
 
+*Transparency: the raw community modes are punchier/softer than the curated picks — Color **+4** (67 recipes), Sharpness **-2** (89), Noise Reduction **-4** (155 of 256). The Nishti Recipe deliberately restrains Color to +2 for skin tones, lifts Sharpness to +1 for micro-detail, and polishes NR to -2. Contrast is a three-way tie (Soft 29% / High 28% / Moody 27%), so -2 shadows is a choice, not a landslide.*
+
 | Setting | Value | Why? |
 | :--- | :--- | :--- |
-| **Film Simulation** | **Classic Chrome** | The undisputed king of the Likeability Index. |
+| **Film Simulation** | **Classic Chrome** | Top of the Likeability Index in a duel with Classic Negative (59 vs 56 of 256). |
 | **Dynamic Range** | **DR400** | The unanimous choice for protecting highlights. |
 | **Highlights** | **-2** | Softens the glare on the white desk from the sun. |
 | **Shadows** | **-2** | A strong preference for **Softer Shadows** (Cinematic Look). |

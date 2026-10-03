@@ -244,8 +244,8 @@ def analyze_trends():
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels([m.capitalize() for m in metrics])
     
-    plt.title('The Community Consensus\n(Likeability Index)', size=20, color='teal', y=1.1)
-    plt.savefig('images/average_preferences.png')
+    plt.title('Community Consensus (Likeability Index)', size=18, color='teal', pad=30)
+    plt.savefig('images/average_preferences.png', bbox_inches='tight')
     plt.close()
 
     # 9. Calculate the Golden Recipe (Likeability Index / Mode)

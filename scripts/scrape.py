@@ -20,6 +20,68 @@ TARGET_URLS = {
 def clean_text(text):
     return text.replace('\xa0', ' ').strip()
 
+def normalize_sim(raw):
+    """Canonicalize film-sim names so votes aren't split.
+    Groups filter variants (Acros+G -> Acros) and punctuation
+    variants (Nostalgic Neg. -> Nostalgic Negative). Returns None
+    for uncountable placeholders like 'Any'."""
+    if not isinstance(raw, str):
+        return None
+    s = raw.strip().strip('.')
+    low = s.lower()
+    if low in ('any', 'n/a', 'various'):
+        return None
+    # Strip Fuji filter suffixes: "Monochrome (+Y, +R, +G)" -> "Monochrome",
+    # "Acros+G" -> "Acros", "Provia/STD" -> "Provia", "Acros (" (truncated) -> "Acros"
+    s = re.split(r'\s*[\(\[/\+]', s, maxsplit=1)[0].strip().strip('.')
+    low = s.lower()
+    aliases = {
+        'nostalgic neg': 'Nostalgic Negative',
+        'nostalgic negative': 'Nostalgic Negative',
+        'classic negative': 'Classic Negative',
+        'classic chrome': 'Classic Chrome',
+        'eterna bleach bypass': 'Eterna Bleach Bypass',
+        'eterna': 'Eterna',
+        'reala ace': 'Reala Ace',
+        'provia': 'Provia',
+        'velvia': 'Velvia',
+        'astia': 'Astia',
+        'acros': 'Acros',
+        'monochrome': 'Monochrome',
+        'sepia': 'Sepia',
+        'pro neg hi': 'Pro Neg Hi',
+        'pro neg. hi': 'Pro Neg Hi',
+        'pro neg std': 'Pro Neg Std',
+        'pro neg. std': 'Pro Neg Std',
+        'pro neg': 'Pro Neg Std',
+    }
+    # Normalize internal whitespace/punctuation for lookup
+    key = re.sub(r'\s+', ' ', low).strip()
+    return aliases.get(key, s)
+
+# Keys that are site nav/commerce noise, never real settings
+JUNK_KEYS = {
+    '', 'See also', 'See Also', 'in black', 'in silver', 'in charcoal',
+    'Comparison', 'Update', 'cameras',
+}
+
+def _is_junk_key(key, value=None):
+    if not key or not key.strip():
+        return True
+    k = key.strip()
+    if k in JUNK_KEYS:
+        return True
+    if k.startswith('Fujifilm '):
+        return True
+    if len(k) > 30:  # real setting names are short
+        return True
+    if ',' in k or '.' in k:  # sentence fragments, not settings
+        return True
+    lk = k.lower()
+    if ' vs ' in lk or '?' in k:  # comparison headers / questions, not settings
+        return True
+    return False
+
 def parse_recipe_page(url, sensor):
     print(f"Scraping {url}...")
     try:
@@ -66,8 +128,8 @@ def parse_recipe_page(url, sensor):
         "Color": "color",
         "Sharpness": "sharpness",
         "Sharpening": "sharpness",
+        "Sharpeness": "sharpness",  # source typo seen in the wild
         "Noise Reduction": "noise_reduction",
-        "High ISO NR": "full_settings",
         "Clarity": "clarity",
         "ISO": "iso",
         "Exposure Compensation": "exposure_compensation",
@@ -75,8 +137,11 @@ def parse_recipe_page(url, sensor):
         "Color Chrome Effect": "full_settings", # saving to JSON for now if not in main schema
         "Color Chrome FX Blue": "full_settings",
         "Color Chrome Effect Blue": "full_settings",
+        "High ISO NR": "full_settings",
         "Toning": "full_settings",
     }
+    # Merge duplicate Chrome-blue spellings into one canonical key
+    CHROME_BLUE_KEYS = {"Color Chrome FX Blue", "Color Chrome Effect Blue"}
 
     # Bare film-sim names used by older X-Trans IV/III pages with no "Film Simulation:" prefix
     # e.g. "Classic Chrome|Dynamic Range: DR400|..." or "Monochrome (+Y, +R, +G)"
@@ -91,10 +156,10 @@ def parse_recipe_page(url, sensor):
         low = line.lower()
         for sim in KNOWN_SIMS:
             if low == sim.lower() or low.startswith(sim.lower() + " ") or low.startswith(sim.lower() + "("):
-                return sim if sim != "Nostalgic Neg" else "Nostalgic Neg."
-        # Handle "Monochrome (+Y, +R, +G)" style -> keep full string as sim
+                return normalize_sim(sim)
+        # Handle "Monochrome (+Y, +R, +G)" style -> normalize to base
         if low.startswith("monochrome"):
-            return line
+            return normalize_sim(line)
         return None
 
     # Iterate through paragraphs to find settings
@@ -126,13 +191,29 @@ def parse_recipe_page(url, sensor):
             
             if matched_field:
                 if matched_field == "full_settings":
+                    if key in CHROME_BLUE_KEYS:
+                        key = "Color Chrome FX Blue"  # canonical spelling
+                    if _is_junk_key(key):
+                        continue
                     data["full_settings"][key] = value
+                elif matched_field == "film_simulation":
+                    normed = normalize_sim(value)
+                    if normed:
+                        data[matched_field] = normed
+                    # 'Any'/multi-recipe placeholders -> leave unset (counted as NULL)
                 else:
                     data[matched_field] = value
             else:
                  # Store unrecognized keys in full_settings just in case
-                 if len(key) < 50: # Avoid capturing long sentences that resemble keys
+                 if not _is_junk_key(key):
                     data["full_settings"][key] = value
+
+    # Promote High ISO NR into noise_reduction when the dedicated field is missing
+    # (older pages only list High ISO NR; same NR axis for analysis).
+    # Kept in full_settings too for provenance.
+    hi_nr = data["full_settings"].get("High ISO NR")
+    if hi_nr and not data.get("noise_reduction"):
+        data["noise_reduction"] = hi_nr
 
     # Parse White Balance Shift
     if "white_balance" in data:

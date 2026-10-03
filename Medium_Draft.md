@@ -1,4 +1,6 @@
-# The Science of Nostalgia: I Analyzed 240+ Fujifilm Recipes to Find the "Community Consensus"
+# The Science of Nostalgia: I Analyzed 256 Fujifilm Recipes to Find the "Community Consensus"
+
+*Oct 2026 update: rescraped from scratch and fixed the parser — bare sim names on legacy pages, sim-name normalization, High ISO NR recovery, nav-junk filtering. Counts below are the corrected 256-recipe numbers.*
 
 ![Fuji Header Composite](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/fuji_header_composite.png)
 
@@ -8,7 +10,7 @@ An iPhone is a computer that *documents* reality. It solves for dynamic range, s
 
 A Fujifilm camera is a poet. It *interprets* reality. It embraces shadows, allows highlights to bloom, and adds texture. It creates a memory, not a forensic scan.
 
-But with thousands of "Film Simulation Recipes" out there, how do you choose the right one? I decided to stop guessing and start measuring. I built **FujiSims**, a Python-based analysis engine that scraped and analyzed over 240+ popular recipes to find the "Hidden Consensus" of the Fuji community.
+But with thousands of "Film Simulation Recipes" out there, how do you choose the right one? I decided to stop guessing and start measuring. I built **FujiSims**, a Python-based analysis engine that scraped and analyzed 256 popular recipes to find the "Hidden Consensus" of the Fuji community.
 
 ## The Goal: Finding the "Likeability Index"
 
@@ -19,7 +21,7 @@ Instead of just averaging numbers, I looked for "Peak Preferences." I wanted to 
 ---
 
 ## 1. The Canvas: Classic Chrome is King
-Every recipe starts with a base Film Simulation. **Classic Chrome** is the undisputed king. Its muted tones and deep contrast provide the perfect "analog" foundation.
+Every recipe starts with a base Film Simulation. **Classic Chrome** leads in a duel with **Classic Negative** (59 vs 56 of 256) — the two longtime favorites are now nearly tied, with Eterna a distant third. Chrome's muted tones and deep contrast provide the perfect "analog" foundation.
 
 ![Top Simulations](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/top_simulations.png)
 
@@ -39,8 +41,8 @@ In the digital world, blown-out highlights are "death." **DR400** is a hardware 
 
 ---
 
-## 4. Tone Curve: Soft Highlights, Hard Shadows
-How does the community handle contrast? The **Contrast Map** reveals a strong preference for **Moody** and **Soft Cinematic** looks. Very few recipes opt for the "High Contrast" digital look.
+## 4. Tone Curve: A Three-Way Tie
+How does the community handle contrast? The **Contrast Map** is nearly tied three ways — **Soft/Cinematic 29%, High Contrast 28%, Moody 27%** (Ethereal 16%). There is no consensus here: as many recipes push hard contrast as soft. Pick your mood.
 
 ![Contrast Map](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/contrast_map.png)
 
@@ -68,16 +70,16 @@ Interestingly, when the community builds Black & White recipes, they push shadow
 ---
 
 ## 8. The Consensus: The "Nishti Recipe"
-By identifying the **Peak Preference** for every single setting, I've built the definitive community aesthetic.
+By identifying the **Peak Preference** for every single setting, I've built the definitive community aesthetic. Where the raw mode would hurt usability (neon skin tones at Color +4, mushy detail at Sharpness -2), the recipe curates — noted below.
 
 **The Recipe Configuration:**
-*   **Film Simulation:** Classic Chrome
+*   **Film Simulation:** Classic Chrome (59 vs 56 over Classic Negative — a duel, not a coronation)
 *   **Dynamic Range:** DR400
-*   **Highlights:** -2
+*   **Highlights:** -2 (raw mode is -1; softened a step for glare)
 *   **Shadows:** -2
-*   **Color:** +2
-*   **Noise Reduction:** -4
-*   **Sharpening:** -2
+*   **Color:** +2 (raw mode is +4; restrained for skin tones)
+*   **Noise Reduction:** -2 (raw mode is -4; polished vs grainy)
+*   **Sharpening:** +1 (raw mode is -2; kept for micro-detail)
 *   **Grain Effect:** Weak, Small
 *   **White Balance:** Auto, -1 Red & -3 Blue
 
