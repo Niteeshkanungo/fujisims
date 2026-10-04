@@ -1,7 +1,7 @@
 [
  {
   "id": 2,
-  "name": "Soft Golden",
+  "name": "Warm Cinematic",
   "tagline": "Biggest group. Soft highlights, warm WB, mist glow. Start here.",
   "n": 90,
   "pct": 35,
@@ -21,7 +21,7 @@
  },
  {
   "id": 3,
-  "name": "Hard Cool",
+  "name": "Cool Contrast",
   "tagline": "Crushed highlights/shadows, cooler WB. Punchy + B&W-friendly.",
   "n": 66,
   "pct": 26,
@@ -41,7 +41,7 @@
  },
  {
   "id": 0,
-  "name": "Faded Vintage",
+  "name": "Vintage Fade",
   "tagline": "Muted, desaturated film look. Classic Negative, pulled color, heavy mist.",
   "n": 53,
   "pct": 21,
@@ -61,7 +61,7 @@
  },
  {
   "id": 1,
-  "name": "Clean Punch",
+  "name": "Vivid Crisp",
   "tagline": "Crisp modern color. Only group with positive clarity, neutral sharpness.",
   "n": 47,
   "pct": 18,
