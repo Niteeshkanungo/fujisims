@@ -17,7 +17,10 @@
   "wb_blue": -5,
   "iso": "Auto, up to ISO 6400",
   "noise_reduction": "-4",
-  "note": "Close calls: H -2/-1, S -1/-2, Cl -2/-3, grain Strong/Weak Small \u2014 all warm/soft either way."
+  "note": "Close calls: H -2/-1, S -1/-2, Cl -2/-3, grain Strong/Weak Small \u2014 all warm/soft either way.",
+  "chrome": "Strong",
+  "blue": "Weak (29 vs 28 Strong \u2014 tie)",
+  "exp": "+2/3 to start"
  },
  {
   "id": 3,
@@ -37,7 +40,10 @@
   "wb_blue": 1,
   "iso": "Auto, up to ISO 6400",
   "noise_reduction": "-4",
-  "note": "Mixed sims (Eterna/Chrome/Acros); S +2/+4, grain a 3-way tie. Take H +4 / cool WB as the signature."
+  "note": "Mixed sims (Eterna/Chrome/Acros); S +2/+4, grain a 3-way tie. Take H +4 / cool WB as the signature.",
+  "chrome": "Strong",
+  "blue": "Strong (weak peak 16/13/11)",
+  "exp": "0 to start"
  },
  {
   "id": 0,
@@ -57,7 +63,10 @@
   "wb_blue": -3,
   "iso": "Auto, up to ISO 6400",
   "noise_reduction": "-4",
-  "note": "H -1/0 and S -2/+2/+4 are ties; the signature is Color -4, Cl -4, Strong Large grain."
+  "note": "H -1/0 and S -2/+2/+4 are ties; the signature is Color -4, Cl -4, Strong Large grain.",
+  "chrome": "Strong",
+  "blue": "Strong",
+  "exp": "+1/3 to start"
  },
  {
   "id": 1,
@@ -77,6 +86,9 @@
   "wb_blue": -3,
   "iso": "Auto, up to ISO 6400",
   "noise_reduction": "-4",
-  "note": "H +1/-1 close; signature is Sh 0, Cl +3, Weak Small grain \u2014 the only crisp group."
+  "note": "H +1/-1 close; signature is Sh 0, Cl +3, Weak Small grain \u2014 the only crisp group.",
+  "chrome": "Strong",
+  "blue": "Weak (13/12/10 \u2014 tie)",
+  "exp": "+2/3 to start"
  }
 ]
