@@ -73,7 +73,7 @@ Interestingly, when the community builds Black & White recipes, they push shadow
 No single recipe wins. Shadows are a 3-way tie, grain is 62/57/53, WB is flat — averaging them into one "consensus" hides the real splits. K-means (k=4, n=256) finds four stable looks. Shared constants: DR400, NR -4, ISO Auto 6400.
 
 *   **Soft Golden — 35% (90):** Classic Chrome, H -2 / S -1, Color +4, Sh -2, Clarity -2, Grain Strong Small, WB +1/-5. The default. Start here.
-*   **Hard Cool — 26% (66):** Classic Chrome, H +4 / S +2, Color +4, Sh -2, Clarity -3, Grain Weak Small, WB -2/+1. Punchy + B&W-friendly.
+*   **Hard Cool — 26% (66):** Mixed sims (Eterna/Chrome/Acros 10/10/9), H +4 / S +2, Color +4, Sh -2, Clarity -3, Grain Weak Small, WB -2/+1. Punchy + B&W-friendly. Signature is crushed highlights + cool WB; grain is a 3-way tie.
 *   **Faded Vintage — 21% (53):** Classic Negative, H -1 / S -2, Color -4, Sh -2, Clarity -4, Grain Strong Large, WB +1/-3. Muted film look.
 *   **Clean Punch — 18% (47):** Classic Chrome, H +1 / S +1, Color +4, Sh 0, Clarity +3, Grain Weak Small, WB +1/-3. Crisp, no mist delay.
 

@@ -16,7 +16,8 @@
   "wb_red": 1,
   "wb_blue": -5,
   "iso": "Auto, up to ISO 6400",
-  "noise_reduction": "-4"
+  "noise_reduction": "-4",
+  "note": "Close calls: H -2/-1, S -1/-2, Cl -2/-3, grain Strong/Weak Small \u2014 all warm/soft either way."
  },
  {
   "id": 3,
@@ -24,7 +25,7 @@
   "tagline": "Crushed highlights/shadows, cooler WB. Punchy + B&W-friendly.",
   "n": 66,
   "pct": 26,
-  "film_simulation": "Classic Chrome",
+  "film_simulation": "Mixed (Eterna/Chrome/Acros)",
   "dynamic_range": "DR400",
   "highlight": "+4",
   "shadow": "+2",
@@ -35,7 +36,8 @@
   "wb_red": -2,
   "wb_blue": 1,
   "iso": "Auto, up to ISO 6400",
-  "noise_reduction": "-4"
+  "noise_reduction": "-4",
+  "note": "Mixed sims (Eterna/Chrome/Acros); S +2/+4, grain a 3-way tie. Take H +4 / cool WB as the signature."
  },
  {
   "id": 0,
@@ -54,7 +56,8 @@
   "wb_red": 1,
   "wb_blue": -3,
   "iso": "Auto, up to ISO 6400",
-  "noise_reduction": "-4"
+  "noise_reduction": "-4",
+  "note": "H -1/0 and S -2/+2/+4 are ties; the signature is Color -4, Cl -4, Strong Large grain."
  },
  {
   "id": 1,
@@ -73,6 +76,7 @@
   "wb_red": 1,
   "wb_blue": -3,
   "iso": "Auto, up to ISO 6400",
-  "noise_reduction": "-4"
+  "noise_reduction": "-4",
+  "note": "H +1/-1 close; signature is Sh 0, Cl +3, Weak Small grain \u2014 the only crisp group."
  }
 ]

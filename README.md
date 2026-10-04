@@ -25,9 +25,11 @@ No single setting wins — shadows are a 3-way tie, grain is 62/57/53, WB is fla
 | Pattern | Share | Settings |
 | :--- | :--- | :--- |
 | **Soft Golden** (start here) | 35% (90) | Classic Chrome · H -2 / S -1 · Color +4 · Sh -2 · Clarity -2 · Grain Strong Small · WB +1/-5 |
-| **Hard Cool** | 26% (66) | Classic Chrome · H +4 / S +2 · Color +4 · Sh -2 · Clarity -3 · Grain Weak Small · WB -2/+1 |
+| **Hard Cool** | 26% (66) | Mixed sims (Eterna/Chrome/Acros) · H +4 / S +2 · Color +4 · Sh -2 · Clarity -3 · Grain Weak Small · WB -2/+1 |
 | **Faded Vintage** | 21% (53) | Classic Negative · H -1 / S -2 · Color -4 · Sh -2 · Clarity -4 · Grain Strong Large · WB +1/-3 |
 | **Clean Punch** | 18% (47) | Classic Chrome · H +1 / S +1 · Color +4 · Sh 0 · Clarity +3 · Grain Weak Small · WB +1/-3 |
+
+Close calls labeled on the site (e.g. Hard Cool sims 10/10/9, Faded shadows 3-way tie). Signatures are solid: Soft = warm + mist, Hard = crushed + cool, Faded = desat + heavy mist, Clean = only positive clarity.
 
 *Retired: the single "Nishti Recipe" — it averaged away real splits (raw modes: Color +4, Sharpness -2, NR -4, Highlights -1). Pick a pattern instead.*
 

@@ -326,38 +326,66 @@
                 biggest group (35%) — start there if unsure.</p>
             <img src="images/pattern_map.png" alt="Four patterns map">
 
+            <h3>1. Soft Golden — 35% (90) <span style="color:#888;">· start here</span></h3>
+            <p>Warm cinematic default. Soft highlights, mist glow.</p>
             <table class="recipe-table">
-                <thead>
-                    <tr>
-                        <th>Pattern</th>
-                        <th>Settings</th>
-                        <th>Who it's for</th>
-                    </tr>
-                </thead>
                 <tbody>
-                    <tr>
-                        <td><strong>Soft Golden</strong><br>35% (90)</td>
-                        <td>Classic Chrome · DR400 · H -2 / S -1 · Color +4 · Sh -2 · Clarity -2 · Grain Strong Small · WB +1/-5 · NR -4 · ISO Auto 6400</td>
-                        <td>Warm cinematic default. Soft highlights, mist glow. Start here.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Hard Cool</strong><br>26% (66)</td>
-                        <td>Classic Chrome · DR400 · H +4 / S +2 · Color +4 · Sh -2 · Clarity -3 · Grain Weak Small · WB -2/+1 · NR -4 · ISO Auto 6400</td>
-                        <td>Punchy contrast, cooler WB. Night/street + B&W-friendly.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Faded Vintage</strong><br>21% (53)</td>
-                        <td>Classic Negative · DR400 · H -1 / S -2 · Color -4 · Sh -2 · Clarity -4 · Grain Strong Large · WB +1/-3 · NR -4 · ISO Auto 6400</td>
-                        <td>Muted, desaturated film look. Portraits with heavy mist.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Clean Punch</strong><br>18% (47)</td>
-                        <td>Classic Chrome · DR400 · H +1 / S +1 · Color +4 · Sh 0 · Clarity +3 · Grain Weak Small · WB +1/-3 · NR -4 · ISO Auto 6400</td>
-                        <td>Crisp modern color. Only group with positive clarity — fastest look, no mist delay.</td>
-                    </tr>
+                    <tr><td><strong>Film Simulation</strong></td><td>Classic Chrome</td><td>28 vs 27 over Classic Negative — near tie, either works.</td></tr>
+                    <tr><td><strong>Dynamic Range</strong></td><td>DR400</td><td>Clear winner (57 of 90).</td></tr>
+                    <tr><td><strong>Highlights / Shadows</strong></td><td>-2 / -1</td><td>Both near-ties (-2/-1 and -1/-2). Soft either way.</td></tr>
+                    <tr><td><strong>Color</strong></td><td>+4</td><td>Strong peak (41 of 90).</td></tr>
+                    <tr><td><strong>Sharpness / Clarity</strong></td><td>-2 / -2</td><td>Clarity -2/-3 tied — mist either way.</td></tr>
+                    <tr><td><strong>Grain</strong></td><td>Strong, Small</td><td>30 vs 26 over Weak Small — close.</td></tr>
+                    <tr><td><strong>White Balance</strong></td><td>Auto, +1 Red & -5 Blue</td><td>Warmest group.</td></tr>
+                    <tr><td><strong>ISO / NR</strong></td><td>Auto 6400 / -4</td><td>Shared constants.</td></tr>
                 </tbody>
             </table>
-            <p style="font-size:0.9rem;color:#666;">Method: mode per cluster for sim/DR/H/S/C/Sh/Cl/grain, median WB. Shared constants: DR400, NR -4, ISO Auto 6400. Full table in <code>meta/patterns.json</code>.</p>
+
+            <h3>2. Hard Cool — 26% (66)</h3>
+            <p>Punchy contrast, cooler WB. Night/street + B&W-friendly.</p>
+            <table class="recipe-table">
+                <tbody>
+                    <tr><td><strong>Film Simulation</strong></td><td>Mixed</td><td>Eterna 10 / Chrome 10 / Acros 9 — pick your base.</td></tr>
+                    <tr><td><strong>Dynamic Range</strong></td><td>DR400</td><td>29 vs 23 over DR200.</td></tr>
+                    <tr><td><strong>Highlights / Shadows</strong></td><td>+4 / +2</td><td>Shadows +2/+4 tied — crushed either way.</td></tr>
+                    <tr><td><strong>Color</strong></td><td>+4</td><td>14 vs 13 over +3 — close.</td></tr>
+                    <tr><td><strong>Sharpness / Clarity</strong></td><td>-2 / -3</td><td>Sharpness a 3-way tie; clarity weak peak.</td></tr>
+                    <tr><td><strong>Grain</strong></td><td>Weak, Small</td><td>3-way tie — your call.</td></tr>
+                    <tr><td><strong>White Balance</strong></td><td>Auto, -2 Red & +1 Blue</td><td>Coolest group.</td></tr>
+                    <tr><td><strong>ISO / NR</strong></td><td>Auto 6400 / -4</td><td>Shared constants.</td></tr>
+                </tbody>
+            </table>
+
+            <h3>3. Faded Vintage — 21% (53)</h3>
+            <p>Muted, desaturated film look. Portraits with heavy mist.</p>
+            <table class="recipe-table">
+                <tbody>
+                    <tr><td><strong>Film Simulation</strong></td><td>Classic Negative</td><td>15 vs 7 — clearest sim peak of the four.</td></tr>
+                    <tr><td><strong>Dynamic Range</strong></td><td>DR400</td><td>34 of 53.</td></tr>
+                    <tr><td><strong>Highlights / Shadows</strong></td><td>-1 / -2</td><td>Shadows a 3-way tie (-2/+2/+4); soft highlight lean only.</td></tr>
+                    <tr><td><strong>Color</strong></td><td>-4</td><td>18 vs 16 over -2 — the desat signature.</td></tr>
+                    <tr><td><strong>Sharpness / Clarity</strong></td><td>-2 / -4</td><td>Heaviest mist of all groups.</td></tr>
+                    <tr><td><strong>Grain</strong></td><td>Strong, Large</td><td>21 — strongest grain peak.</td></tr>
+                    <tr><td><strong>White Balance</strong></td><td>Auto, +1 Red & -3 Blue</td><td>Mild warm.</td></tr>
+                    <tr><td><strong>ISO / NR</strong></td><td>Auto 6400 / -4</td><td>Shared constants.</td></tr>
+                </tbody>
+            </table>
+
+            <h3>4. Clean Punch — 18% (47)</h3>
+            <p>Crisp modern color. Only group with positive clarity — fastest look, no mist delay.</p>
+            <table class="recipe-table">
+                <tbody>
+                    <tr><td><strong>Film Simulation</strong></td><td>Classic Chrome</td><td>14 vs 7 over Velvia.</td></tr>
+                    <tr><td><strong>Dynamic Range</strong></td><td>DR400</td><td>21 vs 17 over DR200.</td></tr>
+                    <tr><td><strong>Highlights / Shadows</strong></td><td>+1 / +1</td><td>Highlights +1/-1 close; gentle push.</td></tr>
+                    <tr><td><strong>Color</strong></td><td>+4</td><td>12 — clear peak.</td></tr>
+                    <tr><td><strong>Sharpness / Clarity</strong></td><td>0 / +3</td><td>The signature: neutral sharp + positive clarity.</td></tr>
+                    <tr><td><strong>Grain</strong></td><td>Weak, Small</td><td>12 — light texture.</td></tr>
+                    <tr><td><strong>White Balance</strong></td><td>Auto, +1 Red & -3 Blue</td><td>Mild warm.</td></tr>
+                    <tr><td><strong>ISO / NR</strong></td><td>Auto 6400 / -4</td><td>Shared constants.</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size:0.9rem;color:#666;">Method: mode per cluster, median WB. Close calls labeled. Full table in <code>meta/patterns.json</code>.</p>
 
             <div
                 style="background: #fff3cd; border: 1px solid #ffeeba; padding: 15px; border-radius: 6px; color: #856404;">
