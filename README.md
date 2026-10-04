@@ -24,10 +24,10 @@ No single setting wins — shadows are a 3-way tie, grain is 62/57/53, WB is fla
 
 | Pattern | Share | Settings |
 | :--- | :--- | :--- |
-| **Warm Cinematic** (start here) | 35% (90) | Classic Chrome · H -2 / S -1 · Color +4 · Sh -2 · Clarity -2 · Grain Strong Small · WB +1/-5 |
-| **Cool Contrast** | 26% (66) | Mixed sims (Eterna/Chrome/Acros) · H +4 / S +2 · Color +4 · Sh -2 · Clarity -3 · Grain Weak Small · WB -2/+1 |
-| **Vintage Fade** | 21% (53) | Classic Negative · H -1 / S -2 · Color -4 · Sh -2 · Clarity -4 · Grain Strong Large · WB +1/-3 |
-| **Vivid Crisp** | 18% (47) | Classic Chrome · H +1 / S +1 · Color +4 · Sh 0 · Clarity +3 · Grain Weak Small · WB +1/-3 |
+| **Warm Cinematic** (start here) | 35% (90) | Classic Chrome · H -2 / S -1 · Color +4 · Sh -2 · Clarity -2 · Grain Strong Small · WB +1/-5 · Chrome Strong/Weak · Exp +2/3 |
+| **Cool Contrast** | 26% (66) | Mixed sims (Eterna/Chrome/Acros) · H +4 / S +2 · Color +4 · Sh -2 · Clarity -3 · Grain Weak Small · WB -2/+1 · Chrome Strong/Strong · Exp 0 |
+| **Vintage Fade** | 21% (53) | Classic Negative · H -1 / S -2 · Color -4 · Sh -2 · Clarity -4 · Grain Strong Large · WB +1/-3 · Chrome Strong/Strong · Exp +1/3 |
+| **Vivid Crisp** | 18% (47) | Classic Chrome · H +1 / S +1 · Color +4 · Sh 0 · Clarity +3 · Grain Weak Small · WB +1/-3 · Chrome Strong/Weak · Exp +2/3 |
 
 Close calls labeled on the site (e.g. Cool Contrast sims 10/10/9, Faded shadows 3-way tie). Signatures are solid: Warm = warm + mist, Cool = crushed + cool, Vintage = desat + heavy mist, Vivid = only positive clarity.
 

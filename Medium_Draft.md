@@ -72,10 +72,10 @@ Interestingly, when the community builds Black & White recipes, they push shadow
 ## 8. The Finding: Four Patterns, Not One Recipe
 No single recipe wins. Shadows are a 3-way tie, grain is 62/57/53, WB is flat — averaging them into one "consensus" hides the real splits. K-means (k=4, n=256) finds four stable looks. Shared constants: DR400, NR -4, ISO Auto 6400.
 
-*   **Warm Cinematic — 35% (90):** Classic Chrome, H -2 / S -1, Color +4, Sh -2, Clarity -2, Grain Strong Small, WB +1/-5. The default. Start here.
-*   **Cool Contrast — 26% (66):** Mixed sims (Eterna/Chrome/Acros 10/10/9), H +4 / S +2, Color +4, Sh -2, Clarity -3, Grain Weak Small, WB -2/+1. Punchy + B&W-friendly. Signature is crushed highlights + cool WB; grain is a 3-way tie.
-*   **Vintage Fade — 21% (53):** Classic Negative, H -1 / S -2, Color -4, Sh -2, Clarity -4, Grain Strong Large, WB +1/-3. Muted film look.
-*   **Vivid Crisp — 18% (47):** Classic Chrome, H +1 / S +1, Color +4, Sh 0, Clarity +3, Grain Weak Small, WB +1/-3. Crisp, no mist delay.
+*   **Warm Cinematic — 35% (90):** Classic Chrome, H -2 / S -1, Color +4, Sh -2, Clarity -2, Grain Strong Small, WB +1/-5, Chrome Strong/Weak (tie), Exp +2/3. The default. Start here.
+*   **Cool Contrast — 26% (66):** Mixed sims (Eterna/Chrome/Acros 10/10/9), H +4 / S +2, Color +4, Sh -2, Clarity -3, Grain Weak Small, WB -2/+1, Chrome Strong/Strong, Exp 0. Punchy + B&W-friendly. Signature is crushed highlights + cool WB; grain is a 3-way tie.
+*   **Vintage Fade — 21% (53):** Classic Negative, H -1 / S -2, Color -4, Sh -2, Clarity -4, Grain Strong Large, WB +1/-3, Chrome Strong/Strong, Exp +1/3. Muted film look.
+*   **Vivid Crisp — 18% (47):** Classic Chrome, H +1 / S +1, Color +4, Sh 0, Clarity +3, Grain Weak Small, WB +1/-3, Chrome Strong/Weak (tie), Exp +2/3. Crisp, no mist delay.
 
 ![Four Patterns](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/pattern_map.png)
 
