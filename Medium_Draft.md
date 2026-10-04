@@ -1,4 +1,4 @@
-# The Science of Nostalgia: I Analyzed 256 Fujifilm Recipes to Find the "Community Consensus"
+# The Science of Nostalgia: I Analyzed 256 Fujifilm Recipes and Found Four Patterns
 
 *Oct 2026 update: rescraped from scratch and fixed the parser — bare sim names on legacy pages, sim-name normalization, High ISO NR recovery, nav-junk filtering. Counts below are the corrected 256-recipe numbers.*
 
@@ -69,26 +69,20 @@ Interestingly, when the community builds Black & White recipes, they push shadow
 
 ---
 
-## 8. The Consensus: The "Nishti Recipe"
-By identifying the **Peak Preference** for every single setting, I've built the definitive community aesthetic. Where the raw mode would hurt usability (neon skin tones at Color +4, mushy detail at Sharpness -2), the recipe curates — noted below.
+## 8. The Finding: Four Patterns, Not One Recipe
+No single recipe wins. Shadows are a 3-way tie, grain is 62/57/53, WB is flat — averaging them into one "consensus" hides the real splits. K-means (k=4, n=256) finds four stable looks. Shared constants: DR400, NR -4, ISO Auto 6400.
 
-**The Recipe Configuration:**
-*   **Film Simulation:** Classic Chrome (59 vs 56 over Classic Negative — a duel, not a coronation)
-*   **Dynamic Range:** DR400
-*   **Highlights:** -2 (raw mode is -1; softened a step for glare)
-*   **Shadows:** -2
-*   **Color:** +2 (raw mode is +4; restrained for skin tones)
-*   **Noise Reduction:** -2 (raw mode is -4; polished vs grainy)
-*   **Sharpening:** +1 (raw mode is -2; kept for micro-detail)
-*   **Grain Effect:** Weak, Small
-*   **White Balance:** Auto, -1 Red & -3 Blue
+*   **Soft Golden — 35% (90):** Classic Chrome, H -2 / S -1, Color +4, Sh -2, Clarity -2, Grain Strong Small, WB +1/-5. The default. Start here.
+*   **Hard Cool — 26% (66):** Classic Chrome, H +4 / S +2, Color +4, Sh -2, Clarity -3, Grain Weak Small, WB -2/+1. Punchy + B&W-friendly.
+*   **Faded Vintage — 21% (53):** Classic Negative, H -1 / S -2, Color -4, Sh -2, Clarity -4, Grain Strong Large, WB +1/-3. Muted film look.
+*   **Clean Punch — 18% (47):** Classic Chrome, H +1 / S +1, Color +4, Sh 0, Clarity +3, Grain Weak Small, WB +1/-3. Crisp, no mist delay.
 
-![Nishti Recipe Table](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/nishti_recipe_table.png)
+![Four Patterns](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/pattern_map.png)
 
 ---
 
 ## 9. See the Difference: Real World Examples
-Theory is nice, but what does the "Nishti Recipe" actually look like? Here are straight-from-camera JPEGs using the community consensus settings.
+Theory is nice, but what does the **Soft Golden** pattern actually look like? Here are straight-from-camera JPEGs (Classic Chrome, H -2 / S -1, Color +4, Clarity -2).
 
 ### "Cinema Bloom"
 ![Cat on shelf](https://raw.githubusercontent.com/Niteeshkanungo/fujisims/main/images/example_cat_shelf.jpg)

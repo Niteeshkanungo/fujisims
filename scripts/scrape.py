@@ -6,7 +6,8 @@ from database import save_recipe
 
 # Headers to mimic a browser
 HEADERS = {
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+    "Accept-Encoding": "gzip, deflate",
 }
 # NOTE: FujiXWeekly and other sites often block non-browser user agents (403 Forbidden).
 # The User-Agent above mimics a standard Chrome browser on macOS.
